@@ -45,18 +45,18 @@
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.codesCheckedListBox = new System.Windows.Forms.CheckedListBox();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
+			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.debugFileCheckBox = new System.Windows.Forms.CheckBox();
+			this.debugConsoleCheckBox = new System.Windows.Forms.CheckBox();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.modContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.openFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.debugConsoleCheckBox = new System.Windows.Forms.CheckBox();
-			this.debugFileCheckBox = new System.Windows.Forms.CheckBox();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.tabPage2.SuspendLayout();
 			this.tabPage4.SuspendLayout();
-			this.modContextMenu.SuspendLayout();
 			this.groupBox1.SuspendLayout();
+			this.modContextMenu.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// buttonRefreshModList
@@ -243,6 +243,40 @@
 			this.tabPage4.Text = "Options";
 			this.tabPage4.UseVisualStyleBackColor = true;
 			// 
+			// groupBox1
+			// 
+			this.groupBox1.Controls.Add(this.debugFileCheckBox);
+			this.groupBox1.Controls.Add(this.debugConsoleCheckBox);
+			this.groupBox1.Location = new System.Drawing.Point(6, 6);
+			this.groupBox1.Name = "groupBox1";
+			this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
+			this.groupBox1.Size = new System.Drawing.Size(366, 49);
+			this.groupBox1.TabIndex = 0;
+			this.groupBox1.TabStop = false;
+			this.groupBox1.Text = "Debug Messages";
+			// 
+			// debugFileCheckBox
+			// 
+			this.debugFileCheckBox.AutoSize = true;
+			this.debugFileCheckBox.Location = new System.Drawing.Point(76, 19);
+			this.debugFileCheckBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+			this.debugFileCheckBox.Name = "debugFileCheckBox";
+			this.debugFileCheckBox.Size = new System.Drawing.Size(42, 17);
+			this.debugFileCheckBox.TabIndex = 1;
+			this.debugFileCheckBox.Text = "&File";
+			this.debugFileCheckBox.UseVisualStyleBackColor = true;
+			// 
+			// debugConsoleCheckBox
+			// 
+			this.debugConsoleCheckBox.AutoSize = true;
+			this.debugConsoleCheckBox.Location = new System.Drawing.Point(6, 19);
+			this.debugConsoleCheckBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+			this.debugConsoleCheckBox.Name = "debugConsoleCheckBox";
+			this.debugConsoleCheckBox.Size = new System.Drawing.Size(64, 17);
+			this.debugConsoleCheckBox.TabIndex = 0;
+			this.debugConsoleCheckBox.Text = "&Console";
+			this.debugConsoleCheckBox.UseVisualStyleBackColor = true;
+			// 
 			// modContextMenu
 			// 
 			this.modContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -257,40 +291,6 @@
 			this.openFolderToolStripMenuItem.Text = "Open folder";
 			this.openFolderToolStripMenuItem.Click += new System.EventHandler(this.openFolderToolStripMenuItem_Click);
 			// 
-			// groupBox1
-			// 
-			this.groupBox1.Controls.Add(this.debugFileCheckBox);
-			this.groupBox1.Controls.Add(this.debugConsoleCheckBox);
-			this.groupBox1.Location = new System.Drawing.Point(6, 6);
-			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
-			this.groupBox1.Size = new System.Drawing.Size(366, 49);
-			this.groupBox1.TabIndex = 0;
-			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Debug Messages";
-			// 
-			// debugConsoleCheckBox
-			// 
-			this.debugConsoleCheckBox.AutoSize = true;
-			this.debugConsoleCheckBox.Location = new System.Drawing.Point(6, 19);
-			this.debugConsoleCheckBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-			this.debugConsoleCheckBox.Name = "debugConsoleCheckBox";
-			this.debugConsoleCheckBox.Size = new System.Drawing.Size(64, 17);
-			this.debugConsoleCheckBox.TabIndex = 0;
-			this.debugConsoleCheckBox.Text = "&Console";
-			this.debugConsoleCheckBox.UseVisualStyleBackColor = true;
-			// 
-			// debugFileCheckBox
-			// 
-			this.debugFileCheckBox.AutoSize = true;
-			this.debugFileCheckBox.Location = new System.Drawing.Point(76, 19);
-			this.debugFileCheckBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-			this.debugFileCheckBox.Name = "debugFileCheckBox";
-			this.debugFileCheckBox.Size = new System.Drawing.Size(42, 17);
-			this.debugFileCheckBox.TabIndex = 1;
-			this.debugFileCheckBox.Text = "&File";
-			this.debugFileCheckBox.UseVisualStyleBackColor = true;
-			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -304,16 +304,16 @@
 			this.Name = "MainForm";
 			this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 3);
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
-			this.Text = "Mania Mod Manager";
+			this.Text = "Sonic R Mod Manager";
 			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
 			this.tabPage1.PerformLayout();
 			this.tabPage2.ResumeLayout(false);
 			this.tabPage4.ResumeLayout(false);
-			this.modContextMenu.ResumeLayout(false);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
+			this.modContextMenu.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

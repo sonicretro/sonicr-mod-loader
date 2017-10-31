@@ -52,6 +52,14 @@ namespace SonicRModManager
 
 			debugConsoleCheckBox.Checked = loaderini.DebugConsole;
 			debugFileCheckBox.Checked = loaderini.DebugFile;
+			windowedCheckBox.Checked = loaderini.Windowed;
+			horizResolution.Enabled = !loaderini.ForceAspectRatio;
+			horizResolution.Value = Math.Max(horizResolution.Minimum, Math.Min(horizResolution.Maximum, loaderini.HorizontalResolution));
+			vertiResolution.Value = Math.Max(vertiResolution.Minimum, Math.Min(vertiResolution.Maximum, loaderini.VerticalResolution));
+
+			suppressEvent = true;
+			forceAspectRatioCheckBox.Checked = loaderini.ForceAspectRatio;
+			suppressEvent = false;
 
 			if (File.Exists(datadllpath))
 			{
@@ -208,6 +216,10 @@ namespace SonicRModManager
 
 			loaderini.DebugConsole = debugConsoleCheckBox.Checked;
 			loaderini.DebugFile = debugFileCheckBox.Checked;
+			loaderini.Windowed = windowedCheckBox.Checked;
+			loaderini.HorizontalResolution = (int)horizResolution.Value;
+			loaderini.VerticalResolution = (int)vertiResolution.Value;
+			loaderini.ForceAspectRatio = forceAspectRatioCheckBox.Checked;
 
 			IniSerializer.Serialize(loaderini, loaderinipath);
 
@@ -415,6 +427,24 @@ namespace SonicRModManager
 			{
 				Process.Start(Path.Combine("mods", (string)item.Tag));
 			}
+		}
+
+		const decimal ratio = 4 / 3m;
+		private void forceAspectRatioCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+			if (forceAspectRatioCheckBox.Checked)
+			{
+				horizResolution.Enabled = false;
+				horizResolution.Value = Math.Round(vertiResolution.Value * ratio);
+			}
+			else if (!suppressEvent)
+				horizResolution.Enabled = true;
+		}
+
+		private void vertiResolution_ValueChanged(object sender, EventArgs e)
+		{
+			if (forceAspectRatioCheckBox.Checked)
+				horizResolution.Value = Math.Round(vertiResolution.Value * ratio);
 		}
 	}
 }

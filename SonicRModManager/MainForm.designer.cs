@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
+			System.Windows.Forms.Label label1;
+			System.Windows.Forms.Label label2;
 			this.buttonRefreshModList = new System.Windows.Forms.Button();
 			this.modDescription = new System.Windows.Forms.Label();
 			this.modListView = new System.Windows.Forms.ListView();
@@ -51,12 +53,22 @@
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.modContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.openFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.windowedCheckBox = new System.Windows.Forms.CheckBox();
+			this.horizResolution = new System.Windows.Forms.NumericUpDown();
+			this.vertiResolution = new System.Windows.Forms.NumericUpDown();
+			this.forceAspectRatioCheckBox = new System.Windows.Forms.CheckBox();
+			label1 = new System.Windows.Forms.Label();
+			label2 = new System.Windows.Forms.Label();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.tabPage2.SuspendLayout();
 			this.tabPage4.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.modContextMenu.SuspendLayout();
+			this.tabPage3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.horizResolution)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.vertiResolution)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// buttonRefreshModList
@@ -161,6 +173,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Controls.Add(this.tabPage2);
+			this.tabControl1.Controls.Add(this.tabPage3);
 			this.tabControl1.Controls.Add(this.tabPage4);
 			this.tabControl1.Location = new System.Drawing.Point(0, 0);
 			this.tabControl1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
@@ -291,6 +304,108 @@
 			this.openFolderToolStripMenuItem.Text = "Open folder";
 			this.openFolderToolStripMenuItem.Click += new System.EventHandler(this.openFolderToolStripMenuItem_Click);
 			// 
+			// tabPage3
+			// 
+			this.tabPage3.Controls.Add(this.forceAspectRatioCheckBox);
+			this.tabPage3.Controls.Add(this.vertiResolution);
+			this.tabPage3.Controls.Add(label2);
+			this.tabPage3.Controls.Add(this.horizResolution);
+			this.tabPage3.Controls.Add(label1);
+			this.tabPage3.Controls.Add(this.windowedCheckBox);
+			this.tabPage3.Location = new System.Drawing.Point(4, 22);
+			this.tabPage3.Name = "tabPage3";
+			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage3.Size = new System.Drawing.Size(378, 338);
+			this.tabPage3.TabIndex = 4;
+			this.tabPage3.Text = "Graphics";
+			this.tabPage3.UseVisualStyleBackColor = true;
+			// 
+			// windowedCheckBox
+			// 
+			this.windowedCheckBox.AutoSize = true;
+			this.windowedCheckBox.Location = new System.Drawing.Point(6, 6);
+			this.windowedCheckBox.Name = "windowedCheckBox";
+			this.windowedCheckBox.Size = new System.Drawing.Size(77, 17);
+			this.windowedCheckBox.TabIndex = 0;
+			this.windowedCheckBox.Text = "Windowed";
+			this.windowedCheckBox.UseVisualStyleBackColor = true;
+			// 
+			// label1
+			// 
+			label1.AutoSize = true;
+			label1.Location = new System.Drawing.Point(6, 31);
+			label1.Name = "label1";
+			label1.Size = new System.Drawing.Size(60, 13);
+			label1.TabIndex = 1;
+			label1.Text = "Resolution:";
+			// 
+			// horizResolution
+			// 
+			this.horizResolution.Location = new System.Drawing.Point(72, 29);
+			this.horizResolution.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+			this.horizResolution.Minimum = new decimal(new int[] {
+            640,
+            0,
+            0,
+            0});
+			this.horizResolution.Name = "horizResolution";
+			this.horizResolution.Size = new System.Drawing.Size(69, 20);
+			this.horizResolution.TabIndex = 2;
+			this.horizResolution.Value = new decimal(new int[] {
+            640,
+            0,
+            0,
+            0});
+			// 
+			// label2
+			// 
+			label2.AutoSize = true;
+			label2.Location = new System.Drawing.Point(147, 31);
+			label2.Name = "label2";
+			label2.Size = new System.Drawing.Size(12, 13);
+			label2.TabIndex = 3;
+			label2.Text = "x";
+			// 
+			// vertiResolution
+			// 
+			this.vertiResolution.Location = new System.Drawing.Point(165, 29);
+			this.vertiResolution.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+			this.vertiResolution.Minimum = new decimal(new int[] {
+            480,
+            0,
+            0,
+            0});
+			this.vertiResolution.Name = "vertiResolution";
+			this.vertiResolution.Size = new System.Drawing.Size(69, 20);
+			this.vertiResolution.TabIndex = 4;
+			this.vertiResolution.Value = new decimal(new int[] {
+            480,
+            0,
+            0,
+            0});
+			this.vertiResolution.ValueChanged += new System.EventHandler(this.vertiResolution_ValueChanged);
+			// 
+			// forceAspectRatioCheckBox
+			// 
+			this.forceAspectRatioCheckBox.AutoSize = true;
+			this.forceAspectRatioCheckBox.Checked = true;
+			this.forceAspectRatioCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.forceAspectRatioCheckBox.Location = new System.Drawing.Point(241, 31);
+			this.forceAspectRatioCheckBox.Name = "forceAspectRatioCheckBox";
+			this.forceAspectRatioCheckBox.Size = new System.Drawing.Size(135, 17);
+			this.forceAspectRatioCheckBox.TabIndex = 5;
+			this.forceAspectRatioCheckBox.Text = "Force 4:3 Aspect Ratio";
+			this.forceAspectRatioCheckBox.UseVisualStyleBackColor = true;
+			this.forceAspectRatioCheckBox.CheckedChanged += new System.EventHandler(this.forceAspectRatioCheckBox_CheckedChanged);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -314,6 +429,10 @@
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.modContextMenu.ResumeLayout(false);
+			this.tabPage3.ResumeLayout(false);
+			this.tabPage3.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.horizResolution)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.vertiResolution)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -343,5 +462,10 @@
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.CheckBox debugFileCheckBox;
 		private System.Windows.Forms.CheckBox debugConsoleCheckBox;
+		private System.Windows.Forms.TabPage tabPage3;
+		private System.Windows.Forms.CheckBox windowedCheckBox;
+		private System.Windows.Forms.NumericUpDown horizResolution;
+		private System.Windows.Forms.NumericUpDown vertiResolution;
+		private System.Windows.Forms.CheckBox forceAspectRatioCheckBox;
 	}
 }

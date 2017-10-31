@@ -7,6 +7,7 @@
 #include <vector>
 #include <sstream>
 #include <chrono>
+#include <Objbase.h>
 #include "git.h"
 #include "CodeParser.hpp"
 #include "IniFile.hpp"
@@ -151,6 +152,11 @@ __declspec(naked) void MusicPatch()
 }
 
 StdcallFunctionPointer(int, _WinMain, (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd), 0x4330A0);
+FunctionPointer(int, sub_432F10, (int *a1), 0x432F10);
+FunctionPointer(int, sub_432EB0, (char a1), 0x432EB0);
+VoidFunc(sub_432F90, 0x432F90);
+FunctionPointer(void, sub_404CB0, (HWND hwnd), 0x404CB0);
+FunctionPointer(void, sub_442070, (HWND hwnd), 0x442070);
 int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
 	FILE *f_ini = _wfopen(L"mods\\SonicRModLoader.ini", L"r");
@@ -206,7 +212,7 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 		WriteJump(PrintDebug, SonicRDebugOutput);
 		WriteData((void**)0x404BD3, (void*)&SonicRDebugOutput);
 		// There's a couple other functions that were compiled out and got merged with the debug printing function.
-		// This code replaces those calls with nops, otherwise the game would crash on invalid pointers.
+		// This code replaces those calls with nops, otherwise the game would crash on invalid pointers, or print garbage.
 		char jmpnop[5] = { 0x90u, 0x90u, 0x90u, 0x90u, 0x90u };
 		WriteData((void*)0x43AB3D, jmpnop);
 		WriteData((void*)0x43A567, jmpnop);
@@ -215,6 +221,10 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 		WriteData((void*)0x41534D, jmpnop);
 		WriteData((void*)0x41DA7B, jmpnop);
 		WriteData((void*)0x43844A, jmpnop);
+		WriteData((void*)0x41C477, jmpnop);
+		WriteData((void*)0x41C485, jmpnop);
+		WriteData((void*)0x41C425, jmpnop);
+		WriteData((void*)0x41C433, jmpnop);
 		PrintDebug("Sonic R Mod Loader (API version %d), built " __TIMESTAMP__ "\n",
 			ModLoaderVer);
 #ifdef MODLOADER_GIT_VERSION
@@ -226,7 +236,17 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 #endif /* MODLOADER_GIT_VERSION */
 	}
 
-	*(int*)0x502F1C = 1;
+	Windowed = settings->getBool("Windowed");
+
+	int hres = settings->getInt("HorizontalResolution", 640);
+	if (hres > 0)
+		HorizontalResolution = hres;
+
+	int vres = settings->getInt("VerticalResolution", 480);
+	if (vres > 0)
+		VerticalResolution = vres;
+
+	*(int*)0x502F1C = 1; // disable CD requirement
 	WriteJump((void*)0x42DD4D, MusicPatch);
 
 	// Map of files to replace and/or swap.
@@ -467,7 +487,69 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 
 	WriteJump(FrameDelay, ProcessCodes);
 
-	return _WinMain(hInstance, hPrevInstance, lpCmdLine, nShowCmd);
+	ProcessCommandLine(lpCmdLine);
+	CalculateClockSpeed();
+	unsigned int v4 = (signed int)(*(int*)0x7A9FD8 + ((unsigned __int64)(0xFFFFFFFF88888889i64 * *(int*)0x7A9FD8) >> 32)) >> 4;
+	*(int*)0x7AF078 = (v4 >> 31) + v4;
+	if (sub_432F10((int*)0x45F67C))
+		sub_432EB0(2u);
+	sub_432F90();
+	::hInstance = hInstance;
+	WndClass.style = CS_NOCLOSE | CS_HREDRAW | CS_VREDRAW;
+	WndClass.lpfnWndProc = (WNDPROC)0x433080;
+	WndClass.cbClsExtra = 0;
+	WndClass.cbWndExtra = 0;
+	WndClass.hInstance = hInstance;
+	WndClass.hIcon = LoadIconA(hInstance, MAKEINTRESOURCEA(101));
+	WndClass.hCursor = LoadCursor(0, IDC_ARROW);
+	WndClass.hbrBackground = 0;
+	WndClass.lpszMenuName = 0;
+	WndClass.lpszClassName = WindowName;
+	if (RegisterClassA(&WndClass))
+	{
+		CoInitialize(0);
+		RECT windowRect = { 0, 0, HorizontalResolution, VerticalResolution };
+
+		DWORD dwStyle = WS_CAPTION | WS_SYSMENU | WS_VISIBLE;
+		DWORD dwExStyle = 0;
+		AdjustWindowRectEx(&windowRect, dwStyle, false, dwExStyle);
+		int w = windowRect.right - windowRect.left;
+		int h = windowRect.bottom - windowRect.top;
+		int x = (GetSystemMetrics(SM_CXSCREEN) - w) / 2;
+		int y = (GetSystemMetrics(SM_CYSCREEN) - h) / 2;
+		hWnd = CreateWindowExA(
+			dwExStyle,
+			WindowName,
+			WindowName,
+			dwStyle,
+			x,
+			y,
+			w,
+			h,
+			0,
+			0,
+			hInstance,
+			0);
+		if (!hWnd)
+		{
+			auto v6 = PrintDebugWithTrace("H:\\projects\\SonicR.Win\\SonicR\\pc\\pcmain.cpp", 277);
+			v6("Failed to create window - gor blimey guv'nor");
+		}
+		ShowWindow(hWnd, 1);
+		UpdateWindow(hWnd);
+		SetFocus(hWnd);
+		MSG Msg;
+		while (PeekMessageA(&Msg, 0, 0, 0, 1u))
+		{
+			TranslateMessage(&Msg);
+			DispatchMessageA(&Msg);
+		}
+		sub_404CB0(hWnd);
+		sub_442070(hWnd);
+		try { MainGameLoop(); }
+		catch (const std::exception&) {}
+	}
+	return 0;
 }
 
 static const char verchk[] = "Sonic R";
@@ -479,7 +561,7 @@ BOOL APIENTRY DllMain(HMODULE hModule,
 	switch (ul_reason_for_call)
 	{
 	case DLL_PROCESS_ATTACH:
-		if (memcmp(verchk, (const char *)0x45F664, sizeof(verchk)) != 0)
+		if (memcmp(verchk, WindowName, sizeof(verchk)) != 0)
 			MessageBox(nullptr, L"The mod loader was not designed for this version of the game. You will need the 2004 version of Sonic R to use mods.", L"Sonic R Mod Loader", MB_ICONWARNING);
 		else
 			WriteCall((void*)0x449E92, InitMods);

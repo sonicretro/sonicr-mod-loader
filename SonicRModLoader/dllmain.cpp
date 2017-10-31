@@ -214,6 +214,7 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 		WriteData((void*)0x41489E, jmpnop);
 		WriteData((void*)0x41534D, jmpnop);
 		WriteData((void*)0x41DA7B, jmpnop);
+		WriteData((void*)0x43844A, jmpnop);
 		PrintDebug("Sonic R Mod Loader (API version %d), built " __TIMESTAMP__ "\n",
 			ModLoaderVer);
 #ifdef MODLOADER_GIT_VERSION

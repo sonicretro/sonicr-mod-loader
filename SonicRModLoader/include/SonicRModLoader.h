@@ -53,7 +53,8 @@ DataPointer(int, FrameEndTime, 0x7349F8);
 DataPointer(int, FrameStartTime, 0x7356B0);
 
 FunctionPointer(void, FrameDelay, (int fps), 0x404A90);
-static void(__cdecl *(__cdecl *const PrintDebugWithTrace)(char *file, int line))(char *, ...) = (decltype(PrintDebugWithTrace))0x404AF0;
+static void(__cdecl *(__cdecl *const DisplayFatalErrorWithTrace)(char *file, int line))(char *, ...) = (decltype(DisplayFatalErrorWithTrace))0x404AF0;
+static void(__cdecl *(__cdecl *const PrintDebugWithTrace)(char *file, int line))(char *, ...) = (decltype(PrintDebugWithTrace))0x404BC0;
 FunctionPointer(int, GetTime, (), 0x404D30);
 FunctionPointer(int, PrintDebug, (const char *fmt, ...), 0x404D80);
 VoidFunc(CalculateClockSpeed, 0x4332B0);

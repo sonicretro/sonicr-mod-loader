@@ -532,7 +532,7 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 			0);
 		if (!hWnd)
 		{
-			auto v6 = PrintDebugWithTrace("H:\\projects\\SonicR.Win\\SonicR\\pc\\pcmain.cpp", 277);
+			auto v6 = DisplayFatalErrorWithTrace("H:\\projects\\SonicR.Win\\SonicR\\pc\\pcmain.cpp", 277);
 			v6("Failed to create window - gor blimey guv'nor");
 		}
 		ShowWindow(hWnd, 1);

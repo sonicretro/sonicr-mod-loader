@@ -517,19 +517,7 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 		int h = windowRect.bottom - windowRect.top;
 		int x = (GetSystemMetrics(SM_CXSCREEN) - w) / 2;
 		int y = (GetSystemMetrics(SM_CYSCREEN) - h) / 2;
-		hWnd = CreateWindowExA(
-			dwExStyle,
-			WindowName,
-			WindowName,
-			dwStyle,
-			x,
-			y,
-			w,
-			h,
-			0,
-			0,
-			hInstance,
-			0);
+		hWnd = CreateWindowExA(dwExStyle, WindowName, WindowName, dwStyle, x, y, w, h, 0, 0, hInstance, 0);
 		if (!hWnd)
 		{
 			auto v6 = DisplayFatalErrorWithTrace("H:\\projects\\SonicR.Win\\SonicR\\pc\\pcmain.cpp", 277);

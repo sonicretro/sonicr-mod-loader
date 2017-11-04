@@ -6,8 +6,8 @@
 #include <algorithm>
 #include <vector>
 #include <sstream>
-#include <chrono>
 #include <Objbase.h>
+#include <MMSystem.h>
 #include "git.h"
 #include "CodeParser.hpp"
 #include "IniFile.hpp"
@@ -24,10 +24,6 @@ using std::wstring;
 using std::unique_ptr;
 using std::vector;
 using std::unordered_map;
-using std::chrono::duration;
-using std::chrono::system_clock;
-using std::milli;
-using std::ratio;
 
 /**
 * Hook Sonic R's CreateFileA() import.
@@ -85,19 +81,23 @@ static void HookCreateFileA(void)
 
 // Code Parser.
 static CodeParser codeParser;
-using FrameRatio = duration<double, ratio<1, 30>>;
-static auto frame_start = system_clock::now();
-static auto frame_ratio = FrameRatio(1);
-static duration<double, milli> present_time = {};
 
 static void __cdecl ProcessCodes(int fps)
 {
 	codeParser.processCodeList();
 	RaiseEvents(modFrameEvents);
+	int v1 = 1000 / fps;
 	int v2 = abs(GetTime() - FrameStartTime);
-	while (system_clock::now() - frame_start < frame_ratio);
+	if (v2 < v1)
+	{
+		do
+		{
+			if (v1 - v2 > 1)
+				Sleep((v1 - v2) >> 1);
+			v2 = abs(GetTime() - FrameStartTime);
+		} while (v2 < v1);
+	}
 	FrameEndTime = 1000 / (v2 + 1);
-	frame_start = system_clock::now();
 }
 
 static bool dbgConsole;
@@ -169,6 +169,10 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 	fclose(f_ini);
 
 	HookCreateFileA();
+
+	TIMECAPS tc;
+	timeGetDevCaps(&tc, sizeof(tc));
+	timeBeginPeriod(tc.wPeriodMin);
 
 	// Get exe's path and filename.
 	wchar_t pathbuf[MAX_PATH];
@@ -537,6 +541,7 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 		try { MainGameLoop(); }
 		catch (const std::exception&) {}
 	}
+	timeEndPeriod(tc.wPeriodMin);
 	return 0;
 }
 

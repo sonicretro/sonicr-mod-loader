@@ -5,7 +5,8 @@
 
 #include "stdafx.h"
 #include "FileMap.hpp"
-#include "include\SonicRModLoader.h"
+#include "FileSystem.h"
+#include "SonicRModLoader.h"
 
 #include <cctype>
 #include <cstring>
@@ -157,7 +158,56 @@ void FileMap::scanFolder_int(const string &srcPath, int srcLen, int modIdx)
 			// Original filename.
 			string origFile = modFile.substr(srcLen);
 
+			if (!origFile.compare(0, 6, "music\\"))
+			{
+				// Original filename should have a ".son" extension.
+				ReplaceFileExtension(origFile, ".son");
+			}
+
 			setReplaceFile(origFile, modFile, modIdx);
+		}
+	} while (FindNextFileA(hFind, &data) != 0);
+
+	FindClose(hFind);
+}
+
+/**
+* Scans a sound folder for files.
+* @param srcPath Path to scan.
+*/
+void FileMap::scanSoundFolder(const std::string &srcPath)
+{
+	WIN32_FIND_DATAA data;
+	char path[MAX_PATH];
+	snprintf(path, sizeof(path), "%s\\*", srcPath.c_str());
+	HANDLE hFind = FindFirstFileA(path, &data);
+
+	// No files found.
+	if (hFind == INVALID_HANDLE_VALUE)
+	{
+		return;
+	}
+
+	do
+	{
+		// NOTE: This will hide *all* files starting with '.'.
+		// SADX doesn't use any files starting with '.',
+		// so this won't cause any problems.
+		if (data.cFileName[0] == '.')
+		{
+			continue;
+		}
+
+		if (!(data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) &&
+			_stricmp(".son", PathFindExtensionA(data.cFileName)))
+		{
+			// Create the mod filename and original filename.
+			string modFile = srcPath + '\\' + string(data.cFileName);
+			transform(modFile.begin(), modFile.end(), modFile.begin(), ::tolower);
+			// Original filename should have a ".son" extension.
+			string origFile = modFile;
+			ReplaceFileExtension(origFile, ".son");
+			m_fileMap[origFile] = { modFile };
 		}
 	} while (FindNextFileA(hFind, &data) != 0);
 

@@ -57,7 +57,13 @@ class FileMap
 		 */
 		void scanFolder(const std::string &srcPath, int modIdx);
 
-	protected:
+		/**
+		* Scans a sound folder for files.
+		* @param srcPath Path to scan.
+		*/
+		void scanSoundFolder(const std::string &srcPath);
+
+protected:
 		/**
 		 * Recursively scan a directory and add all files to the replacement map.
 		 * Destination is always relative to system/.

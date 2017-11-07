@@ -48,9 +48,11 @@ DataPointer(int, VerticalResolution, 0x461524);
 DataPointer(WNDCLASSA, WndClass, 0x4B5398);
 DataPointer(HINSTANCE, hInstance, 0x4B53C4);
 DataPointer(HWND, hWnd, 0x4B53C8);
+DataPointer(int, CurrentMusicTrack, 0x502360);
 DataPointer(int, Windowed, 0x5EDD24);
 DataPointer(int, FrameEndTime, 0x7349F8);
 DataPointer(int, FrameStartTime, 0x7356B0);
+DataPointer(int, MusicVolume, 0x7AF1B4);
 
 FunctionPointer(void, FrameDelay, (int fps), 0x404A90);
 static void(__cdecl *(__cdecl *const DisplayFatalErrorWithTrace)(char *file, int line))(char *, ...) = (decltype(DisplayFatalErrorWithTrace))0x404AF0;

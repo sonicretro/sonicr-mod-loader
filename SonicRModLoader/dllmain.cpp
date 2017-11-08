@@ -8,6 +8,7 @@
 #include <sstream>
 #include <Objbase.h>
 #include <MMSystem.h>
+#include <GdiPlus.h>
 #include "git.h"
 #include "CodeParser.hpp"
 #include "IniFile.hpp"
@@ -264,6 +265,68 @@ void CheckPauseMusic()
 	}
 }
 
+static Gdiplus::Bitmap* backgroundImage = nullptr;
+enum windowmodes { windowed, fullscreen };
+struct windowsize { int x; int y; int width; int height; };
+struct windowdata { int x; int y; int width; int height; DWORD style; DWORD exStyle; };
+
+// Used for borderless windowed mode.
+// Defines the size of the outer-window which wraps the game window and draws the background.
+static windowdata outerSizes[] = {
+	{ CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, WS_CAPTION | WS_SYSMENU | WS_VISIBLE, 0 }, // windowed
+	{ 0, 0, CW_USEDEFAULT, CW_USEDEFAULT, WS_POPUP | WS_VISIBLE, WS_EX_APPWINDOW } // fullscreen
+};
+
+// Used for borderless windowed mode.
+// Defines the size of the inner-window on which the game is rendered.
+static windowsize innerSizes[2] = {};
+
+static WNDCLASS outerWindowClass = {};
+static HWND accelWindow = nullptr;
+static windowmodes windowMode = windowmodes::windowed;
+
+static LRESULT CALLBACK WrapperWndProc(HWND wrapper, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	switch (uMsg)
+	{
+	case WM_CLOSE:
+		SendMessage(hWnd, WM_CLOSE, wParam, lParam);
+		return 0;
+
+	case WM_ERASEBKGND:
+	{
+		if (backgroundImage == nullptr)
+		{
+			break;
+		}
+
+		Gdiplus::Graphics gfx((HDC)wParam);
+		gfx.SetInterpolationMode(Gdiplus::InterpolationModeHighQualityBicubic);
+
+		RECT rect;
+		GetClientRect(wrapper, &rect);
+
+		auto w = rect.right - rect.left;
+		auto h = rect.bottom - rect.top;
+
+		if (w == innerSizes[windowMode].width && h == innerSizes[windowMode].height)
+		{
+			break;
+		}
+
+		gfx.DrawImage(backgroundImage, 0, 0, w, h);
+		return 0;
+	}
+
+	default:
+		break;
+	}
+
+	// alternatively we can return SendMe
+	return DefWindowProc(wrapper, uMsg, wParam, lParam);
+}
+
+
 StdcallFunctionPointer(int, _WinMain, (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd), 0x4330A0);
 FunctionPointer(int, sub_432F10, (int *a1), 0x432F10);
 FunctionPointer(int, sub_432EB0, (char a1), 0x432EB0);
@@ -362,6 +425,12 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 	int vres = settings->getInt("VerticalResolution", 480);
 	if (vres > 0)
 		VerticalResolution = vres;
+
+	bool borderlessWindow = settings->getBool("WindowedFullscreen");
+	bool scaleScreen = settings->getBool("StretchFullscreen", true);
+	bool customWindowSize = settings->getBool("CustomWindowSize");
+	int customWindowWidth = settings->getInt("WindowWidth", 640);
+	int customWindowHeight = settings->getInt("WindowHeight", 480);
 
 	*(int*)0x502F18 = 1;
 	*(int*)0x502F1C = 1;
@@ -617,6 +686,8 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 
 	WriteJump(FrameDelay, ProcessCodes);
 
+	WriteData<6>((void*)0x404DED, 0x90u);
+
 	ProcessCommandLine(lpCmdLine);
 	CalculateClockSpeed();
 	unsigned int v4 = (signed int)(*(int*)0x7A9FD8 + ((unsigned __int64)(0xFFFFFFFF88888889i64 * *(int*)0x7A9FD8) >> 32)) >> 4;
@@ -635,9 +706,133 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 	WndClass.hbrBackground = 0;
 	WndClass.lpszMenuName = 0;
 	WndClass.lpszClassName = WindowName;
-	if (RegisterClassA(&WndClass))
+	if (!RegisterClassA(&WndClass))
+		goto end;
+	CoInitialize(0);
+	RECT windowRect;
+	windowRect.top = 0;
+	windowRect.left = 0;
+	if (customWindowSize)
 	{
-		CoInitialize(0);
+		windowRect.right = customWindowWidth;
+		windowRect.bottom = customWindowHeight;
+	}
+	else
+	{
+		windowRect.right = HorizontalResolution;
+		windowRect.bottom = VerticalResolution;
+	}
+
+	int screenX, screenY, screenW, screenH, wsX, wsY, wsW, wsH;
+	screenX = wsX = 0;
+	screenY = wsY = 0;
+	screenW = wsW = GetSystemMetrics(SM_CXSCREEN);
+	screenH = wsH = GetSystemMetrics(SM_CYSCREEN);
+
+	if (borderlessWindow)
+	{
+		AdjustWindowRectEx(&windowRect, outerSizes[windowed].style, false, 0);
+
+		outerSizes[windowed].width = windowRect.right - windowRect.left;
+		outerSizes[windowed].height = windowRect.bottom - windowRect.top;
+
+		outerSizes[windowed].x = wsX + ((wsW - outerSizes[windowed].width) / 2);
+		outerSizes[windowed].y = wsY + ((wsH - outerSizes[windowed].height) / 2);
+
+		outerSizes[fullscreen].x = screenX;
+		outerSizes[fullscreen].y = screenY;
+		outerSizes[fullscreen].width = screenW;
+		outerSizes[fullscreen].height = screenH;
+
+		if (customWindowSize)
+		{
+			float num = min((float)customWindowWidth / (float)HorizontalResolution, (float)customWindowHeight / (float)VerticalResolution);
+			innerSizes[windowed].width = (int)((float)HorizontalResolution * num);
+			innerSizes[windowed].height = (int)((float)VerticalResolution * num);
+			innerSizes[windowed].x = (customWindowWidth - innerSizes[windowed].width) / 2;
+			innerSizes[windowed].y = (customWindowHeight - innerSizes[windowed].height) / 2;
+		}
+		else
+		{
+			innerSizes[windowed].width = HorizontalResolution;
+			innerSizes[windowed].height = VerticalResolution;
+			innerSizes[windowed].x = 0;
+			innerSizes[windowed].y = 0;
+		}
+
+		if (scaleScreen)
+		{
+			float num = min((float)screenW / (float)HorizontalResolution, (float)screenH / (float)VerticalResolution);
+			innerSizes[fullscreen].width = (int)((float)HorizontalResolution * num);
+			innerSizes[fullscreen].height = (int)((float)VerticalResolution * num);
+		}
+		else
+		{
+			innerSizes[fullscreen].width = HorizontalResolution;
+			innerSizes[fullscreen].height = VerticalResolution;
+		}
+
+		innerSizes[fullscreen].x = (screenW - innerSizes[fullscreen].width) / 2;
+		innerSizes[fullscreen].y = (screenH - innerSizes[fullscreen].height) / 2;
+
+		windowMode = Windowed ? windowed : fullscreen;
+
+		if (FileExists(L"mods\\Border.png"))
+		{
+			Gdiplus::GdiplusStartupInput gdiplusStartupInput;
+			ULONG_PTR gdiplusToken;
+			Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, nullptr);
+			backgroundImage = Gdiplus::Bitmap::FromFile(L"mods\\Border.png");
+		}
+
+		// Register a window class for the wrapper window.
+		WNDCLASS w;
+		w.style = 0;
+		w.lpfnWndProc = WrapperWndProc;
+		w.cbClsExtra = 0;
+		w.cbWndExtra = 0;
+		w.hInstance = hInstance;
+		w.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(101));
+		w.hCursor = LoadCursor(nullptr, IDC_ARROW);
+		w.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+		w.lpszMenuName = nullptr;
+		w.lpszClassName = L"WrapperWindow";
+		if (!RegisterClass(&w))
+			goto end;
+
+		const auto& outerSize = outerSizes[windowMode];
+
+		accelWindow = CreateWindowEx(outerSize.exStyle,
+			L"WrapperWindow",
+			L"Sonic R",
+			outerSize.style,
+			outerSize.x, outerSize.y, outerSize.width, outerSize.height,
+			nullptr, nullptr, hInstance, nullptr);
+
+		if (accelWindow == nullptr)
+			goto end;
+
+		const auto& innerSize = innerSizes[windowMode];
+
+		hWnd = CreateWindowExA(0,
+			WindowName,
+			WindowName,
+			WS_CHILD | WS_VISIBLE,
+			innerSize.x, innerSize.y, innerSize.width, innerSize.height,
+			accelWindow, nullptr, hInstance, nullptr);
+
+		SetFocus(hWnd);
+		ShowWindow(accelWindow, 1);
+		UpdateWindow(accelWindow);
+		SetForegroundWindow(accelWindow);
+
+		Windowed = true;
+
+		WriteData((HWND**)0x42233E, &accelWindow);
+		WriteData((HWND**)0x422440, &accelWindow);
+	}
+	else
+	{
 		RECT windowRect = { 0, 0, HorizontalResolution, VerticalResolution };
 
 		DWORD dwStyle = WS_CAPTION | WS_SYSMENU | WS_VISIBLE;
@@ -645,8 +840,8 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 		AdjustWindowRectEx(&windowRect, dwStyle, false, dwExStyle);
 		int w = windowRect.right - windowRect.left;
 		int h = windowRect.bottom - windowRect.top;
-		int x = (GetSystemMetrics(SM_CXSCREEN) - w) / 2;
-		int y = (GetSystemMetrics(SM_CYSCREEN) - h) / 2;
+		int x = wsX + ((wsW - w) / 2);
+		int y = wsY + ((wsH - h) / 2);
 		hWnd = CreateWindowExA(dwExStyle, WindowName, WindowName, dwStyle, x, y, w, h, 0, 0, hInstance, 0);
 		if (!hWnd)
 		{
@@ -656,17 +851,18 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 		ShowWindow(hWnd, 1);
 		UpdateWindow(hWnd);
 		SetFocus(hWnd);
-		MSG Msg;
-		while (PeekMessageA(&Msg, 0, 0, 0, 1u))
-		{
-			TranslateMessage(&Msg);
-			DispatchMessageA(&Msg);
-		}
-		sub_404CB0(hWnd);
-		sub_442070(hWnd);
-		try { MainGameLoop(); }
-		catch (const std::exception&) {}
 	}
+	MSG Msg;
+	while (PeekMessageA(&Msg, 0, 0, 0, 1u))
+	{
+		TranslateMessage(&Msg);
+		DispatchMessageA(&Msg);
+	}
+	sub_404CB0(hWnd);
+	sub_442070(hWnd);
+	try { MainGameLoop(); }
+	catch (const std::exception&) {}
+end:
 	timeEndPeriod(tc.wPeriodMin);
 	return 0;
 }

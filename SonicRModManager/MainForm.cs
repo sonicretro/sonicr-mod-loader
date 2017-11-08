@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using IniFile;
 using ModManagerCommon;
 using ValueType = ModManagerCommon.ValueType;
+using System.Drawing;
 
 namespace SonicRModManager
 {
@@ -53,12 +54,36 @@ namespace SonicRModManager
 			debugConsoleCheckBox.Checked = loaderini.DebugConsole;
 			debugFileCheckBox.Checked = loaderini.DebugFile;
 			windowedCheckBox.Checked = loaderini.Windowed;
-			horizResolution.Enabled = !loaderini.ForceAspectRatio;
-			horizResolution.Value = Math.Max(horizResolution.Minimum, Math.Min(horizResolution.Maximum, loaderini.HorizontalResolution));
-			vertiResolution.Value = Math.Max(vertiResolution.Minimum, Math.Min(vertiResolution.Maximum, loaderini.VerticalResolution));
+			horizontalResolution.Enabled = !loaderini.ForceAspectRatio;
+			horizontalResolution.Value = Math.Max(horizontalResolution.Minimum, Math.Min(horizontalResolution.Maximum, loaderini.HorizontalResolution));
+			verticalResolution.Value = Math.Max(verticalResolution.Minimum, Math.Min(verticalResolution.Maximum, loaderini.VerticalResolution));
 
 			suppressEvent = true;
 			forceAspectRatioCheckBox.Checked = loaderini.ForceAspectRatio;
+			suppressEvent = false;
+
+			windowedFullscreenCheckBox.Checked = loaderini.WindowedFullscreen;
+			stretchFullscreenCheckBox.Checked = loaderini.StretchFullscreen;
+
+			customWindowSizeCheckBox.Checked = windowHeight.Enabled = maintainWindowAspectRatioCheckBox.Enabled = loaderini.CustomWindowSize;
+			windowWidth.Enabled = loaderini.CustomWindowSize && !loaderini.MaintainWindowAspectRatio;
+
+			Rectangle rect = Screen.PrimaryScreen.Bounds;
+
+			resolutionPresets[5] = rect.Size;
+			resolutionPresets[6] = new Size(rect.Width / 2, rect.Height / 2);
+			resolutionPresets[7] = new Size(rect.Width * 2, rect.Height * 2);
+
+			foreach (Screen screen in Screen.AllScreens)
+				rect = Rectangle.Union(rect, screen.Bounds);
+
+			windowWidth.Maximum = rect.Width;
+			windowWidth.Value = Math.Max(windowWidth.Minimum, Math.Min(rect.Width, loaderini.WindowWidth));
+			windowHeight.Maximum = rect.Height;
+			windowHeight.Value = Math.Max(windowHeight.Minimum, Math.Min(rect.Height, loaderini.WindowHeight));
+
+			suppressEvent = true;
+			maintainWindowAspectRatioCheckBox.Checked = loaderini.MaintainWindowAspectRatio;
 			suppressEvent = false;
 
 			if (File.Exists(datadllpath))
@@ -217,9 +242,15 @@ namespace SonicRModManager
 			loaderini.DebugConsole = debugConsoleCheckBox.Checked;
 			loaderini.DebugFile = debugFileCheckBox.Checked;
 			loaderini.Windowed = windowedCheckBox.Checked;
-			loaderini.HorizontalResolution = (int)horizResolution.Value;
-			loaderini.VerticalResolution = (int)vertiResolution.Value;
+			loaderini.HorizontalResolution = (int)horizontalResolution.Value;
+			loaderini.VerticalResolution = (int)verticalResolution.Value;
 			loaderini.ForceAspectRatio = forceAspectRatioCheckBox.Checked;
+			loaderini.WindowedFullscreen = windowedFullscreenCheckBox.Checked;
+			loaderini.StretchFullscreen = stretchFullscreenCheckBox.Checked;
+			loaderini.CustomWindowSize = customWindowSizeCheckBox.Checked;
+			loaderini.WindowWidth = (int)windowWidth.Value;
+			loaderini.WindowHeight = (int)windowHeight.Value;
+			loaderini.MaintainWindowAspectRatio = maintainWindowAspectRatioCheckBox.Checked;
 
 			IniSerializer.Serialize(loaderini, loaderinipath);
 
@@ -434,17 +465,75 @@ namespace SonicRModManager
 		{
 			if (forceAspectRatioCheckBox.Checked)
 			{
-				horizResolution.Enabled = false;
-				horizResolution.Value = Math.Round(vertiResolution.Value * ratio);
+				horizontalResolution.Enabled = false;
+				horizontalResolution.Value = Math.Round(verticalResolution.Value * ratio);
+				comboResolutionPreset.SelectedIndex = -1;
 			}
 			else if (!suppressEvent)
-				horizResolution.Enabled = true;
+				horizontalResolution.Enabled = true;
 		}
 
-		private void vertiResolution_ValueChanged(object sender, EventArgs e)
+		private void horizontalResolution_ValueChanged(object sender, EventArgs e)
+		{
+			if (!suppressEvent)
+				comboResolutionPreset.SelectedIndex = -1;
+		}
+
+		private void verticalResolution_ValueChanged(object sender, EventArgs e)
 		{
 			if (forceAspectRatioCheckBox.Checked)
-				horizResolution.Value = Math.Round(vertiResolution.Value * ratio);
+				horizontalResolution.Value = Math.Round(verticalResolution.Value * ratio);
+			if (!suppressEvent)
+				comboResolutionPreset.SelectedIndex = -1;
 		}
+
+		static readonly Size[] resolutionPresets =
+		{
+			new Size(640, 480), // 640x480
+			new Size(800, 600), // 800x600
+			new Size(1024, 768), // 1024x768
+			new Size(1152, 864), // 1152x864
+			new Size(1280, 1024), // 1280x1024
+			new Size(), // Native
+			new Size(), // 1/2x Native
+			new Size(), // 2x Native
+			new Size(1280, 720), // 720p
+			new Size(1920, 1080), // 1080p
+			new Size(3840, 2160), // 4K
+		};
+		private void comboResolutionPreset_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (comboResolutionPreset.SelectedIndex == -1) return;
+			suppressEvent = true;
+			verticalResolution.Value = resolutionPresets[comboResolutionPreset.SelectedIndex].Height;
+			if (!forceAspectRatioCheckBox.Checked)
+				horizontalResolution.Value = resolutionPresets[comboResolutionPreset.SelectedIndex].Width;
+			suppressEvent = false;
+		}
+
+		private void customWindowSizeCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+			maintainWindowAspectRatioCheckBox.Enabled = customWindowSizeCheckBox.Checked;
+			windowHeight.Enabled = customWindowSizeCheckBox.Checked;
+			windowWidth.Enabled = customWindowSizeCheckBox.Checked && !maintainWindowAspectRatioCheckBox.Checked;
+		}
+
+		private void maintainWindowAspectRatioCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+			if (maintainWindowAspectRatioCheckBox.Checked)
+			{
+				windowWidth.Enabled = false;
+				windowWidth.Value = Math.Round(windowHeight.Value * (horizontalResolution.Value / verticalResolution.Value));
+			}
+			else if (!suppressEvent)
+				windowWidth.Enabled = true;
+		}
+
+		private void windowHeight_ValueChanged(object sender, EventArgs e)
+		{
+			if (maintainWindowAspectRatioCheckBox.Checked)
+				windowWidth.Value = Math.Round(windowHeight.Value * (horizontalResolution.Value / verticalResolution.Value));
+		}
+
 	}
 }

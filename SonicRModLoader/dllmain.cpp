@@ -9,6 +9,7 @@
 #include <Objbase.h>
 #include <MMSystem.h>
 #include <GdiPlus.h>
+#include <d3d9.h>
 #include "git.h"
 #include "CodeParser.hpp"
 #include "IniFile.hpp"
@@ -326,6 +327,19 @@ static LRESULT CALLBACK WrapperWndProc(HWND wrapper, UINT uMsg, WPARAM wParam, L
 	return DefWindowProc(wrapper, uMsg, wParam, lParam);
 }
 
+void __cdecl SetPresentParameters(D3DPRESENT_PARAMETERS *pp, D3DFORMAT bufferFormat, D3DFORMAT depthStencilFormat, int bufferWidth, signed int bufferHeight, int refreshRate, int windowed)
+{
+	memset(pp, 0, sizeof(D3DPRESENT_PARAMETERS));
+	pp->AutoDepthStencilFormat = depthStencilFormat;
+	pp->SwapEffect = D3DSWAPEFFECT_DISCARD;
+	pp->EnableAutoDepthStencil = 1;
+	pp->Windowed = windowed;
+	pp->BackBufferFormat = bufferFormat;
+	pp->BackBufferWidth = bufferWidth;
+	pp->BackBufferHeight = bufferHeight;
+	pp->FullScreen_RefreshRateInHz = refreshRate;
+	pp->hDeviceWindow = hWnd;
+}
 
 StdcallFunctionPointer(int, _WinMain, (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd), 0x4330A0);
 FunctionPointer(int, sub_432F10, (int *a1), 0x432F10);
@@ -703,7 +717,7 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 	WndClass.hInstance = hInstance;
 	WndClass.hIcon = LoadIconA(hInstance, MAKEINTRESOURCEA(101));
 	WndClass.hCursor = LoadCursor(0, IDC_ARROW);
-	WndClass.hbrBackground = 0;
+	WndClass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
 	WndClass.lpszMenuName = 0;
 	WndClass.lpszClassName = WindowName;
 	if (!RegisterClassA(&WndClass))
@@ -830,11 +844,10 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 
 		WriteData((HWND**)0x42233E, &accelWindow);
 		WriteData((HWND**)0x422440, &accelWindow);
+		WriteCall((void*)0x442131, SetPresentParameters);
 	}
 	else
 	{
-		RECT windowRect = { 0, 0, HorizontalResolution, VerticalResolution };
-
 		DWORD dwStyle = WS_CAPTION | WS_SYSMENU | WS_VISIBLE;
 		DWORD dwExStyle = 0;
 		AdjustWindowRectEx(&windowRect, dwStyle, false, dwExStyle);

@@ -701,6 +701,7 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 	WriteJump(FrameDelay, ProcessCodes);
 
 	WriteData<6>((void*)0x404DED, 0x90u);
+	WriteCall((void*)0x442131, SetPresentParameters);
 
 	ProcessCommandLine(lpCmdLine);
 	CalculateClockSpeed();
@@ -844,7 +845,6 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 
 		WriteData((HWND**)0x42233E, &accelWindow);
 		WriteData((HWND**)0x422440, &accelWindow);
-		WriteCall((void*)0x442131, SetPresentParameters);
 	}
 	else
 	{

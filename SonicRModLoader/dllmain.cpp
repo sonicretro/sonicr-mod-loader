@@ -802,7 +802,7 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 
 		// Register a window class for the wrapper window.
 		WNDCLASS w;
-		w.style = 0;
+		w.style = CS_NOCLOSE;
 		w.lpfnWndProc = WrapperWndProc;
 		w.cbClsExtra = 0;
 		w.cbWndExtra = 0;

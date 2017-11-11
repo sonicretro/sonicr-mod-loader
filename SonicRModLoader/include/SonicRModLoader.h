@@ -62,3 +62,7 @@ FunctionPointer(int, PrintDebug, (const char *fmt, ...), 0x404D80);
 VoidFunc(CalculateClockSpeed, 0x4332B0);
 FunctionPointer(void, ProcessCommandLine, (const char *a1), 0x433400);
 FunctionPointer(int, MainGameLoop, (), 0x43AA60);
+FunctionPointer(int, GetCurrentMusicTrack, (), 0x43C180);
+FunctionPointer(void, PlayMusicTrack, (int track), 0x43C210);
+VoidFunc(StopMusic, 0x43C260);
+VoidFunc(UpdateMusicVolume, 0x43D190);

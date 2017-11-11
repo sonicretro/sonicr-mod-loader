@@ -237,7 +237,7 @@ void PlayMusic(int track)
 	}
 }
 
-void StopMusic()
+void StopMusic_r()
 {
 	if (basschan != 0)
 	{
@@ -248,7 +248,7 @@ void StopMusic()
 	}
 }
 
-void UpdateMusicVolume()
+void UpdateMusicVolume_r()
 {
 	if (basschan != 0)
 		BASS_ChannelSetAttribute(basschan, BASS_ATTRIB_VOL, volumelevels[MusicVolume]);
@@ -454,11 +454,11 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 	WriteJump((void*)0x43CB2B, (void*)0x43CB6D);
 	WriteCall((void*)0x43CEAA, DeInitMusic);
 	WriteJump((void*)0x43CEAF, (void*)0x43CECA);
-	WriteJump((void*)0x43C180, GetCurrentTrackNumber);
+	WriteJump(GetCurrentMusicTrack, GetCurrentTrackNumber);
 	WriteData((char*)0x43C1F0, (char)0xC3u); // SetMusicPlayerEmptyDiscPath
-	WriteJump((void*)0x43C210, PlayMusic);
-	WriteJump((void*)0x43C260, StopMusic);
-	WriteJump((void*)0x43D190, UpdateMusicVolume);
+	WriteJump(PlayMusicTrack, PlayMusic);
+	WriteJump(StopMusic, StopMusic_r);
+	WriteJump(UpdateMusicVolume, UpdateMusicVolume_r);
 
 	fileMap.scanSoundFolder("music");
 

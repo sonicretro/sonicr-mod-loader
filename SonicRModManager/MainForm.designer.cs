@@ -32,6 +32,7 @@
 			System.Windows.Forms.Label label5;
 			System.Windows.Forms.Label label2;
 			System.Windows.Forms.Label label1;
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.buttonRefreshModList = new System.Windows.Forms.Button();
 			this.modDescription = new System.Windows.Forms.Label();
 			this.modListView = new System.Windows.Forms.ListView();
@@ -578,6 +579,7 @@
 			this.Controls.Add(this.installButton);
 			this.Controls.Add(this.saveAndPlayButton);
 			this.Controls.Add(this.saveButton);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MinimumSize = new System.Drawing.Size(400, 400);
 			this.Name = "MainForm";
 			this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 3);

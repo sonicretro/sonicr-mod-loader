@@ -327,6 +327,160 @@ static LRESULT CALLBACK WrapperWndProc(HWND wrapper, UINT uMsg, WPARAM wParam, L
 	return DefWindowProc(wrapper, uMsg, wParam, lParam);
 }
 
+// Widescreen support
+int MapWidthTo640() {
+    int HorizontalResolution = *(int*)0x5F3874;
+    int VerticalResolution = *(int*)0x75353C;
+    float AspRatio = (float)HorizontalResolution / (float)VerticalResolution;
+    return (int)(480 * AspRatio);
+}
+
+int HalfExtraSpace() {
+    return (MapWidthTo640() - 640) >> 1;
+}
+
+void D3D_RenderHUD_MainTimer_AlignRight(
+    int XPos, int YPos, float ZPos, int Time, int Unk
+) {
+    int *SpriteXOff = (int*)0x72E010;
+    int tmp = *SpriteXOff;
+    // Right side of screen?
+    if (*SpriteXOff > (HorizontalResolution >> 1)) {
+	*SpriteXOff = HorizontalResolution >> 1;
+    }
+    else {
+	*SpriteXOff = 0;
+    }
+    float WidthRatio = 1.0f;
+    if (MP_WindowCount == 2 && MP_HUD2PSplit == 1) {
+	WidthRatio = 0.5f;
+    }
+
+    D3D_RenderHUD_MainTimer(
+	(int)((WidthRatio * HorizontalResolution) * 4.0f / 3.0f) - (640 * WidthRatio - XPos),
+	YPos, ZPos, Time, Unk
+    );
+
+    *SpriteXOff = tmp;
+}
+
+void D3D_RenderHUD_LapTimer_AlignRight(int XPos, int YPos, int Time) {
+    int *SpriteXOff = (int*)0x72E010;
+    int tmp = *SpriteXOff;
+    // Right side of screen?
+    if (*SpriteXOff > (HorizontalResolution >> 1)) {
+	*SpriteXOff = HorizontalResolution >> 1;
+    }
+    else {
+	*SpriteXOff = 0;
+    }
+    float WidthRatio = 1.0f;
+    if (MP_WindowCount == 2 && MP_HUD2PSplit == 1) {
+	WidthRatio = 0.5f;
+    }
+
+    D3D_RenderHUD_LapTimer(
+	(int)((WidthRatio * HorizontalResolution) * 4.0f / 3.0f) - (640 * WidthRatio - XPos),
+	YPos, Time
+    );
+
+    *SpriteXOff = tmp;
+}
+
+void D3D_Render2DObject_AlignLeft(
+    int XPos, int YPos, float ZPos, int XScale, int YScale, int TexPage,
+    int TexXOff, int TexYOff, int TexWidth, int TexHeight, int TexTint
+) {
+    // We run into clipping issues, so we have to disable our centering hack
+    // to left-align HUD elements
+    int *SpriteXOff = (int*)0x72E010;
+    int tmp = *SpriteXOff;
+    // Right side of screen?
+    if (*SpriteXOff > (HorizontalResolution >> 1)) {
+	*SpriteXOff = HorizontalResolution >> 1;
+    }
+    else {
+	*SpriteXOff = 0;
+    }
+
+    D3D_Render2DObject(
+	XPos, YPos, ZPos, XScale, YScale, TexPage,
+	TexXOff, TexYOff, TexWidth, TexHeight, TexTint
+    );
+
+    *SpriteXOff = tmp;
+}
+
+void D3D_Render2DObject_AlignRight(
+    int XPos, int YPos, float ZPos, int XScale, int YScale, int TexPage,
+    int TexXOff, int TexYOff, int TexWidth, int TexHeight, int TexTint
+) {
+    int *SpriteXOff = (int*)0x72E010;
+    int tmp = *SpriteXOff;
+    // Right side of screen?
+    if (*SpriteXOff > (HorizontalResolution >> 1)) {
+	*SpriteXOff = HorizontalResolution >> 1;
+    }
+    else {
+	*SpriteXOff = 0;
+    }
+    float WidthRatio = 1.0f;
+    if (MP_WindowCount == 2 && MP_HUD2PSplit == 1) {
+	WidthRatio = 0.5f;
+    }
+
+    D3D_Render2DObject(
+	(int)((WidthRatio * HorizontalResolution) * 4.0f / 3.0f) - (640 * WidthRatio - XPos),
+	YPos, ZPos, XScale, YScale, TexPage,
+	TexXOff, TexYOff, TexWidth, TexHeight, TexTint
+    );
+
+    *SpriteXOff = tmp;
+}
+
+void D3D_Render2DObject_AlignAuto(
+    int XPos, int YPos, float ZPos, int XScale, int YScale, int TexPage,
+    int TexXOff, int TexYOff, int TexWidth, int TexHeight, int TexTint
+) {
+    int CompVal = 320;
+    if (MP_WindowCount == 2 && MP_HUD2PSplit == 1) {
+	CompVal = 120;
+    }
+    if (XPos < CompVal) {
+	D3D_Render2DObject_AlignLeft(
+	    XPos, YPos, ZPos, XScale, YScale, TexPage,
+	    TexXOff, TexYOff, TexWidth, TexHeight, TexTint
+	);
+    }
+    else {
+	D3D_Render2DObject_AlignRight(
+	    XPos, YPos, ZPos, XScale, YScale, TexPage,
+	    TexXOff, TexYOff, TexWidth, TexHeight, TexTint
+	);
+    }
+}
+
+void Render_SetViewport_FixUp() {
+    int *XStretch = (int*)0x7BCB88;
+    int *XOff = (int*)0x7AF248;
+    // donor address (doesn't seem to effect anything)
+    int *SpriteXOff = (int*)0x72E010;
+    float AspRatio = (float)HorizontalResolution / (float)VerticalResolution;
+    int ExpectedXScale = HorizontalResolution * 0.8;
+    bool NeedsHalving = (*XStretch != ExpectedXScale);
+
+    float InvAspRatio = (float)VerticalResolution / (float)HorizontalResolution;
+    *XStretch = VerticalResolution;
+    // Vertical split requires halved aspect ratio
+    if (NeedsHalving && MP_WindowCount > 1) {
+	*XStretch /= 2;
+    }
+
+    // This breaks with extreme aspect ratios, for some reason
+    // Simplified form of (HorizontalResolution - (VerticalResolution * (4.0f/3.0f))) / 2
+    *SpriteXOff = *XOff + (int)(((0.5f) * HorizontalResolution) - ((2.0f / 3.0f) * VerticalResolution));
+}
+
 void __cdecl SetPresentParameters(D3DPRESENT_PARAMETERS *pp, D3DFORMAT bufferFormat, D3DFORMAT depthStencilFormat, int bufferWidth, signed int bufferHeight, int refreshRate, int windowed)
 {
 	memset(pp, 0, sizeof(D3DPRESENT_PARAMETERS));
@@ -461,6 +615,61 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 	WriteJump(UpdateMusicVolume, UpdateMusicVolume_r);
 
 	fileMap.scanSoundFolder("music");
+
+	// Widescreen enabled?
+	if (settings->getBool("Widescreen"))
+	{
+	    /// Replace first section of Render_SetViewport()
+	    WriteJump((void *)0x439E46, &Render_SetViewport_FixUp);
+
+	    // Set D3D_Render2DObject to use our SpriteXOff instead of XOff
+	    // so that everything is centered by default
+	    const char data[] = { '\xDB', '\x05', '\x10', '\xe0', '\x72', '\x00' };
+	    WriteData((void *)0x40C279, data, 6);
+
+	    /// Move all HUD elements to left or right side of screen
+	    // MiniMap
+	    WriteCall((void *)0x43DC8C, D3D_Render2DObject_AlignAuto);
+	    WriteCall((void *)0x43DE00, D3D_Render2DObject_AlignAuto);
+	    // Timers for MP mode
+	    WriteCall((void *)0x43DF25, D3D_RenderHUD_MainTimer_AlignRight);
+	    WriteCall((void *)0x43DF45, D3D_RenderHUD_LapTimer_AlignRight);
+	    WriteCall((void *)0x43DF51, D3D_RenderHUD_LapTimer_AlignRight);
+	    WriteCall((void *)0x43DF5D, D3D_RenderHUD_LapTimer_AlignRight);
+	    // Timers for MP mode
+	    WriteCall((void *)0x43E0FE, D3D_RenderHUD_MainTimer_AlignRight);
+	    WriteCall((void *)0x43E127, D3D_RenderHUD_LapTimer_AlignRight);
+	    WriteCall((void *)0x43E137, D3D_RenderHUD_LapTimer_AlignRight);
+	    WriteCall((void *)0x43E147, D3D_RenderHUD_LapTimer_AlignRight);
+
+	    // Other stuff
+	    WriteCall((void *)0x43DFE9, D3D_Render2DObject_AlignRight);
+	    WriteCall((void *)0x43E061, D3D_Render2DObject_AlignRight);
+	    WriteCall((void *)0x43E17A, D3D_Render2DObject_AlignLeft);
+	    WriteCall((void *)0x43E451, D3D_Render2DObject_AlignLeft);
+	    WriteCall((void *)0x43E621, D3D_Render2DObject_AlignLeft); // Big GP icon
+	    WriteCall((void *)0x43E688, D3D_Render2DObject_AlignLeft); // Small GP icon
+	    WriteCall((void *)0x43E6C1, D3D_Render2DObject_AlignLeft); // GP place #
+	    WriteCall((void *)0x43E754, D3D_Render2DObject_AlignAuto); // MP place #
+
+									// Ring counter
+	    WriteCall((void *)0x43E4F2, D3D_Render2DObject_AlignLeft); // Ring
+	    WriteCall((void *)0x43E532, D3D_Render2DObject_AlignLeft); // #--
+	    WriteCall((void *)0x43E57D, D3D_Render2DObject_AlignLeft); // -#-
+	    WriteCall((void *)0x43E5BE, D3D_Render2DObject_AlignLeft); // --#
+
+									// Coin counter
+	    WriteCall((void *)0x43E7AC, D3D_Render2DObject_AlignLeft); // Coin
+	    WriteCall((void *)0x43E7E4, D3D_Render2DObject_AlignLeft); // #
+	    WriteCall((void *)0x43E816, D3D_Render2DObject_AlignLeft); // /
+	    WriteCall((void *)0x43E841, D3D_Render2DObject_AlignLeft); // 5
+
+									// Balloon counter
+	    WriteCall((void *)0x43E8A1, D3D_Render2DObject_AlignLeft); // Balloon
+	    WriteCall((void *)0x43E8D0, D3D_Render2DObject_AlignLeft); // #
+	    WriteCall((void *)0x43E901, D3D_Render2DObject_AlignLeft); // /
+	    WriteCall((void *)0x43E928, D3D_Render2DObject_AlignLeft); // 5
+	}
 
 	// Map of files to replace and/or swap.
 	// This is done with a second map instead of fileMap directly

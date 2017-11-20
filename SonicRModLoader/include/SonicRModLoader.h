@@ -66,3 +66,14 @@ FunctionPointer(int, GetCurrentMusicTrack, (), 0x43C180);
 FunctionPointer(void, PlayMusicTrack, (int track), 0x43C210);
 VoidFunc(StopMusic, 0x43C260);
 VoidFunc(UpdateMusicVolume, 0x43D190);
+FunctionPointer(
+    void, D3D_Render2DObject, (
+	int XPos, int YPos, float ZPos, int XScale, int YScale, int TexPage,
+	int TexXOff, int TexYOff, int TexWidth, int TexHeight, int TexTint
+    ), 0x40C270
+);
+FunctionPointer(void, D3D_RenderHUD_MainTimer, (int XPos, int YPos, float ZPos, int Time, int Unk), 0x43D4C0);
+FunctionPointer(void, D3D_RenderHUD_LapTimer, (int XPos, int YPos, int Time), 0x43D860);
+DataPointer(int, MP_HUD2PSplit, 0x7344EC);
+DataPointer(int, MP_WindowCount, 0x7AF280);
+DataPointer(int, Game_TAttackMode, 0x7BCB80);

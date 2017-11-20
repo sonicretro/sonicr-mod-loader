@@ -28,306 +28,319 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.Label label5;
-			System.Windows.Forms.Label label2;
-			System.Windows.Forms.Label label1;
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-			this.buttonRefreshModList = new System.Windows.Forms.Button();
-			this.modDescription = new System.Windows.Forms.Label();
-			this.modListView = new System.Windows.Forms.ListView();
-			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.saveButton = new System.Windows.Forms.Button();
-			this.saveAndPlayButton = new System.Windows.Forms.Button();
-			this.installButton = new System.Windows.Forms.Button();
-			this.tabControl1 = new System.Windows.Forms.TabControl();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.modDownButton = new System.Windows.Forms.Button();
-			this.modUpButton = new System.Windows.Forms.Button();
-			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.codesCheckedListBox = new System.Windows.Forms.CheckedListBox();
-			this.tabPage3 = new System.Windows.Forms.TabPage();
-			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.comboResolutionPreset = new System.Windows.Forms.ComboBox();
-			this.windowedCheckBox = new System.Windows.Forms.CheckBox();
-			this.maintainWindowAspectRatioCheckBox = new System.Windows.Forms.CheckBox();
-			this.windowWidth = new System.Windows.Forms.NumericUpDown();
-			this.windowHeight = new System.Windows.Forms.NumericUpDown();
-			this.customWindowSizeCheckBox = new System.Windows.Forms.CheckBox();
-			this.stretchFullscreenCheckBox = new System.Windows.Forms.CheckBox();
-			this.forceAspectRatioCheckBox = new System.Windows.Forms.CheckBox();
-			this.horizontalResolution = new System.Windows.Forms.NumericUpDown();
-			this.windowedFullscreenCheckBox = new System.Windows.Forms.CheckBox();
-			this.verticalResolution = new System.Windows.Forms.NumericUpDown();
-			this.tabPage4 = new System.Windows.Forms.TabPage();
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.debugFileCheckBox = new System.Windows.Forms.CheckBox();
-			this.debugConsoleCheckBox = new System.Windows.Forms.CheckBox();
-			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			this.modContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.openFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			label5 = new System.Windows.Forms.Label();
-			label2 = new System.Windows.Forms.Label();
-			label1 = new System.Windows.Forms.Label();
-			this.tabControl1.SuspendLayout();
-			this.tabPage1.SuspendLayout();
-			this.tabPage2.SuspendLayout();
-			this.tabPage3.SuspendLayout();
-			this.groupBox3.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.windowWidth)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.windowHeight)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.horizontalResolution)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.verticalResolution)).BeginInit();
-			this.tabPage4.SuspendLayout();
-			this.groupBox1.SuspendLayout();
-			this.modContextMenu.SuspendLayout();
-			this.SuspendLayout();
-			// 
-			// label5
-			// 
-			label5.AutoSize = true;
-			label5.Location = new System.Drawing.Point(6, 44);
-			label5.Name = "label5";
-			label5.Size = new System.Drawing.Size(60, 13);
-			label5.TabIndex = 17;
-			label5.Text = "Resolution:";
-			// 
-			// label2
-			// 
-			label2.AutoSize = true;
-			label2.Location = new System.Drawing.Point(219, 91);
-			label2.Name = "label2";
-			label2.Size = new System.Drawing.Size(12, 13);
-			label2.TabIndex = 13;
-			label2.Text = "x";
-			// 
-			// label1
-			// 
-			label1.AutoSize = true;
-			label1.Location = new System.Drawing.Point(140, 46);
-			label1.Name = "label1";
-			label1.Size = new System.Drawing.Size(12, 13);
-			label1.TabIndex = 7;
-			label1.Text = "x";
-			// 
-			// buttonRefreshModList
-			// 
-			this.buttonRefreshModList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.buttonRefreshModList.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.buttonRefreshModList.Location = new System.Drawing.Point(6, 223);
-			this.buttonRefreshModList.Name = "buttonRefreshModList";
-			this.buttonRefreshModList.Size = new System.Drawing.Size(75, 23);
-			this.buttonRefreshModList.TabIndex = 3;
-			this.buttonRefreshModList.Text = "&Refresh";
-			this.buttonRefreshModList.UseVisualStyleBackColor = true;
-			this.buttonRefreshModList.Click += new System.EventHandler(this.buttonRefreshModList_Click);
-			// 
-			// modDescription
-			// 
-			this.modDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+	    this.components = new System.ComponentModel.Container();
+	    System.Windows.Forms.Label label5;
+	    System.Windows.Forms.Label label2;
+	    System.Windows.Forms.Label label1;
+	    System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+	    this.buttonRefreshModList = new System.Windows.Forms.Button();
+	    this.modDescription = new System.Windows.Forms.Label();
+	    this.modListView = new System.Windows.Forms.ListView();
+	    this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+	    this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+	    this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+	    this.saveButton = new System.Windows.Forms.Button();
+	    this.saveAndPlayButton = new System.Windows.Forms.Button();
+	    this.installButton = new System.Windows.Forms.Button();
+	    this.tabControl1 = new System.Windows.Forms.TabControl();
+	    this.tabPage1 = new System.Windows.Forms.TabPage();
+	    this.modDownButton = new System.Windows.Forms.Button();
+	    this.modUpButton = new System.Windows.Forms.Button();
+	    this.tabPage2 = new System.Windows.Forms.TabPage();
+	    this.codesCheckedListBox = new System.Windows.Forms.CheckedListBox();
+	    this.tabPage3 = new System.Windows.Forms.TabPage();
+	    this.groupBox3 = new System.Windows.Forms.GroupBox();
+	    this.widescreenCheckbox = new System.Windows.Forms.CheckBox();
+	    this.comboResolutionPreset = new System.Windows.Forms.ComboBox();
+	    this.windowedCheckBox = new System.Windows.Forms.CheckBox();
+	    this.maintainWindowAspectRatioCheckBox = new System.Windows.Forms.CheckBox();
+	    this.windowWidth = new System.Windows.Forms.NumericUpDown();
+	    this.windowHeight = new System.Windows.Forms.NumericUpDown();
+	    this.customWindowSizeCheckBox = new System.Windows.Forms.CheckBox();
+	    this.stretchFullscreenCheckBox = new System.Windows.Forms.CheckBox();
+	    this.forceAspectRatioCheckBox = new System.Windows.Forms.CheckBox();
+	    this.horizontalResolution = new System.Windows.Forms.NumericUpDown();
+	    this.windowedFullscreenCheckBox = new System.Windows.Forms.CheckBox();
+	    this.verticalResolution = new System.Windows.Forms.NumericUpDown();
+	    this.tabPage4 = new System.Windows.Forms.TabPage();
+	    this.groupBox1 = new System.Windows.Forms.GroupBox();
+	    this.debugFileCheckBox = new System.Windows.Forms.CheckBox();
+	    this.debugConsoleCheckBox = new System.Windows.Forms.CheckBox();
+	    this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+	    this.modContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+	    this.openFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+	    label5 = new System.Windows.Forms.Label();
+	    label2 = new System.Windows.Forms.Label();
+	    label1 = new System.Windows.Forms.Label();
+	    this.tabControl1.SuspendLayout();
+	    this.tabPage1.SuspendLayout();
+	    this.tabPage2.SuspendLayout();
+	    this.tabPage3.SuspendLayout();
+	    this.groupBox3.SuspendLayout();
+	    ((System.ComponentModel.ISupportInitialize)(this.windowWidth)).BeginInit();
+	    ((System.ComponentModel.ISupportInitialize)(this.windowHeight)).BeginInit();
+	    ((System.ComponentModel.ISupportInitialize)(this.horizontalResolution)).BeginInit();
+	    ((System.ComponentModel.ISupportInitialize)(this.verticalResolution)).BeginInit();
+	    this.tabPage4.SuspendLayout();
+	    this.groupBox1.SuspendLayout();
+	    this.modContextMenu.SuspendLayout();
+	    this.SuspendLayout();
+	    // 
+	    // label5
+	    // 
+	    label5.AutoSize = true;
+	    label5.Location = new System.Drawing.Point(6, 44);
+	    label5.Name = "label5";
+	    label5.Size = new System.Drawing.Size(60, 13);
+	    label5.TabIndex = 17;
+	    label5.Text = "Resolution:";
+	    // 
+	    // label2
+	    // 
+	    label2.AutoSize = true;
+	    label2.Location = new System.Drawing.Point(219, 91);
+	    label2.Name = "label2";
+	    label2.Size = new System.Drawing.Size(12, 13);
+	    label2.TabIndex = 13;
+	    label2.Text = "x";
+	    // 
+	    // label1
+	    // 
+	    label1.AutoSize = true;
+	    label1.Location = new System.Drawing.Point(140, 46);
+	    label1.Name = "label1";
+	    label1.Size = new System.Drawing.Size(12, 13);
+	    label1.TabIndex = 7;
+	    label1.Text = "x";
+	    // 
+	    // buttonRefreshModList
+	    // 
+	    this.buttonRefreshModList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+	    this.buttonRefreshModList.FlatStyle = System.Windows.Forms.FlatStyle.System;
+	    this.buttonRefreshModList.Location = new System.Drawing.Point(6, 223);
+	    this.buttonRefreshModList.Name = "buttonRefreshModList";
+	    this.buttonRefreshModList.Size = new System.Drawing.Size(75, 23);
+	    this.buttonRefreshModList.TabIndex = 3;
+	    this.buttonRefreshModList.Text = "&Refresh";
+	    this.buttonRefreshModList.UseVisualStyleBackColor = true;
+	    this.buttonRefreshModList.Click += new System.EventHandler(this.buttonRefreshModList_Click);
+	    // 
+	    // modDescription
+	    // 
+	    this.modDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.modDescription.Location = new System.Drawing.Point(6, 252);
-			this.modDescription.Name = "modDescription";
-			this.modDescription.Size = new System.Drawing.Size(366, 36);
-			this.modDescription.TabIndex = 6;
-			this.modDescription.Text = "Description: No mod selected.";
-			// 
-			// modListView
-			// 
-			this.modListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+	    this.modDescription.Location = new System.Drawing.Point(6, 252);
+	    this.modDescription.Name = "modDescription";
+	    this.modDescription.Size = new System.Drawing.Size(366, 36);
+	    this.modDescription.TabIndex = 6;
+	    this.modDescription.Text = "Description: No mod selected.";
+	    // 
+	    // modListView
+	    // 
+	    this.modListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.modListView.CheckBoxes = true;
-			this.modListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+	    this.modListView.CheckBoxes = true;
+	    this.modListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3});
-			this.modListView.FullRowSelect = true;
-			this.modListView.HideSelection = false;
-			this.modListView.Location = new System.Drawing.Point(6, 6);
-			this.modListView.Name = "modListView";
-			this.modListView.Size = new System.Drawing.Size(337, 211);
-			this.modListView.TabIndex = 0;
-			this.modListView.UseCompatibleStateImageBehavior = false;
-			this.modListView.View = System.Windows.Forms.View.Details;
-			this.modListView.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.modListView_ItemCheck);
-			this.modListView.SelectedIndexChanged += new System.EventHandler(this.modListView_SelectedIndexChanged);
-			this.modListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.modListView_MouseClick);
-			// 
-			// columnHeader1
-			// 
-			this.columnHeader1.Text = "Name";
-			this.columnHeader1.Width = 154;
-			// 
-			// columnHeader2
-			// 
-			this.columnHeader2.Text = "Author";
-			this.columnHeader2.Width = 113;
-			// 
-			// columnHeader3
-			// 
-			this.columnHeader3.Text = "Version";
-			// 
-			// saveButton
-			// 
-			this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.saveButton.Location = new System.Drawing.Point(87, 370);
-			this.saveButton.Name = "saveButton";
-			this.saveButton.Size = new System.Drawing.Size(75, 22);
-			this.saveButton.TabIndex = 102;
-			this.saveButton.Text = "&Save";
-			this.saveButton.UseVisualStyleBackColor = true;
-			this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
-			// 
-			// saveAndPlayButton
-			// 
-			this.saveAndPlayButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.saveAndPlayButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.saveAndPlayButton.Location = new System.Drawing.Point(3, 370);
-			this.saveAndPlayButton.Name = "saveAndPlayButton";
-			this.saveAndPlayButton.Size = new System.Drawing.Size(78, 22);
-			this.saveAndPlayButton.TabIndex = 101;
-			this.saveAndPlayButton.Text = "Save && &Play";
-			this.saveAndPlayButton.UseVisualStyleBackColor = true;
-			this.saveAndPlayButton.Click += new System.EventHandler(this.saveAndPlayButton_Click);
-			// 
-			// installButton
-			// 
-			this.installButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.installButton.AutoSize = true;
-			this.installButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.installButton.Location = new System.Drawing.Point(168, 370);
-			this.installButton.Name = "installButton";
-			this.installButton.Size = new System.Drawing.Size(80, 22);
-			this.installButton.TabIndex = 103;
-			this.installButton.Text = "Install loader";
-			this.installButton.UseVisualStyleBackColor = true;
-			this.installButton.Click += new System.EventHandler(this.installButton_Click);
-			// 
-			// tabControl1
-			// 
-			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+	    this.modListView.FullRowSelect = true;
+	    this.modListView.HideSelection = false;
+	    this.modListView.Location = new System.Drawing.Point(6, 6);
+	    this.modListView.Name = "modListView";
+	    this.modListView.Size = new System.Drawing.Size(337, 211);
+	    this.modListView.TabIndex = 0;
+	    this.modListView.UseCompatibleStateImageBehavior = false;
+	    this.modListView.View = System.Windows.Forms.View.Details;
+	    this.modListView.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.modListView_ItemCheck);
+	    this.modListView.SelectedIndexChanged += new System.EventHandler(this.modListView_SelectedIndexChanged);
+	    this.modListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.modListView_MouseClick);
+	    // 
+	    // columnHeader1
+	    // 
+	    this.columnHeader1.Text = "Name";
+	    this.columnHeader1.Width = 154;
+	    // 
+	    // columnHeader2
+	    // 
+	    this.columnHeader2.Text = "Author";
+	    this.columnHeader2.Width = 113;
+	    // 
+	    // columnHeader3
+	    // 
+	    this.columnHeader3.Text = "Version";
+	    // 
+	    // saveButton
+	    // 
+	    this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+	    this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
+	    this.saveButton.Location = new System.Drawing.Point(87, 370);
+	    this.saveButton.Name = "saveButton";
+	    this.saveButton.Size = new System.Drawing.Size(75, 22);
+	    this.saveButton.TabIndex = 102;
+	    this.saveButton.Text = "&Save";
+	    this.saveButton.UseVisualStyleBackColor = true;
+	    this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+	    // 
+	    // saveAndPlayButton
+	    // 
+	    this.saveAndPlayButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+	    this.saveAndPlayButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
+	    this.saveAndPlayButton.Location = new System.Drawing.Point(3, 370);
+	    this.saveAndPlayButton.Name = "saveAndPlayButton";
+	    this.saveAndPlayButton.Size = new System.Drawing.Size(78, 22);
+	    this.saveAndPlayButton.TabIndex = 101;
+	    this.saveAndPlayButton.Text = "Save && &Play";
+	    this.saveAndPlayButton.UseVisualStyleBackColor = true;
+	    this.saveAndPlayButton.Click += new System.EventHandler(this.saveAndPlayButton_Click);
+	    // 
+	    // installButton
+	    // 
+	    this.installButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+	    this.installButton.AutoSize = true;
+	    this.installButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
+	    this.installButton.Location = new System.Drawing.Point(168, 370);
+	    this.installButton.Name = "installButton";
+	    this.installButton.Size = new System.Drawing.Size(80, 22);
+	    this.installButton.TabIndex = 103;
+	    this.installButton.Text = "Install loader";
+	    this.installButton.UseVisualStyleBackColor = true;
+	    this.installButton.Click += new System.EventHandler(this.installButton_Click);
+	    // 
+	    // tabControl1
+	    // 
+	    this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tabControl1.Controls.Add(this.tabPage1);
-			this.tabControl1.Controls.Add(this.tabPage2);
-			this.tabControl1.Controls.Add(this.tabPage3);
-			this.tabControl1.Controls.Add(this.tabPage4);
-			this.tabControl1.Location = new System.Drawing.Point(0, 0);
-			this.tabControl1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
-			this.tabControl1.Name = "tabControl1";
-			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(386, 364);
-			this.tabControl1.TabIndex = 0;
-			// 
-			// tabPage1
-			// 
-			this.tabPage1.Controls.Add(this.buttonRefreshModList);
-			this.tabPage1.Controls.Add(this.modDescription);
-			this.tabPage1.Controls.Add(this.modDownButton);
-			this.tabPage1.Controls.Add(this.modUpButton);
-			this.tabPage1.Controls.Add(this.modListView);
-			this.tabPage1.Location = new System.Drawing.Point(4, 22);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(378, 338);
-			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "Mods";
-			this.tabPage1.UseVisualStyleBackColor = true;
-			// 
-			// modDownButton
-			// 
-			this.modDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.modDownButton.AutoSize = true;
-			this.modDownButton.Enabled = false;
-			this.modDownButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.modDownButton.Location = new System.Drawing.Point(345, 35);
-			this.modDownButton.Name = "modDownButton";
-			this.modDownButton.Size = new System.Drawing.Size(27, 22);
-			this.modDownButton.TabIndex = 2;
-			this.modDownButton.Text = "↓";
-			this.modDownButton.UseVisualStyleBackColor = true;
-			this.modDownButton.Click += new System.EventHandler(this.modDownButton_Click);
-			// 
-			// modUpButton
-			// 
-			this.modUpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.modUpButton.AutoSize = true;
-			this.modUpButton.Enabled = false;
-			this.modUpButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.modUpButton.Location = new System.Drawing.Point(345, 6);
-			this.modUpButton.Name = "modUpButton";
-			this.modUpButton.Size = new System.Drawing.Size(27, 22);
-			this.modUpButton.TabIndex = 1;
-			this.modUpButton.Text = "↑";
-			this.modUpButton.UseVisualStyleBackColor = true;
-			this.modUpButton.Click += new System.EventHandler(this.modUpButton_Click);
-			// 
-			// tabPage2
-			// 
-			this.tabPage2.Controls.Add(this.codesCheckedListBox);
-			this.tabPage2.Location = new System.Drawing.Point(4, 22);
-			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Size = new System.Drawing.Size(378, 338);
-			this.tabPage2.TabIndex = 1;
-			this.tabPage2.Text = "Codes";
-			this.tabPage2.UseVisualStyleBackColor = true;
-			// 
-			// codesCheckedListBox
-			// 
-			this.codesCheckedListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.codesCheckedListBox.FormattingEnabled = true;
-			this.codesCheckedListBox.Location = new System.Drawing.Point(0, 0);
-			this.codesCheckedListBox.Name = "codesCheckedListBox";
-			this.codesCheckedListBox.Size = new System.Drawing.Size(378, 338);
-			this.codesCheckedListBox.TabIndex = 0;
-			this.codesCheckedListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.codesCheckedListBox_ItemCheck);
-			// 
-			// tabPage3
-			// 
-			this.tabPage3.Controls.Add(this.groupBox3);
-			this.tabPage3.Location = new System.Drawing.Point(4, 22);
-			this.tabPage3.Name = "tabPage3";
-			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage3.Size = new System.Drawing.Size(378, 338);
-			this.tabPage3.TabIndex = 4;
-			this.tabPage3.Text = "Graphics";
-			this.tabPage3.UseVisualStyleBackColor = true;
-			// 
-			// groupBox3
-			// 
-			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+	    this.tabControl1.Controls.Add(this.tabPage1);
+	    this.tabControl1.Controls.Add(this.tabPage2);
+	    this.tabControl1.Controls.Add(this.tabPage3);
+	    this.tabControl1.Controls.Add(this.tabPage4);
+	    this.tabControl1.Location = new System.Drawing.Point(0, 0);
+	    this.tabControl1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
+	    this.tabControl1.Name = "tabControl1";
+	    this.tabControl1.SelectedIndex = 0;
+	    this.tabControl1.Size = new System.Drawing.Size(386, 364);
+	    this.tabControl1.TabIndex = 0;
+	    // 
+	    // tabPage1
+	    // 
+	    this.tabPage1.Controls.Add(this.buttonRefreshModList);
+	    this.tabPage1.Controls.Add(this.modDescription);
+	    this.tabPage1.Controls.Add(this.modDownButton);
+	    this.tabPage1.Controls.Add(this.modUpButton);
+	    this.tabPage1.Controls.Add(this.modListView);
+	    this.tabPage1.Location = new System.Drawing.Point(4, 22);
+	    this.tabPage1.Name = "tabPage1";
+	    this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+	    this.tabPage1.Size = new System.Drawing.Size(378, 338);
+	    this.tabPage1.TabIndex = 0;
+	    this.tabPage1.Text = "Mods";
+	    this.tabPage1.UseVisualStyleBackColor = true;
+	    // 
+	    // modDownButton
+	    // 
+	    this.modDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+	    this.modDownButton.AutoSize = true;
+	    this.modDownButton.Enabled = false;
+	    this.modDownButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
+	    this.modDownButton.Location = new System.Drawing.Point(339, 35);
+	    this.modDownButton.Name = "modDownButton";
+	    this.modDownButton.Size = new System.Drawing.Size(33, 22);
+	    this.modDownButton.TabIndex = 2;
+	    this.modDownButton.Text = "↓";
+	    this.modDownButton.UseVisualStyleBackColor = true;
+	    this.modDownButton.Click += new System.EventHandler(this.modDownButton_Click);
+	    // 
+	    // modUpButton
+	    // 
+	    this.modUpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+	    this.modUpButton.AutoSize = true;
+	    this.modUpButton.Enabled = false;
+	    this.modUpButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
+	    this.modUpButton.Location = new System.Drawing.Point(339, 6);
+	    this.modUpButton.Name = "modUpButton";
+	    this.modUpButton.Size = new System.Drawing.Size(33, 22);
+	    this.modUpButton.TabIndex = 1;
+	    this.modUpButton.Text = "↑";
+	    this.modUpButton.UseVisualStyleBackColor = true;
+	    this.modUpButton.Click += new System.EventHandler(this.modUpButton_Click);
+	    // 
+	    // tabPage2
+	    // 
+	    this.tabPage2.Controls.Add(this.codesCheckedListBox);
+	    this.tabPage2.Location = new System.Drawing.Point(4, 22);
+	    this.tabPage2.Name = "tabPage2";
+	    this.tabPage2.Size = new System.Drawing.Size(378, 338);
+	    this.tabPage2.TabIndex = 1;
+	    this.tabPage2.Text = "Codes";
+	    this.tabPage2.UseVisualStyleBackColor = true;
+	    // 
+	    // codesCheckedListBox
+	    // 
+	    this.codesCheckedListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+	    this.codesCheckedListBox.FormattingEnabled = true;
+	    this.codesCheckedListBox.Location = new System.Drawing.Point(0, 0);
+	    this.codesCheckedListBox.Name = "codesCheckedListBox";
+	    this.codesCheckedListBox.Size = new System.Drawing.Size(378, 338);
+	    this.codesCheckedListBox.TabIndex = 0;
+	    this.codesCheckedListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.codesCheckedListBox_ItemCheck);
+	    // 
+	    // tabPage3
+	    // 
+	    this.tabPage3.Controls.Add(this.groupBox3);
+	    this.tabPage3.Location = new System.Drawing.Point(4, 22);
+	    this.tabPage3.Name = "tabPage3";
+	    this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+	    this.tabPage3.Size = new System.Drawing.Size(378, 338);
+	    this.tabPage3.TabIndex = 4;
+	    this.tabPage3.Text = "Graphics";
+	    this.tabPage3.UseVisualStyleBackColor = true;
+	    // 
+	    // groupBox3
+	    // 
+	    this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox3.Controls.Add(this.comboResolutionPreset);
-			this.groupBox3.Controls.Add(this.windowedCheckBox);
-			this.groupBox3.Controls.Add(label5);
-			this.groupBox3.Controls.Add(this.maintainWindowAspectRatioCheckBox);
-			this.groupBox3.Controls.Add(this.windowWidth);
-			this.groupBox3.Controls.Add(label2);
-			this.groupBox3.Controls.Add(this.windowHeight);
-			this.groupBox3.Controls.Add(this.customWindowSizeCheckBox);
-			this.groupBox3.Controls.Add(this.stretchFullscreenCheckBox);
-			this.groupBox3.Controls.Add(this.forceAspectRatioCheckBox);
-			this.groupBox3.Controls.Add(this.horizontalResolution);
-			this.groupBox3.Controls.Add(this.windowedFullscreenCheckBox);
-			this.groupBox3.Controls.Add(label1);
-			this.groupBox3.Controls.Add(this.verticalResolution);
-			this.groupBox3.Location = new System.Drawing.Point(6, 6);
-			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(366, 142);
-			this.groupBox3.TabIndex = 1;
-			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "Display";
-			// 
-			// comboResolutionPreset
-			// 
-			this.comboResolutionPreset.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboResolutionPreset.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.comboResolutionPreset.FormattingEnabled = true;
-			this.comboResolutionPreset.Items.AddRange(new object[] {
+	    this.groupBox3.Controls.Add(this.widescreenCheckbox);
+	    this.groupBox3.Controls.Add(this.comboResolutionPreset);
+	    this.groupBox3.Controls.Add(this.windowedCheckBox);
+	    this.groupBox3.Controls.Add(label5);
+	    this.groupBox3.Controls.Add(this.maintainWindowAspectRatioCheckBox);
+	    this.groupBox3.Controls.Add(this.windowWidth);
+	    this.groupBox3.Controls.Add(label2);
+	    this.groupBox3.Controls.Add(this.windowHeight);
+	    this.groupBox3.Controls.Add(this.customWindowSizeCheckBox);
+	    this.groupBox3.Controls.Add(this.stretchFullscreenCheckBox);
+	    this.groupBox3.Controls.Add(this.forceAspectRatioCheckBox);
+	    this.groupBox3.Controls.Add(this.horizontalResolution);
+	    this.groupBox3.Controls.Add(this.windowedFullscreenCheckBox);
+	    this.groupBox3.Controls.Add(label1);
+	    this.groupBox3.Controls.Add(this.verticalResolution);
+	    this.groupBox3.Location = new System.Drawing.Point(6, 6);
+	    this.groupBox3.Name = "groupBox3";
+	    this.groupBox3.Size = new System.Drawing.Size(366, 162);
+	    this.groupBox3.TabIndex = 1;
+	    this.groupBox3.TabStop = false;
+	    this.groupBox3.Text = "Display";
+	    // 
+	    // widescreen
+	    // 
+	    this.widescreenCheckbox.AutoSize = true;
+	    this.widescreenCheckbox.FlatStyle = System.Windows.Forms.FlatStyle.System;
+	    this.widescreenCheckbox.Location = new System.Drawing.Point(6, 138);
+	    this.widescreenCheckbox.Name = "widescreen";
+	    this.widescreenCheckbox.Size = new System.Drawing.Size(165, 18);
+	    this.widescreenCheckbox.TabIndex = 16;
+	    this.widescreenCheckbox.Text = "Enable Widescreen Support";
+	    this.widescreenCheckbox.UseVisualStyleBackColor = true;
+	    // 
+	    // comboResolutionPreset
+	    // 
+	    this.comboResolutionPreset.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+	    this.comboResolutionPreset.FlatStyle = System.Windows.Forms.FlatStyle.System;
+	    this.comboResolutionPreset.FormattingEnabled = true;
+	    this.comboResolutionPreset.Items.AddRange(new object[] {
             "640x480",
             "800x600",
             "1024x768",
@@ -339,270 +352,270 @@
             "720p",
             "1080p",
             "4K"});
-			this.comboResolutionPreset.Location = new System.Drawing.Point(226, 41);
-			this.comboResolutionPreset.Name = "comboResolutionPreset";
-			this.comboResolutionPreset.Size = new System.Drawing.Size(121, 21);
-			this.comboResolutionPreset.TabIndex = 18;
-			this.toolTip1.SetToolTip(this.comboResolutionPreset, "Allows you to select pre-set values for the resolution.");
-			this.comboResolutionPreset.SelectedIndexChanged += new System.EventHandler(this.comboResolutionPreset_SelectedIndexChanged);
-			// 
-			// windowedCheckBox
-			// 
-			this.windowedCheckBox.AutoSize = true;
-			this.windowedCheckBox.Location = new System.Drawing.Point(6, 19);
-			this.windowedCheckBox.Name = "windowedCheckBox";
-			this.windowedCheckBox.Size = new System.Drawing.Size(77, 17);
-			this.windowedCheckBox.TabIndex = 0;
-			this.windowedCheckBox.Text = "Windowed";
-			this.windowedCheckBox.UseVisualStyleBackColor = true;
-			// 
-			// maintainWindowAspectRatioCheckBox
-			// 
-			this.maintainWindowAspectRatioCheckBox.AutoSize = true;
-			this.maintainWindowAspectRatioCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.maintainWindowAspectRatioCheckBox.Location = new System.Drawing.Point(6, 113);
-			this.maintainWindowAspectRatioCheckBox.Name = "maintainWindowAspectRatioCheckBox";
-			this.maintainWindowAspectRatioCheckBox.Size = new System.Drawing.Size(136, 18);
-			this.maintainWindowAspectRatioCheckBox.TabIndex = 15;
-			this.maintainWindowAspectRatioCheckBox.Text = "Maintain Aspect Ratio";
-			this.toolTip1.SetToolTip(this.maintainWindowAspectRatioCheckBox, "Forces the window\'s aspect ratio to match the current custom resolution\'s.");
-			this.maintainWindowAspectRatioCheckBox.UseVisualStyleBackColor = true;
-			this.maintainWindowAspectRatioCheckBox.CheckedChanged += new System.EventHandler(this.maintainWindowAspectRatioCheckBox_CheckedChanged);
-			// 
-			// windowWidth
-			// 
-			this.windowWidth.Location = new System.Drawing.Point(151, 87);
-			this.windowWidth.Maximum = new decimal(new int[] {
+	    this.comboResolutionPreset.Location = new System.Drawing.Point(226, 41);
+	    this.comboResolutionPreset.Name = "comboResolutionPreset";
+	    this.comboResolutionPreset.Size = new System.Drawing.Size(121, 21);
+	    this.comboResolutionPreset.TabIndex = 18;
+	    this.toolTip1.SetToolTip(this.comboResolutionPreset, "Allows you to select pre-set values for the resolution.");
+	    this.comboResolutionPreset.SelectedIndexChanged += new System.EventHandler(this.comboResolutionPreset_SelectedIndexChanged);
+	    // 
+	    // windowedCheckBox
+	    // 
+	    this.windowedCheckBox.AutoSize = true;
+	    this.windowedCheckBox.Location = new System.Drawing.Point(6, 19);
+	    this.windowedCheckBox.Name = "windowedCheckBox";
+	    this.windowedCheckBox.Size = new System.Drawing.Size(77, 17);
+	    this.windowedCheckBox.TabIndex = 0;
+	    this.windowedCheckBox.Text = "Windowed";
+	    this.windowedCheckBox.UseVisualStyleBackColor = true;
+	    // 
+	    // maintainWindowAspectRatioCheckBox
+	    // 
+	    this.maintainWindowAspectRatioCheckBox.AutoSize = true;
+	    this.maintainWindowAspectRatioCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
+	    this.maintainWindowAspectRatioCheckBox.Location = new System.Drawing.Point(6, 113);
+	    this.maintainWindowAspectRatioCheckBox.Name = "maintainWindowAspectRatioCheckBox";
+	    this.maintainWindowAspectRatioCheckBox.Size = new System.Drawing.Size(136, 18);
+	    this.maintainWindowAspectRatioCheckBox.TabIndex = 15;
+	    this.maintainWindowAspectRatioCheckBox.Text = "Maintain Aspect Ratio";
+	    this.toolTip1.SetToolTip(this.maintainWindowAspectRatioCheckBox, "Forces the window\'s aspect ratio to match the current custom resolution\'s.");
+	    this.maintainWindowAspectRatioCheckBox.UseVisualStyleBackColor = true;
+	    this.maintainWindowAspectRatioCheckBox.CheckedChanged += new System.EventHandler(this.maintainWindowAspectRatioCheckBox_CheckedChanged);
+	    // 
+	    // windowWidth
+	    // 
+	    this.windowWidth.Location = new System.Drawing.Point(151, 87);
+	    this.windowWidth.Maximum = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
-			this.windowWidth.Minimum = new decimal(new int[] {
+	    this.windowWidth.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-			this.windowWidth.Name = "windowWidth";
-			this.windowWidth.Size = new System.Drawing.Size(62, 20);
-			this.windowWidth.TabIndex = 12;
-			this.windowWidth.Value = new decimal(new int[] {
+	    this.windowWidth.Name = "windowWidth";
+	    this.windowWidth.Size = new System.Drawing.Size(62, 20);
+	    this.windowWidth.TabIndex = 12;
+	    this.windowWidth.Value = new decimal(new int[] {
             640,
             0,
             0,
             0});
-			// 
-			// windowHeight
-			// 
-			this.windowHeight.Location = new System.Drawing.Point(237, 87);
-			this.windowHeight.Maximum = new decimal(new int[] {
+	    // 
+	    // windowHeight
+	    // 
+	    this.windowHeight.Location = new System.Drawing.Point(237, 87);
+	    this.windowHeight.Maximum = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
-			this.windowHeight.Minimum = new decimal(new int[] {
+	    this.windowHeight.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-			this.windowHeight.Name = "windowHeight";
-			this.windowHeight.Size = new System.Drawing.Size(62, 20);
-			this.windowHeight.TabIndex = 14;
-			this.windowHeight.Value = new decimal(new int[] {
+	    this.windowHeight.Name = "windowHeight";
+	    this.windowHeight.Size = new System.Drawing.Size(62, 20);
+	    this.windowHeight.TabIndex = 14;
+	    this.windowHeight.Value = new decimal(new int[] {
             480,
             0,
             0,
             0});
-			this.windowHeight.ValueChanged += new System.EventHandler(this.windowHeight_ValueChanged);
-			// 
-			// customWindowSizeCheckBox
-			// 
-			this.customWindowSizeCheckBox.AutoSize = true;
-			this.customWindowSizeCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.customWindowSizeCheckBox.Location = new System.Drawing.Point(6, 88);
-			this.customWindowSizeCheckBox.Name = "customWindowSizeCheckBox";
-			this.customWindowSizeCheckBox.Size = new System.Drawing.Size(135, 18);
-			this.customWindowSizeCheckBox.TabIndex = 11;
-			this.customWindowSizeCheckBox.Text = "Custom Window Size:";
-			this.toolTip1.SetToolTip(this.customWindowSizeCheckBox, "Allows you to specify a fixed size for the window in windowed mode.");
-			this.customWindowSizeCheckBox.UseVisualStyleBackColor = true;
-			this.customWindowSizeCheckBox.CheckedChanged += new System.EventHandler(this.customWindowSizeCheckBox_CheckedChanged);
-			// 
-			// stretchFullscreenCheckBox
-			// 
-			this.stretchFullscreenCheckBox.AutoSize = true;
-			this.stretchFullscreenCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.stretchFullscreenCheckBox.Location = new System.Drawing.Point(229, 18);
-			this.stretchFullscreenCheckBox.Name = "stretchFullscreenCheckBox";
-			this.stretchFullscreenCheckBox.Size = new System.Drawing.Size(108, 18);
-			this.stretchFullscreenCheckBox.TabIndex = 3;
-			this.stretchFullscreenCheckBox.Text = "Scale to Screen";
-			this.toolTip1.SetToolTip(this.stretchFullscreenCheckBox, "Coupled with Windowed Fullscreen, you can downsample the game from resolutions hi" +
+	    this.windowHeight.ValueChanged += new System.EventHandler(this.windowHeight_ValueChanged);
+	    // 
+	    // customWindowSizeCheckBox
+	    // 
+	    this.customWindowSizeCheckBox.AutoSize = true;
+	    this.customWindowSizeCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
+	    this.customWindowSizeCheckBox.Location = new System.Drawing.Point(6, 88);
+	    this.customWindowSizeCheckBox.Name = "customWindowSizeCheckBox";
+	    this.customWindowSizeCheckBox.Size = new System.Drawing.Size(135, 18);
+	    this.customWindowSizeCheckBox.TabIndex = 11;
+	    this.customWindowSizeCheckBox.Text = "Custom Window Size:";
+	    this.toolTip1.SetToolTip(this.customWindowSizeCheckBox, "Allows you to specify a fixed size for the window in windowed mode.");
+	    this.customWindowSizeCheckBox.UseVisualStyleBackColor = true;
+	    this.customWindowSizeCheckBox.CheckedChanged += new System.EventHandler(this.customWindowSizeCheckBox_CheckedChanged);
+	    // 
+	    // stretchFullscreenCheckBox
+	    // 
+	    this.stretchFullscreenCheckBox.AutoSize = true;
+	    this.stretchFullscreenCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
+	    this.stretchFullscreenCheckBox.Location = new System.Drawing.Point(229, 18);
+	    this.stretchFullscreenCheckBox.Name = "stretchFullscreenCheckBox";
+	    this.stretchFullscreenCheckBox.Size = new System.Drawing.Size(108, 18);
+	    this.stretchFullscreenCheckBox.TabIndex = 3;
+	    this.stretchFullscreenCheckBox.Text = "Scale to Screen";
+	    this.toolTip1.SetToolTip(this.stretchFullscreenCheckBox, "Coupled with Windowed Fullscreen, you can downsample the game from resolutions hi" +
         "gher than your screen supports.");
-			this.stretchFullscreenCheckBox.UseVisualStyleBackColor = true;
-			// 
-			// forceAspectRatioCheckBox
-			// 
-			this.forceAspectRatioCheckBox.AutoSize = true;
-			this.forceAspectRatioCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.forceAspectRatioCheckBox.Location = new System.Drawing.Point(6, 65);
-			this.forceAspectRatioCheckBox.Name = "forceAspectRatioCheckBox";
-			this.forceAspectRatioCheckBox.Size = new System.Drawing.Size(141, 18);
-			this.forceAspectRatioCheckBox.TabIndex = 10;
-			this.forceAspectRatioCheckBox.Text = "Force 4:3 Aspect Ratio";
-			this.forceAspectRatioCheckBox.UseVisualStyleBackColor = true;
-			this.forceAspectRatioCheckBox.CheckedChanged += new System.EventHandler(this.forceAspectRatioCheckBox_CheckedChanged);
-			// 
-			// horizontalResolution
-			// 
-			this.horizontalResolution.Location = new System.Drawing.Point(72, 42);
-			this.horizontalResolution.Maximum = new decimal(new int[] {
+	    this.stretchFullscreenCheckBox.UseVisualStyleBackColor = true;
+	    // 
+	    // forceAspectRatioCheckBox
+	    // 
+	    this.forceAspectRatioCheckBox.AutoSize = true;
+	    this.forceAspectRatioCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
+	    this.forceAspectRatioCheckBox.Location = new System.Drawing.Point(6, 65);
+	    this.forceAspectRatioCheckBox.Name = "forceAspectRatioCheckBox";
+	    this.forceAspectRatioCheckBox.Size = new System.Drawing.Size(141, 18);
+	    this.forceAspectRatioCheckBox.TabIndex = 10;
+	    this.forceAspectRatioCheckBox.Text = "Force 4:3 Aspect Ratio";
+	    this.forceAspectRatioCheckBox.UseVisualStyleBackColor = true;
+	    this.forceAspectRatioCheckBox.CheckedChanged += new System.EventHandler(this.forceAspectRatioCheckBox_CheckedChanged);
+	    // 
+	    // horizontalResolution
+	    // 
+	    this.horizontalResolution.Location = new System.Drawing.Point(72, 42);
+	    this.horizontalResolution.Maximum = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
-			this.horizontalResolution.Minimum = new decimal(new int[] {
+	    this.horizontalResolution.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-			this.horizontalResolution.Name = "horizontalResolution";
-			this.horizontalResolution.Size = new System.Drawing.Size(62, 20);
-			this.horizontalResolution.TabIndex = 6;
-			this.horizontalResolution.Value = new decimal(new int[] {
+	    this.horizontalResolution.Name = "horizontalResolution";
+	    this.horizontalResolution.Size = new System.Drawing.Size(62, 20);
+	    this.horizontalResolution.TabIndex = 6;
+	    this.horizontalResolution.Value = new decimal(new int[] {
             640,
             0,
             0,
             0});
-			this.horizontalResolution.ValueChanged += new System.EventHandler(this.horizontalResolution_ValueChanged);
-			// 
-			// windowedFullscreenCheckBox
-			// 
-			this.windowedFullscreenCheckBox.AutoSize = true;
-			this.windowedFullscreenCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.windowedFullscreenCheckBox.Location = new System.Drawing.Point(89, 18);
-			this.windowedFullscreenCheckBox.Name = "windowedFullscreenCheckBox";
-			this.windowedFullscreenCheckBox.Size = new System.Drawing.Size(134, 18);
-			this.windowedFullscreenCheckBox.TabIndex = 2;
-			this.windowedFullscreenCheckBox.Text = "Windowed Fullscreen";
-			this.toolTip1.SetToolTip(this.windowedFullscreenCheckBox, "Enables borderless fullscreen mode.\r\nYou have to enable fullscreen in the config " +
+	    this.horizontalResolution.ValueChanged += new System.EventHandler(this.horizontalResolution_ValueChanged);
+	    // 
+	    // windowedFullscreenCheckBox
+	    // 
+	    this.windowedFullscreenCheckBox.AutoSize = true;
+	    this.windowedFullscreenCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
+	    this.windowedFullscreenCheckBox.Location = new System.Drawing.Point(89, 18);
+	    this.windowedFullscreenCheckBox.Name = "windowedFullscreenCheckBox";
+	    this.windowedFullscreenCheckBox.Size = new System.Drawing.Size(134, 18);
+	    this.windowedFullscreenCheckBox.TabIndex = 2;
+	    this.windowedFullscreenCheckBox.Text = "Windowed Fullscreen";
+	    this.toolTip1.SetToolTip(this.windowedFullscreenCheckBox, "Enables borderless fullscreen mode.\r\nYou have to enable fullscreen in the config " +
         "editor for it to work.");
-			this.windowedFullscreenCheckBox.UseVisualStyleBackColor = true;
-			// 
-			// verticalResolution
-			// 
-			this.verticalResolution.Location = new System.Drawing.Point(158, 42);
-			this.verticalResolution.Maximum = new decimal(new int[] {
+	    this.windowedFullscreenCheckBox.UseVisualStyleBackColor = true;
+	    // 
+	    // verticalResolution
+	    // 
+	    this.verticalResolution.Location = new System.Drawing.Point(158, 42);
+	    this.verticalResolution.Maximum = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
-			this.verticalResolution.Minimum = new decimal(new int[] {
+	    this.verticalResolution.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-			this.verticalResolution.Name = "verticalResolution";
-			this.verticalResolution.Size = new System.Drawing.Size(62, 20);
-			this.verticalResolution.TabIndex = 8;
-			this.verticalResolution.Value = new decimal(new int[] {
+	    this.verticalResolution.Name = "verticalResolution";
+	    this.verticalResolution.Size = new System.Drawing.Size(62, 20);
+	    this.verticalResolution.TabIndex = 8;
+	    this.verticalResolution.Value = new decimal(new int[] {
             480,
             0,
             0,
             0});
-			this.verticalResolution.ValueChanged += new System.EventHandler(this.verticalResolution_ValueChanged);
-			// 
-			// tabPage4
-			// 
-			this.tabPage4.Controls.Add(this.groupBox1);
-			this.tabPage4.Location = new System.Drawing.Point(4, 22);
-			this.tabPage4.Name = "tabPage4";
-			this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage4.Size = new System.Drawing.Size(378, 338);
-			this.tabPage4.TabIndex = 3;
-			this.tabPage4.Text = "Options";
-			this.tabPage4.UseVisualStyleBackColor = true;
-			// 
-			// groupBox1
-			// 
-			this.groupBox1.Controls.Add(this.debugFileCheckBox);
-			this.groupBox1.Controls.Add(this.debugConsoleCheckBox);
-			this.groupBox1.Location = new System.Drawing.Point(6, 6);
-			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
-			this.groupBox1.Size = new System.Drawing.Size(366, 49);
-			this.groupBox1.TabIndex = 0;
-			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Debug Messages";
-			// 
-			// debugFileCheckBox
-			// 
-			this.debugFileCheckBox.AutoSize = true;
-			this.debugFileCheckBox.Location = new System.Drawing.Point(76, 19);
-			this.debugFileCheckBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-			this.debugFileCheckBox.Name = "debugFileCheckBox";
-			this.debugFileCheckBox.Size = new System.Drawing.Size(42, 17);
-			this.debugFileCheckBox.TabIndex = 1;
-			this.debugFileCheckBox.Text = "&File";
-			this.debugFileCheckBox.UseVisualStyleBackColor = true;
-			// 
-			// debugConsoleCheckBox
-			// 
-			this.debugConsoleCheckBox.AutoSize = true;
-			this.debugConsoleCheckBox.Location = new System.Drawing.Point(6, 19);
-			this.debugConsoleCheckBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-			this.debugConsoleCheckBox.Name = "debugConsoleCheckBox";
-			this.debugConsoleCheckBox.Size = new System.Drawing.Size(64, 17);
-			this.debugConsoleCheckBox.TabIndex = 0;
-			this.debugConsoleCheckBox.Text = "&Console";
-			this.debugConsoleCheckBox.UseVisualStyleBackColor = true;
-			// 
-			// modContextMenu
-			// 
-			this.modContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+	    this.verticalResolution.ValueChanged += new System.EventHandler(this.verticalResolution_ValueChanged);
+	    // 
+	    // tabPage4
+	    // 
+	    this.tabPage4.Controls.Add(this.groupBox1);
+	    this.tabPage4.Location = new System.Drawing.Point(4, 22);
+	    this.tabPage4.Name = "tabPage4";
+	    this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+	    this.tabPage4.Size = new System.Drawing.Size(378, 338);
+	    this.tabPage4.TabIndex = 3;
+	    this.tabPage4.Text = "Options";
+	    this.tabPage4.UseVisualStyleBackColor = true;
+	    // 
+	    // groupBox1
+	    // 
+	    this.groupBox1.Controls.Add(this.debugFileCheckBox);
+	    this.groupBox1.Controls.Add(this.debugConsoleCheckBox);
+	    this.groupBox1.Location = new System.Drawing.Point(6, 6);
+	    this.groupBox1.Name = "groupBox1";
+	    this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
+	    this.groupBox1.Size = new System.Drawing.Size(366, 49);
+	    this.groupBox1.TabIndex = 0;
+	    this.groupBox1.TabStop = false;
+	    this.groupBox1.Text = "Debug Messages";
+	    // 
+	    // debugFileCheckBox
+	    // 
+	    this.debugFileCheckBox.AutoSize = true;
+	    this.debugFileCheckBox.Location = new System.Drawing.Point(76, 19);
+	    this.debugFileCheckBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+	    this.debugFileCheckBox.Name = "debugFileCheckBox";
+	    this.debugFileCheckBox.Size = new System.Drawing.Size(42, 17);
+	    this.debugFileCheckBox.TabIndex = 1;
+	    this.debugFileCheckBox.Text = "&File";
+	    this.debugFileCheckBox.UseVisualStyleBackColor = true;
+	    // 
+	    // debugConsoleCheckBox
+	    // 
+	    this.debugConsoleCheckBox.AutoSize = true;
+	    this.debugConsoleCheckBox.Location = new System.Drawing.Point(6, 19);
+	    this.debugConsoleCheckBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+	    this.debugConsoleCheckBox.Name = "debugConsoleCheckBox";
+	    this.debugConsoleCheckBox.Size = new System.Drawing.Size(64, 17);
+	    this.debugConsoleCheckBox.TabIndex = 0;
+	    this.debugConsoleCheckBox.Text = "&Console";
+	    this.debugConsoleCheckBox.UseVisualStyleBackColor = true;
+	    // 
+	    // modContextMenu
+	    // 
+	    this.modContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openFolderToolStripMenuItem});
-			this.modContextMenu.Name = "modContextMenu";
-			this.modContextMenu.Size = new System.Drawing.Size(138, 26);
-			// 
-			// openFolderToolStripMenuItem
-			// 
-			this.openFolderToolStripMenuItem.Name = "openFolderToolStripMenuItem";
-			this.openFolderToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-			this.openFolderToolStripMenuItem.Text = "Open folder";
-			this.openFolderToolStripMenuItem.Click += new System.EventHandler(this.openFolderToolStripMenuItem_Click);
-			// 
-			// MainForm
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(384, 409);
-			this.Controls.Add(this.tabControl1);
-			this.Controls.Add(this.installButton);
-			this.Controls.Add(this.saveAndPlayButton);
-			this.Controls.Add(this.saveButton);
-			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.MinimumSize = new System.Drawing.Size(400, 400);
-			this.Name = "MainForm";
-			this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 3);
-			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
-			this.Text = "Sonic R Mod Manager";
-			this.Load += new System.EventHandler(this.MainForm_Load);
-			this.tabControl1.ResumeLayout(false);
-			this.tabPage1.ResumeLayout(false);
-			this.tabPage1.PerformLayout();
-			this.tabPage2.ResumeLayout(false);
-			this.tabPage3.ResumeLayout(false);
-			this.groupBox3.ResumeLayout(false);
-			this.groupBox3.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.windowWidth)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.windowHeight)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.horizontalResolution)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.verticalResolution)).EndInit();
-			this.tabPage4.ResumeLayout(false);
-			this.groupBox1.ResumeLayout(false);
-			this.groupBox1.PerformLayout();
-			this.modContextMenu.ResumeLayout(false);
-			this.ResumeLayout(false);
-			this.PerformLayout();
+	    this.modContextMenu.Name = "modContextMenu";
+	    this.modContextMenu.Size = new System.Drawing.Size(138, 26);
+	    // 
+	    // openFolderToolStripMenuItem
+	    // 
+	    this.openFolderToolStripMenuItem.Name = "openFolderToolStripMenuItem";
+	    this.openFolderToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+	    this.openFolderToolStripMenuItem.Text = "Open folder";
+	    this.openFolderToolStripMenuItem.Click += new System.EventHandler(this.openFolderToolStripMenuItem_Click);
+	    // 
+	    // MainForm
+	    // 
+	    this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+	    this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+	    this.ClientSize = new System.Drawing.Size(384, 409);
+	    this.Controls.Add(this.tabControl1);
+	    this.Controls.Add(this.installButton);
+	    this.Controls.Add(this.saveAndPlayButton);
+	    this.Controls.Add(this.saveButton);
+	    this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+	    this.MinimumSize = new System.Drawing.Size(400, 400);
+	    this.Name = "MainForm";
+	    this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 3);
+	    this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
+	    this.Text = "Sonic R Mod Manager";
+	    this.Load += new System.EventHandler(this.MainForm_Load);
+	    this.tabControl1.ResumeLayout(false);
+	    this.tabPage1.ResumeLayout(false);
+	    this.tabPage1.PerformLayout();
+	    this.tabPage2.ResumeLayout(false);
+	    this.tabPage3.ResumeLayout(false);
+	    this.groupBox3.ResumeLayout(false);
+	    this.groupBox3.PerformLayout();
+	    ((System.ComponentModel.ISupportInitialize)(this.windowWidth)).EndInit();
+	    ((System.ComponentModel.ISupportInitialize)(this.windowHeight)).EndInit();
+	    ((System.ComponentModel.ISupportInitialize)(this.horizontalResolution)).EndInit();
+	    ((System.ComponentModel.ISupportInitialize)(this.verticalResolution)).EndInit();
+	    this.tabPage4.ResumeLayout(false);
+	    this.groupBox1.ResumeLayout(false);
+	    this.groupBox1.PerformLayout();
+	    this.modContextMenu.ResumeLayout(false);
+	    this.ResumeLayout(false);
+	    this.PerformLayout();
 
         }
 
@@ -643,5 +656,6 @@
 		private System.Windows.Forms.NumericUpDown horizontalResolution;
 		private System.Windows.Forms.CheckBox windowedFullscreenCheckBox;
 		private System.Windows.Forms.NumericUpDown verticalResolution;
-	}
+		private System.Windows.Forms.CheckBox widescreenCheckbox;
+    }
 }

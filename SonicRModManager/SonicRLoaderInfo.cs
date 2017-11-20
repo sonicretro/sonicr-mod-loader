@@ -23,5 +23,6 @@ namespace SonicRModManager
 		[DefaultValue(480)]
 		public int WindowHeight { get; set; } = 480;
 		public bool MaintainWindowAspectRatio { get; set; }
+		public bool Widescreen { get; set; } = true;
 	}
 }

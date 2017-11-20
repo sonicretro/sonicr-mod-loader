@@ -68,6 +68,8 @@ namespace SonicRModManager
 			customWindowSizeCheckBox.Checked = windowHeight.Enabled = maintainWindowAspectRatioCheckBox.Enabled = loaderini.CustomWindowSize;
 			windowWidth.Enabled = loaderini.CustomWindowSize && !loaderini.MaintainWindowAspectRatio;
 
+			widescreenCheckbox.Checked = loaderini.Widescreen;
+	
 			Rectangle rect = Screen.PrimaryScreen.Bounds;
 
 			resolutionPresets[5] = rect.Size;
@@ -251,6 +253,7 @@ namespace SonicRModManager
 			loaderini.WindowWidth = (int)windowWidth.Value;
 			loaderini.WindowHeight = (int)windowHeight.Value;
 			loaderini.MaintainWindowAspectRatio = maintainWindowAspectRatioCheckBox.Checked;
+			loaderini.Widescreen = widescreenCheckbox.Checked;
 
 			IniSerializer.Serialize(loaderini, loaderinipath);
 
@@ -534,6 +537,5 @@ namespace SonicRModManager
 			if (maintainWindowAspectRatioCheckBox.Checked)
 				windowWidth.Value = Math.Round(windowHeight.Value * (horizontalResolution.Value / verticalResolution.Value));
 		}
-
-	}
+    }
 }

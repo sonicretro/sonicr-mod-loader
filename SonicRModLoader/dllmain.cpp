@@ -359,6 +359,7 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 	fclose(f_ini);
 
 	HookCreateFileA();
+	WriteCall((void*)0x43C711, sub_446320_r); // sound effects
 
 	TIMECAPS tc;
 	timeGetDevCaps(&tc, sizeof(tc));

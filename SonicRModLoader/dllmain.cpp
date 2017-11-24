@@ -445,14 +445,11 @@ void D3D_Render2DObject_AlignCenter(
     int tmp = *SpriteXOff;
     int HorizOffset = 0;
     int MPScaler = 0;
-    int *XStretch = (int*)0x7BCB88;
-    int ExpectedXScale = HorizontalResolution * 0.8;
-    bool NeedsHalving = (*XStretch != ExpectedXScale);
 
     if (*SpriteXOff + 1 >= (HorizontalResolution >> 1)) {
 	HorizOffset = HorizontalResolution;
     }
-    if ((MP_WindowCount == 2 && MP_HUD2PSplit == 1) || NeedsHalving) {
+    if (MP_WindowCount == 2 && MP_HUD2PSplit == 1) {
 	HorizOffset = HorizOffset >> 2;
 	MPScaler = 1; // Divide center by 2
     }

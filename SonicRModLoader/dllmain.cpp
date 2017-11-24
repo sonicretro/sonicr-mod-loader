@@ -335,8 +335,8 @@ int MapWidthTo640() {
     return (int)(480 * AspRatio);
 }
 
-int HalfExtraSpace() {
-    return (MapWidthTo640() - 640) >> 1;
+int GetExtraSpace() {
+    return (MapWidthTo640() - 640);
 }
 
 void D3D_RenderHUD_MainTimer_AlignRight(
@@ -357,8 +357,7 @@ void D3D_RenderHUD_MainTimer_AlignRight(
     }
 
     D3D_RenderHUD_MainTimer(
-	(int)((WidthRatio * HorizontalResolution) * 4.0f / 3.0f) - (640 * WidthRatio - XPos),
-	YPos, ZPos, Time, Unk
+	XPos + GetExtraSpace(), YPos, ZPos, Time, Unk
     );
 
     *SpriteXOff = tmp;
@@ -380,8 +379,8 @@ void D3D_RenderHUD_LapTimer_AlignRight(int XPos, int YPos, int Time) {
     }
 
     D3D_RenderHUD_LapTimer(
-	(int)((WidthRatio * HorizontalResolution) * 4.0f / 3.0f) - (640 * WidthRatio - XPos),
-	YPos, Time
+	//(int)((WidthRatio * HorizontalResolution)) - (640 * WidthRatio - XPos),
+	XPos + GetExtraSpace(), YPos, Time
     );
 
     *SpriteXOff = tmp;
@@ -430,8 +429,7 @@ void D3D_Render2DObject_AlignRight(
     }
 
     D3D_Render2DObject(
-	(int)((WidthRatio * HorizontalResolution) * 4.0f / 3.0f) - (640 * WidthRatio - XPos),
-	YPos, ZPos, XScale, YScale, TexPage,
+	XPos + GetExtraSpace(), YPos, ZPos, XScale, YScale, TexPage,
 	TexXOff, TexYOff, TexWidth, TexHeight, TexTint
     );
 
@@ -468,9 +466,11 @@ void Render_SetViewport_FixUp() {
     float AspRatio = (float)HorizontalResolution / (float)VerticalResolution;
     int ExpectedXScale = HorizontalResolution * 0.8;
     bool NeedsHalving = (*XStretch != ExpectedXScale);
+    //float WidthAdjRatio = (4.0f / 3.0f) / AspRatio;
 
     float InvAspRatio = (float)VerticalResolution / (float)HorizontalResolution;
-    *XStretch = VerticalResolution;
+    *XStretch = (int)(VerticalResolution * (16.0f/15.0f));
+
     // Vertical split requires halved aspect ratio
     if (NeedsHalving && MP_WindowCount > 1) {
 	*XStretch /= 2;

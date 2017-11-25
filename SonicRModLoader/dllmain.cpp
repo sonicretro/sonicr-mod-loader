@@ -446,7 +446,7 @@ void D3D_Render2DObject_AlignCenter(
     int HorizOffset = 0;
     int MPScaler = 0;
     int *XStretch = (int*)0x7BCB88;
-    int ExpectedXScale = HorizontalResolution * 0.8;
+    int ExpectedXScale = (int)(VerticalResolution * (16.0f / 15.0f));
     bool NeedsHalving = (*XStretch != ExpectedXScale);
 
     if (*SpriteXOff + 1 >= (HorizontalResolution >> 1)) {
@@ -674,12 +674,13 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 	WriteCall((void *)0x43DFE9, D3D_Render2DObject_AlignRight);
 	WriteCall((void *)0x43E061, D3D_Render2DObject_AlignRight);
 	WriteCall((void *)0x43E17A, D3D_Render2DObject_AlignLeft);
-	WriteCall((void *)0x43E451, D3D_Render2DObject_AlignLeft);
 	WriteCall((void *)0x43E621, D3D_Render2DObject_AlignLeft); // Big GP icon
 	WriteCall((void *)0x43E688, D3D_Render2DObject_AlignLeft); // Small GP icon
 	WriteCall((void *)0x43E6C1, D3D_Render2DObject_AlignLeft); // GP place #
 	WriteCall((void *)0x43E754, D3D_Render2DObject_AlignAuto); // MP place #
 	WriteCall((void *)0x43EAC5, D3D_Render2DObject_AlignCenter); // Ready/Set/Go
+	WriteCall((void *)0x43E451, D3D_Render2DObject_AlignCenter); // Win/Lose
+	WriteCall((void *)0x43E4A1, D3D_Render2DObject_AlignCenter); // 1st/2nd/3rd/4th
 
 	// Ring counter
 	WriteCall((void *)0x43E4F2, D3D_Render2DObject_AlignLeft); // Ring

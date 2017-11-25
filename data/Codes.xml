@@ -312,22 +312,53 @@
             <ValueType>decimal</ValueType>
         </CodeLine>
         <CodeLine>
+			<!-- Blue Emerald Check -->
             <Type>writenop</Type>
             <Address>00427A05</Address>
             <Value>6</Value>
             <ValueType>decimal</ValueType>
         </CodeLine>
-        <CodeLine>
+		<CodeLine>
+			<!-- Green Emerald Check -->
+            <Type>write8</Type>
+            <Address>00427A3D</Address>
+            <Value>EB</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+		<CodeLine>
+			<!-- Purple Emerald Check -->
+            <Type>write8</Type>
+            <Address>00427A29</Address>
+            <Value>EB</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+		<CodeLine>
+			<!-- Yellow Emerald Check -->
+            <Type>write8</Type>
+            <Address>00427A54</Address>
+            <Value>EB</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+		<CodeLine>
+			<!-- Orange Emerald Check -->
+            <Type>write8</Type>
+            <Address>00427A69</Address>
+            <Value>EB</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+		<CodeLine>
+			<!-- Red Emerald Check -->
             <Type>writenop</Type>
             <Address>00427A79</Address>
             <Value>6</Value>
             <ValueType>decimal</ValueType>
         </CodeLine>
         <CodeLine>
-            <Type>writenop</Type>
-            <Address>00427A8E</Address>
-            <Value>6</Value>
-            <ValueType>decimal</ValueType>
+			<!-- Gray Emerald Check -->
+            <Type>write8</Type>
+            <Address>00427A94</Address>
+            <Value>EB</Value>
+            <ValueType>hex</ValueType>
         </CodeLine>
     </Code>
     <Code name="Easy Balloon Mode (All 17 Balloons Always Spawn)">

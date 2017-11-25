@@ -317,6 +317,18 @@
             <Value>6</Value>
             <ValueType>decimal</ValueType>
         </CodeLine>
+        <CodeLine>
+            <Type>writenop</Type>
+            <Address>00427A79</Address>
+            <Value>6</Value>
+            <ValueType>decimal</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <Type>writenop</Type>
+            <Address>00427A8E</Address>
+            <Value>6</Value>
+            <ValueType>decimal</ValueType>
+        </CodeLine>
     </Code>
     <Code name="Easy Balloon Mode (All 17 Balloons Always Spawn)">
         <CodeLine>

@@ -20,6 +20,7 @@
 #include "Events.h"
 #include "Music.h"
 #include "Widescreen.h"
+#include "Textures.h"
 #include "SonicRModLoader.h"
 
 using std::ifstream;
@@ -394,6 +395,9 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 	WriteCall((void *)0x43E8D0, D3D_Render2DObject_AlignLeft); // #
 	WriteCall((void *)0x43E901, D3D_Render2DObject_AlignLeft); // /
 	WriteCall((void *)0x43E928, D3D_Render2DObject_AlignLeft); // 5
+
+	// Textures
+	WriteCall((void*)0x407A30, D3D_ReadTPageRGB_r);
 
 	// Map of files to replace and/or swap.
 	// This is done with a second map instead of fileMap directly

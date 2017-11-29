@@ -49,6 +49,7 @@ DataPointer(WNDCLASSA, WndClass, 0x4B5398);
 DataPointer(HINSTANCE, hInstance, 0x4B53C4);
 DataPointer(HWND, hWnd, 0x4B53C8);
 DataPointer(int, CurrentMusicTrack, 0x502360);
+DataArray(char *, TPageBuffers, 0x5D359C, 1);
 DataPointer(int, Windowed, 0x5EDD24);
 DataPointer(int, FrameEndTime, 0x7349F8);
 DataPointer(int, FrameStartTime, 0x7356B0);
@@ -59,6 +60,10 @@ static void(__cdecl *(__cdecl *const DisplayFatalErrorWithTrace)(char *file, int
 static void(__cdecl *(__cdecl *const PrintDebugWithTrace)(char *file, int line))(char *, ...) = (decltype(PrintDebugWithTrace))0x404BC0;
 FunctionPointer(int, GetTime, (), 0x404D30);
 FunctionPointer(int, PrintDebug, (const char *fmt, ...), 0x404D80);
+FunctionPointer(int, D3D_ReadTPageRGB, (const char *FilePath, char *Buffer, int BytesPerChannel), 0x407950);
+FunctionPointer(void, D3D_LoadTPageRGB, (int page, char *filename), 0x407A00);
+FunctionPointer(void, CreateTPageBuffer, (int page), 0x442720);
+FunctionPointer(void, D3D_ReleaseTexture, (int page), 0x4427D0);
 VoidFunc(CalculateClockSpeed, 0x4332B0);
 FunctionPointer(void, ProcessCommandLine, (const char *a1), 0x433400);
 FunctionPointer(int, MainGameLoop, (), 0x43AA60);

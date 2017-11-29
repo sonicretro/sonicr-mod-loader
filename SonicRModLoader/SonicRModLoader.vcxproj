@@ -100,8 +100,11 @@
     <ClInclude Include="git.h" />
     <ClInclude Include="include\SonicRModLoader.h" />
     <ClInclude Include="include\MemAccess.h" />
+    <ClInclude Include="Music.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Textures.h" />
+    <ClInclude Include="Widescreen.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
@@ -109,11 +112,14 @@
     <ClCompile Include="FileMap.cpp" />
     <ClCompile Include="FileReplacement.cpp" />
     <ClCompile Include="FileSystem.cpp" />
+    <ClCompile Include="Music.cpp" />
     <ClCompile Include="SonicRModLoader.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Textures.cpp" />
+    <ClCompile Include="Widescreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\mod-loader-common\ModLoaderCommon\ModLoaderCommon.vcxproj">

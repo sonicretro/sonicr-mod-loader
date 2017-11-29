@@ -18,8 +18,10 @@
 #include "FileSystem.h"
 #include "FileReplacement.h"
 #include "Events.h"
+#include "Music.h"
+#include "Widescreen.h"
+#include "Textures.h"
 #include "SonicRModLoader.h"
-#include "bass_vgmstream.h"
 
 using std::ifstream;
 using std::string;
@@ -82,7 +84,6 @@ static void HookCreateFileA(void)
 	}
 }
 
-void CheckPauseMusic();
 // Code Parser.
 static CodeParser codeParser;
 
@@ -144,128 +145,6 @@ static int __cdecl SonicRDebugOutput(const char *Format, ...)
 	return result;
 }
 
-/**
-* Callback for BASS. Called when it needs more data.
-*/
-DWORD CALLBACK rawStreamProc(HSTREAM handle, void *buffer, DWORD length, void *user)
-{
-	FILE *file = (FILE*)user;
-	DWORD c = fread(buffer, 1, length, file); // read the file into the buffer
-	if (feof(file)) c |= BASS_STREAMPROC_END; // end of the file/stream
-	return c;
-}
-
-/**
-* Called when the BASS handle is closed
-*/
-void CALLBACK rawStreamOnFree(HSYNC handle, DWORD channel, DWORD data, void *user)
-{
-	fclose((FILE*)user);
-}
-
-bool bassinit = false;
-void InitMusic()
-{
-	bassinit = BASS_Init(-1, 44100, 0, nullptr, nullptr) ? true : false;
-}
-
-void DeInitMusic()
-{
-	if (bassinit)
-	{
-		BASS_Free();
-		bassinit = false;
-	}
-}
-
-int GetCurrentTrackNumber()
-{
-	return CurrentMusicTrack;
-}
-
-static void __stdcall onTrackEnd(HSYNC handle, DWORD channel, DWORD data, void *user)
-{
-	BASS_ChannelStop(channel);
-	BASS_StreamFree(channel);
-	CurrentMusicTrack = -1;
-	*(int*)0x502F0C = 0;
-}
-
-float volumelevels[] = { 0, 0.002511886f, 0.007079458f, 0.031622777f, 0.079432823f, 0.125892541f, 0.354813389f, 0.630957344f, 1 };
-int basschan = 0;
-int wasPaused = 0;
-DataPointer(int, IsGamePaused, 0x7C1BC0);
-void PlayMusic(int track)
-{
-	if (!bassinit) return;
-	if (basschan != 0)
-	{
-		BASS_ChannelStop(basschan);
-		BASS_StreamFree(basschan);
-	}
-	char buf[MAX_PATH];
-	snprintf(buf, sizeof(buf), "music\\track%u.son", track);
-	const char *filename = fileMap.replaceFile(buf);
-	basschan = BASS_VGMSTREAM_StreamCreate(filename, 0);
-	if (basschan == 0)
-		basschan = BASS_StreamCreateFile(false, filename, 0, 0, 0);
-	if (basschan == 0)
-	{
-		FILE *file = fopen(filename, "rb");
-		if (file)
-		{
-			basschan = BASS_StreamCreate(44100, 2, 0, rawStreamProc, file);
-			if (basschan != 0)
-				BASS_ChannelSetSync(basschan, BASS_SYNC_FREE | BASS_SYNC_MIXTIME, 0, rawStreamOnFree, file);
-		}
-	}
-	if (basschan != 0)
-	{
-		// Stream opened!
-		BASS_ChannelPlay(basschan, false);
-		BASS_ChannelSetAttribute(basschan, BASS_ATTRIB_VOL, volumelevels[MusicVolume]);
-		BASS_ChannelSetSync(basschan, BASS_SYNC_END, 0, onTrackEnd, nullptr);
-		CurrentMusicTrack = track;
-		*(int*)0x502F0C = 1;
-		wasPaused = IsGamePaused = 0;
-	}
-	else
-	{
-		CurrentMusicTrack = -1;
-		*(int*)0x502F0C = 0;
-		PrintDebug("Could not play music file \"%s\".", filename);
-	}
-}
-
-void StopMusic_r()
-{
-	if (basschan != 0)
-	{
-		BASS_ChannelStop(basschan);
-		BASS_StreamFree(basschan);
-		CurrentMusicTrack = -1;
-		*(int*)0x502F0C = 0;
-	}
-}
-
-void UpdateMusicVolume_r()
-{
-	if (basschan != 0)
-		BASS_ChannelSetAttribute(basschan, BASS_ATTRIB_VOL, volumelevels[MusicVolume]);
-}
-
-void CheckPauseMusic()
-{
-	if (basschan != 0)
-	{
-		if (wasPaused && !IsGamePaused)
-			BASS_ChannelPlay(basschan, false);
-		else if (!wasPaused && IsGamePaused)
-			BASS_ChannelPause(basschan);
-		wasPaused = IsGamePaused;
-	}
-}
-
 static Gdiplus::Bitmap* backgroundImage = nullptr;
 enum windowmodes { windowed, fullscreen };
 struct windowsize { int x; int y; int width; int height; };
@@ -325,189 +204,6 @@ static LRESULT CALLBACK WrapperWndProc(HWND wrapper, UINT uMsg, WPARAM wParam, L
 
 	// alternatively we can return SendMe
 	return DefWindowProc(wrapper, uMsg, wParam, lParam);
-}
-
-// Widescreen support
-int MapWidthTo640() {
-    int HorizontalResolution = *(int*)0x5F3874;
-    int VerticalResolution = *(int*)0x75353C;
-    float AspRatio = (float)HorizontalResolution / (float)VerticalResolution;
-    return (int)(480 * AspRatio);
-}
-
-int GetExtraSpace() {
-    return (MapWidthTo640() - 640);
-}
-
-void D3D_RenderHUD_MainTimer_AlignRight(
-    int XPos, int YPos, float ZPos, int Time, int Unk
-) {
-    int *SpriteXOff = (int*)0x72E010;
-    int tmp = *SpriteXOff;
-    // Right side of screen?
-    if (*SpriteXOff + 1 >= (HorizontalResolution >> 1)) {
-	*SpriteXOff = HorizontalResolution >> 1;
-    }
-    else {
-	*SpriteXOff = 0;
-    }
-    int WidthRatio = 0;
-    if (MP_WindowCount == 2 && MP_HUD2PSplit == 1) {
-	WidthRatio = 1;
-    }
-
-    D3D_RenderHUD_MainTimer(
-	XPos + (GetExtraSpace() >> WidthRatio), YPos, ZPos, Time, Unk
-    );
-
-    *SpriteXOff = tmp;
-}
-
-void D3D_RenderHUD_LapTimer_AlignRight(int XPos, int YPos, int Time) {
-    int *SpriteXOff = (int*)0x72E010;
-    int tmp = *SpriteXOff;
-    // Right side of screen?
-    if (*SpriteXOff + 1 >= (HorizontalResolution >> 1)) {
-	*SpriteXOff = HorizontalResolution >> 1;
-    }
-    else {
-	*SpriteXOff = 0;
-    }
-    int WidthRatio = 0;
-    if (MP_WindowCount == 2 && MP_HUD2PSplit == 1) {
-	WidthRatio = 1;
-    }
-
-    D3D_RenderHUD_LapTimer(
-	//(int)((WidthRatio * HorizontalResolution)) - (640 * WidthRatio - XPos),
-	XPos + (GetExtraSpace() >> WidthRatio), YPos, Time
-    );
-
-    *SpriteXOff = tmp;
-}
-
-void D3D_Render2DObject_AlignLeft(
-    int XPos, int YPos, float ZPos, int XScale, int YScale, int TexPage,
-    int TexXOff, int TexYOff, int TexWidth, int TexHeight, int TexTint
-) {
-    // We run into clipping issues, so we have to disable our centering hack
-    // to left-align HUD elements
-    int *SpriteXOff = (int*)0x72E010;
-    int tmp = *SpriteXOff;
-    // Right side of screen?
-    if (*SpriteXOff + 1 >= (HorizontalResolution >> 1)) {
-	*SpriteXOff = HorizontalResolution >> 1;
-    }
-    else {
-	*SpriteXOff = 0;
-    }
-
-    D3D_Render2DObject(
-	XPos, YPos, ZPos, XScale, YScale, TexPage,
-	TexXOff, TexYOff, TexWidth, TexHeight, TexTint
-    );
-
-    *SpriteXOff = tmp;
-}
-
-void D3D_Render2DObject_AlignRight(
-    int XPos, int YPos, float ZPos, int XScale, int YScale, int TexPage,
-    int TexXOff, int TexYOff, int TexWidth, int TexHeight, int TexTint
-) {
-    int *SpriteXOff = (int*)0x72E010;
-    int tmp = *SpriteXOff;
-    // Right side of screen?
-    if (*SpriteXOff + 1 >= (HorizontalResolution >> 1)) {
-	*SpriteXOff = HorizontalResolution >> 1;
-    }
-    else {
-	*SpriteXOff = 0;
-    }
-    int WidthRatio = 0;
-    if (MP_WindowCount == 2 && MP_HUD2PSplit == 1) {
-	WidthRatio = 1;
-    }
-
-    D3D_Render2DObject(
-	XPos + (GetExtraSpace() >> WidthRatio),
-	YPos, ZPos, XScale, YScale, TexPage,
-	TexXOff, TexYOff, TexWidth, TexHeight, TexTint
-    );
-
-    *SpriteXOff = tmp;
-}
-
-void D3D_Render2DObject_AlignCenter(
-    int XPos, int YPos, float ZPos, int XScale, int YScale, int TexPage,
-    int TexXOff, int TexYOff, int TexWidth, int TexHeight, int TexTint
-) {
-    int *SpriteXOff = (int*)0x72E010;
-    int tmp = *SpriteXOff;
-    int HorizOffset = 0;
-    int MPScaler = 0;
-    int *XStretch = (int*)0x7BCB88;
-    int ExpectedXScale = (int)(VerticalResolution * (16.0f / 15.0f));
-    bool NeedsHalving = (*XStretch != ExpectedXScale);
-
-    if (*SpriteXOff + 1 >= (HorizontalResolution >> 1)) {
-	HorizOffset = HorizontalResolution;
-    }
-    if ((MP_WindowCount == 2 && MP_HUD2PSplit == 1) || NeedsHalving) {
-	HorizOffset = HorizOffset >> 2;
-	MPScaler = 1; // Divide center by 2
-    }
-
-    *SpriteXOff = HorizOffset + (tmp >> MPScaler);
-    D3D_Render2DObject(
-	XPos, YPos, ZPos, XScale, YScale, TexPage,
-	TexXOff, TexYOff, TexWidth, TexHeight, TexTint
-    );
-
-    *SpriteXOff = tmp;
-}
-
-void D3D_Render2DObject_AlignAuto(
-    int XPos, int YPos, float ZPos, int XScale, int YScale, int TexPage,
-    int TexXOff, int TexYOff, int TexWidth, int TexHeight, int TexTint
-) {
-    int CompVal = 320;
-    if (MP_WindowCount == 2 && MP_HUD2PSplit == 1) {
-	CompVal = 120;
-    }
-    if (XPos < CompVal) {
-	D3D_Render2DObject_AlignLeft(
-	    XPos, YPos, ZPos, XScale, YScale, TexPage,
-	    TexXOff, TexYOff, TexWidth, TexHeight, TexTint
-	);
-    }
-    else {
-	D3D_Render2DObject_AlignRight(
-	    XPos, YPos, ZPos, XScale, YScale, TexPage,
-	    TexXOff, TexYOff, TexWidth, TexHeight, TexTint
-	);
-    }
-}
-
-void Render_SetViewport_FixUp() {
-    int *XStretch = (int*)0x7BCB88;
-    int *XOff = (int*)0x7AF248;
-    // donor address (doesn't seem to effect anything)
-    int *SpriteXOff = (int*)0x72E010;
-    float AspRatio = (float)HorizontalResolution / (float)VerticalResolution;
-    int ExpectedXScale = HorizontalResolution * 0.8;
-    bool NeedsHalving = (*XStretch != ExpectedXScale);
-    //float WidthAdjRatio = (4.0f / 3.0f) / AspRatio;
-
-    float InvAspRatio = (float)VerticalResolution / (float)HorizontalResolution;
-    *XStretch = (int)(VerticalResolution * (16.0f/15.0f));
-
-    // Vertical split requires halved aspect ratio
-    if (NeedsHalving && MP_WindowCount > 1) {
-	*XStretch /= 2;
-    }
-
-    // Simplified form of (HorizontalResolution - (VerticalResolution * (4.0f/3.0f))) / 2
-    *SpriteXOff = *XOff + (int)(((0.5f) * HorizontalResolution) - ((2.0f / 3.0f) * VerticalResolution));
 }
 
 void __cdecl SetPresentParameters(D3DPRESENT_PARAMETERS *pp, D3DFORMAT bufferFormat, D3DFORMAT depthStencilFormat, int bufferWidth, signed int bufferHeight, int refreshRate, int windowed)
@@ -699,6 +395,9 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 	WriteCall((void *)0x43E8D0, D3D_Render2DObject_AlignLeft); // #
 	WriteCall((void *)0x43E901, D3D_Render2DObject_AlignLeft); // /
 	WriteCall((void *)0x43E928, D3D_Render2DObject_AlignLeft); // 5
+
+	// Textures
+	WriteCall((void*)0x407A30, D3D_ReadTPageRGB_r);
 
 	// Map of files to replace and/or swap.
 	// This is done with a second map instead of fileMap directly

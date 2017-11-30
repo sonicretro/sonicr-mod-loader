@@ -298,7 +298,7 @@
             <ValueType>decimal</ValueType>
         </CodeLine>
     </Code>
-    <Code name="Practice Mode (Tokens/Emeralds Always Spawn)">
+    <Code name="Practice Mode (Tokens/Emeralds Always Spawn)" patch="true">
         <CodeLine>
             <!-- Should We Spawn 5 Coins Check -->
             <Type>writenop</Type>
@@ -363,7 +363,7 @@
             <ValueType>hex</ValueType>
         </CodeLine>
     </Code>
-    <Code name="Easy Balloon Mode (All 17 Balloons Always Spawn)">
+    <Code name="Easy Balloon Mode (All 17 Balloons Always Spawn)" patch="true">
         <CodeLine>
             <Type>writenop</Type>
             <Address>00422848</Address>
@@ -438,9 +438,9 @@
     </Code>
     <Code name="Press P to Freeze CPUs">
         <CodeLine>
-            <Type>ifeq8</Type>
+            <Type>ifne8</Type>
             <Address>007356E1</Address>
-            <Value>4</Value>
+            <Value>3</Value>
             <ValueType>decimal</ValueType>
             <TrueLines>
                 <CodeLine>
@@ -494,7 +494,7 @@
             </TrueLines>
         </CodeLine>
     </Code>
-    <Code name="Disable Demo Recording">
+    <Code name="Disable Demo Recording" patch="true">
         <CodeLine>
             <Type>write8</Type>
             <Address>00444720</Address>
@@ -502,7 +502,7 @@
             <ValueType>hex</ValueType>
         </CodeLine>
     </Code>
-    <Code name="Players Never Sink Into Water">
+    <Code name="Players Never Sink Into Water" patch="true">
         <CodeLine>
             <Type>writenop</Type>
             <Address>00429C78</Address>
@@ -516,7 +516,7 @@
             <ValueType>decimal</ValueType>
         </CodeLine>
     </Code>
-    <Code name="Always use Saturn/DirectDraw Camera Angle">
+    <Code name="Always use Saturn/DirectDraw Camera Angle" patch="true">
         <CodeLine>
             <Type>writenop</Type>
             <Address>00405345</Address>
@@ -524,12 +524,89 @@
             <ValueType>decimal</ValueType>
         </CodeLine>
     </Code>
-    <Code name="Eggman/EggRobo Missiles Cost Nothing">
+    <Code name="Eggman/EggRobo Missiles Don't Take Away Rings" patch="true">
         <CodeLine>
             <Type>writenop</Type>
             <Address>00428F72</Address>
             <Value>5</Value>
             <ValueType>decimal</ValueType>
+        </CodeLine>
+    </Code>
+    <Code name="Ring Gates Don't Take Away Rings" patch="true">
+        <CodeLine>
+            <Type>writenop</Type>
+            <Address>00441C83</Address>
+            <Value>4</Value>
+            <ValueType>decimal</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <Type>writenop</Type>
+            <Address>00441C69</Address>
+            <Value>4</Value>
+            <ValueType>decimal</ValueType>
+        </CodeLine>
+    </Code>
+    <Code name="Accelerators Don't Take Away Rings" patch="true">
+        <CodeLine>
+            <Type>writenop</Type>
+            <Address>00428719</Address>
+            <Value>7</Value>
+            <ValueType>decimal</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <Type>writenop</Type>
+            <Address>00428735</Address>
+            <Value>7</Value>
+            <ValueType>decimal</ValueType>
+        </CodeLine>
+    </Code>
+    <Code name="Knuckles CPU instead of Super Sonic CPU">
+        <CodeLine>
+            <!-- If No. of Controlled Players is 1 -->
+            <Type>ifeq8</Type>
+            <Address>007356EC</Address>
+            <Value>1</Value>
+            <ValueType>decimal</ValueType>
+            <TrueLines>
+                <CodeLine>
+                    <!-- And Player 2 is Super Sonic -->
+                    <Type>ifeq8</Type>
+                    <Address>007B7B96</Address>
+                    <Value>9</Value>
+                    <ValueType>decimal</ValueType>
+                    <TrueLines>
+                        <!-- Then Change Super Sonic to Knuckles -->
+                        <CodeLine>
+                            <Type>write8</Type>
+                            <Address>007B7B96</Address>
+                            <Value>2</Value>
+                            <ValueType>decimal</ValueType>
+                        </CodeLine>
+                        <CodeLine>
+                            <Type>write8</Type>
+                            <Address>007B7C84</Address>
+                            <Value>2</Value>
+                            <ValueType>decimal</ValueType>
+                        </CodeLine>
+                    </TrueLines>
+                </CodeLine>
+            </TrueLines>
+        </CodeLine>
+    </Code>
+    <Code name="Sonic Can Double Jump Infinitely" patch="true">
+        <CodeLine>
+            <Type>write16</Type>
+            <Address>0042C6E7</Address>
+            <Value>0</Value>
+            <ValueType>decimal</ValueType>
+        </CodeLine>
+    </Code>
+    <Code name="Tails Can Fly for a Really Long Time" patch="true">
+        <CodeLine>
+            <Type>write16</Type>
+            <Address>0042C73A</Address>
+            <Value>7FFF</Value>
+            <ValueType>hex</ValueType>
         </CodeLine>
     </Code>
     <Code name="Max Rings (Player 2)">

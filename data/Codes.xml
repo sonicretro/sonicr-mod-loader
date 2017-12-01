@@ -298,70 +298,72 @@
             <ValueType>decimal</ValueType>
         </CodeLine>
     </Code>
-    <Code name="Practice Mode (Tokens/Emeralds Always Spawn)">
+    <Code name="Practice Mode (Tokens/Emeralds Always Spawn)" patch="true">
         <CodeLine>
+            <!-- Should We Spawn 5 Coins Check -->
             <Type>writenop</Type>
             <Address>004279BC</Address>
             <Value>7</Value>
             <ValueType>decimal</ValueType>
         </CodeLine>
         <CodeLine>
+            <!-- Need to Get 5 Coins Check -->
             <Type>writenop</Type>
             <Address>0043E777</Address>
             <Value>8</Value>
             <ValueType>decimal</ValueType>
         </CodeLine>
         <CodeLine>
-			<!-- Blue Emerald Check -->
+            <!-- Blue Emerald Check -->
             <Type>writenop</Type>
             <Address>00427A05</Address>
             <Value>6</Value>
             <ValueType>decimal</ValueType>
         </CodeLine>
-		<CodeLine>
-			<!-- Green Emerald Check -->
+        <CodeLine>
+            <!-- Green Emerald Check -->
             <Type>write8</Type>
             <Address>00427A3D</Address>
             <Value>EB</Value>
             <ValueType>hex</ValueType>
         </CodeLine>
-		<CodeLine>
-			<!-- Purple Emerald Check -->
+        <CodeLine>
+            <!-- Purple Emerald Check -->
             <Type>write8</Type>
             <Address>00427A29</Address>
             <Value>EB</Value>
             <ValueType>hex</ValueType>
         </CodeLine>
-		<CodeLine>
-			<!-- Yellow Emerald Check -->
+        <CodeLine>
+            <!-- Yellow Emerald Check -->
             <Type>write8</Type>
             <Address>00427A54</Address>
             <Value>EB</Value>
             <ValueType>hex</ValueType>
         </CodeLine>
-		<CodeLine>
-			<!-- Orange Emerald Check -->
+        <CodeLine>
+            <!-- Orange Emerald Check -->
             <Type>write8</Type>
             <Address>00427A69</Address>
             <Value>EB</Value>
             <ValueType>hex</ValueType>
         </CodeLine>
-		<CodeLine>
-			<!-- Red Emerald Check -->
+        <CodeLine>
+            <!-- Red Emerald Check -->
             <Type>writenop</Type>
             <Address>00427A79</Address>
             <Value>6</Value>
             <ValueType>decimal</ValueType>
         </CodeLine>
         <CodeLine>
-			<!-- Gray Emerald Check -->
+            <!-- Gray Emerald Check -->
             <Type>write8</Type>
             <Address>00427A94</Address>
             <Value>EB</Value>
             <ValueType>hex</ValueType>
         </CodeLine>
     </Code>
-    <Code name="Easy Balloon Mode (All 17 Balloons Always Spawn)">
+    <Code name="Easy Balloon Mode (All 17 Balloons Always Spawn)" patch="true">
         <CodeLine>
             <Type>writenop</Type>
             <Address>00422848</Address>
@@ -371,36 +373,36 @@
     </Code>
     <Code name="Hard Balloon Mode (Need All 17 Balloons!)">
         <CodeLine>
-            <Type>ifeq8</Type>
             <!-- If Mode is Balloon Hunt -->
+            <Type>ifeq8</Type>
             <Address>007BCB80</Address>
             <Value>3</Value>
             <ValueType>decimal</ValueType>
             <TrueLines>
                 <CodeLine>
-                    <Type>ifeq8</Type>
                     <!-- If Player Number is 1 -->
+                    <Type>ifeq8</Type>
                     <Address>007356EC</Address>
                     <Value>1</Value>
                     <ValueType>decimal</ValueType>
                     <TrueLines>
                         <CodeLine>
-                            <Type>write32</Type>
                             <!-- Change Number of Balloons needed to 17 -->
+                            <Type>write32</Type>
                             <Address>0043950A</Address>
                             <Value>17</Value>
                             <ValueType>decimal</ValueType>
                         </CodeLine>
                         <CodeLine>
-                            <Type>write32</Type>
                             <!-- Change number of exta spawned balloons to 13 (as 17 - 4 = 13) -->
+                            <Type>write32</Type>
                             <Address>00422853</Address>
                             <Value>13</Value>
                             <ValueType>decimal</ValueType>
                         </CodeLine>
                         <CodeLine>
-                            <Type>write8</Type>
                             <!-- Make counter disappear by changing the rules for the HUD element -->
+                            <Type>write8</Type>
                             <Address>0043E85B</Address>
                             <Value>5</Value>
                             <ValueType>decimal</ValueType>
@@ -409,22 +411,22 @@
                     <FalseLines>
                         <!-- If Player Number is not 1, since we are in Balloon Mode to even run this -->
                         <CodeLine>
-                            <Type>write32</Type>
                             <!-- Change Number of Balloons needed back to 5 -->
+                            <Type>write32</Type>
                             <Address>0043950A</Address>
                             <Value>5</Value>
                             <ValueType>decimal</ValueType>
                         </CodeLine>
                         <CodeLine>
-                            <Type>write32</Type>
                             <!-- Change number of extra balloons spawned back to 1 -->
+                            <Type>write32</Type>
                             <Address>00422853</Address>
                             <Value>1</Value>
                             <ValueType>decimal</ValueType>
                         </CodeLine>
                         <CodeLine>
-                            <Type>write8</Type>
                             <!-- Make counters appear by unchanging the rules for the HUD element -->
+                            <Type>write8</Type>
                             <Address>0043E85B</Address>
                             <Value>3</Value>
                             <ValueType>decimal</ValueType>
@@ -436,9 +438,9 @@
     </Code>
     <Code name="Press P to Freeze CPUs">
         <CodeLine>
-            <Type>ifeq8</Type>
+            <Type>ifne8</Type>
             <Address>007356E1</Address>
-            <Value>4</Value>
+            <Value>3</Value>
             <ValueType>decimal</ValueType>
             <TrueLines>
                 <CodeLine>
@@ -492,7 +494,7 @@
             </TrueLines>
         </CodeLine>
     </Code>
-    <Code name="Disable Demo Recording">
+    <Code name="Disable Demo Recording" patch="true">
         <CodeLine>
             <Type>write8</Type>
             <Address>00444720</Address>
@@ -500,7 +502,7 @@
             <ValueType>hex</ValueType>
         </CodeLine>
     </Code>
-    <Code name="Players Never Sink Into Water">
+    <Code name="Players Never Sink Into Water" patch="true">
         <CodeLine>
             <Type>writenop</Type>
             <Address>00429C78</Address>
@@ -514,12 +516,97 @@
             <ValueType>decimal</ValueType>
         </CodeLine>
     </Code>
-    <Code name="Eggman/EggRobo Missiles Cost Nothing">
+    <Code name="Always use Saturn/DirectDraw Camera Angle" patch="true">
+        <CodeLine>
+            <Type>writenop</Type>
+            <Address>00405345</Address>
+            <Value>6</Value>
+            <ValueType>decimal</ValueType>
+        </CodeLine>
+    </Code>
+    <Code name="Eggman/EggRobo Missiles Don't Take Away Rings" patch="true">
         <CodeLine>
             <Type>writenop</Type>
             <Address>00428F72</Address>
             <Value>5</Value>
             <ValueType>decimal</ValueType>
+        </CodeLine>
+    </Code>
+    <Code name="Ring Gates Don't Take Away Rings" patch="true">
+        <CodeLine>
+            <Type>writenop</Type>
+            <Address>00441C83</Address>
+            <Value>4</Value>
+            <ValueType>decimal</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <Type>writenop</Type>
+            <Address>00441C69</Address>
+            <Value>4</Value>
+            <ValueType>decimal</ValueType>
+        </CodeLine>
+    </Code>
+    <Code name="Accelerators Don't Take Away Rings" patch="true">
+        <CodeLine>
+            <Type>writenop</Type>
+            <Address>00428719</Address>
+            <Value>7</Value>
+            <ValueType>decimal</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <Type>writenop</Type>
+            <Address>00428735</Address>
+            <Value>7</Value>
+            <ValueType>decimal</ValueType>
+        </CodeLine>
+    </Code>
+    <Code name="Knuckles CPU instead of Super Sonic CPU">
+        <CodeLine>
+            <!-- If No. of Controlled Players is 1 -->
+            <Type>ifeq8</Type>
+            <Address>007356EC</Address>
+            <Value>1</Value>
+            <ValueType>decimal</ValueType>
+            <TrueLines>
+                <CodeLine>
+                    <!-- And Player 2 is Super Sonic -->
+                    <Type>ifeq8</Type>
+                    <Address>007B7B96</Address>
+                    <Value>9</Value>
+                    <ValueType>decimal</ValueType>
+                    <TrueLines>
+                        <!-- Then Change Super Sonic to Knuckles -->
+                        <CodeLine>
+                            <Type>write8</Type>
+                            <Address>007B7B96</Address>
+                            <Value>2</Value>
+                            <ValueType>decimal</ValueType>
+                        </CodeLine>
+                        <CodeLine>
+                            <Type>write8</Type>
+                            <Address>007B7C84</Address>
+                            <Value>2</Value>
+                            <ValueType>decimal</ValueType>
+                        </CodeLine>
+                    </TrueLines>
+                </CodeLine>
+            </TrueLines>
+        </CodeLine>
+    </Code>
+    <Code name="Sonic Can Double Jump Infinitely" patch="true">
+        <CodeLine>
+            <Type>write16</Type>
+            <Address>0042C6E7</Address>
+            <Value>0</Value>
+            <ValueType>decimal</ValueType>
+        </CodeLine>
+    </Code>
+    <Code name="Tails Can Fly for a Really Long Time" patch="true">
+        <CodeLine>
+            <Type>write16</Type>
+            <Address>0042C73A</Address>
+            <Value>7FFF</Value>
+            <ValueType>hex</ValueType>
         </CodeLine>
     </Code>
     <Code name="Max Rings (Player 2)">

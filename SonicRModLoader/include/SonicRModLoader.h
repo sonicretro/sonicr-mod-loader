@@ -42,6 +42,110 @@ typedef uint32_t _DWORD;
 typedef uint16_t _WORD;
 typedef uint8_t _BYTE;
 
+enum Characters
+{
+	Characters_Sonic,
+	Characters_Tails,
+	Characters_Knuckles,
+	Characters_Amy,
+	Characters_Eggman,
+	Characters_MetalSonic,
+	Characters_TailsDoll,
+	Characters_MetalKnuckles,
+	Characters_EggRobo,
+	Characters_SuperSonic
+};
+
+
+struct PlayerData
+{
+	int XPosition;
+	int YPosition;
+	int ZPosition;
+	int XRotation;
+	int YRotation;
+	int ZRotation;
+	int RingCount;
+	int field_1C;
+	int field_20;
+	int field_24;
+	int field_28;
+	int XSpeed;
+	int YSpeed;
+	int ZSpeed;
+	int GroundHeight;
+	int field_3C;
+	__int16 InWater;
+	__int16 WaterSinkTime;
+	int ForwardsSpeed;
+	int field_48;
+	int DistanceOnTrack;
+	__int16 Lap1Time;
+	__int16 field_52;
+	__int16 Lap2Time;
+	__int16 field_56;
+	__int16 Lap3Time;
+	__int16 field_5A;
+	__int16 RacePosition;
+	__int16 CurrentLap;
+	int field_60;
+	__int16 LastItem;
+	__int16 ItemTimer;
+	__int16 WaterSplashTimer;
+	__int16 DepthInWater;
+	__int16 AcceleratePressed;
+	__int16 field_6E;
+	__int16 CameraYRotation;
+	__int16 OnGround;
+	__int16 FlightMode;
+	__int16 field_76;
+	int field_78;
+	int field_7C;
+	int field_80;
+	int field_84;
+	int field_88;
+	int field_8C;
+	int field_90;
+	__int16 field_94;
+	__int16 FlightTime;
+	__int16 CurrentAnimation;
+	__int16 field_9A;
+	int AnimationFrame;
+	int OnLoop;
+	int CollisionLayer;
+	int field_A8;
+	int field_AC;
+	__int16 AboveGeometry;
+	__int16 field_B2;
+	__int16 SlopeRX;
+	__int16 SlopeMagnitude;
+	__int16 SlopeRZ;
+	__int16 field_BA;
+	int field_BC;
+	int LoopSidePosition;
+	int LoopDistance;
+	int field_C8;
+	int LoopSideMomentum;
+	int LoopMomentum;
+	__int16 DriftDirection;
+	__int16 field_D6;
+	int field_D8;
+	int field_DC;
+	int field_E0;
+	int field_E4;
+	int field_E8;
+	int field_EC;
+	__int16 field_F0;
+	__int16 Character;
+	char field_F4[236];
+	int PlayerModel;
+	char field_1E4[16];
+	__int16 BalloonCounter;
+	char field_1F6[1317];
+	char field_71B;
+};
+
+
 DataArray(char, WindowName, 0x45F664, 8);
 DataPointer(int, HorizontalResolution, 0x461520);
 DataPointer(int, VerticalResolution, 0x461524);
@@ -49,11 +153,12 @@ DataPointer(WNDCLASSA, WndClass, 0x4B5398);
 DataPointer(HINSTANCE, hInstance, 0x4B53C4);
 DataPointer(HWND, hWnd, 0x4B53C8);
 DataPointer(int, CurrentMusicTrack, 0x502360);
-DataArray(char *, TPageBuffers, 0x5D359C, 1);
+DataArray(char *, TPageBuffers, 0x5D359C, 51);
 DataPointer(int, Windowed, 0x5EDD24);
 DataPointer(int, FrameEndTime, 0x7349F8);
 DataPointer(int, FrameStartTime, 0x7356B0);
 DataPointer(int, MusicVolume, 0x7AF1B4);
+DataArray(PlayerData, Players, 0x7B7388, 5);
 
 FunctionPointer(void, FrameDelay, (int fps), 0x404A90);
 static void(__cdecl *(__cdecl *const DisplayFatalErrorWithTrace)(char *file, int line))(char *, ...) = (decltype(DisplayFatalErrorWithTrace))0x404AF0;

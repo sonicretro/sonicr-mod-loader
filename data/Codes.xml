@@ -601,11 +601,11 @@
             <ValueType>decimal</ValueType>
         </CodeLine>
     </Code>
-    <Code name="Tails Can Fly for a Really Long Time" patch="true">
+    <Code name="Tails Can Fly Forever" patch="true">
         <CodeLine>
             <Type>write16</Type>
-            <Address>0042C73A</Address>
-            <Value>7FFF</Value>
+            <Address>0042C73C</Address>
+            <Value>E990</Value>
             <ValueType>hex</ValueType>
         </CodeLine>
     </Code>

@@ -546,7 +546,27 @@
             <ValueType>decimal</ValueType>
         </CodeLine>
     </Code>
-    <Code name="Accelerators Don't Take Away Rings" patch="true">
+  <Code name="Ring Gates Are Free" patch="true">
+    <CodeLine>
+      <Type>writenop</Type>
+      <Address>00441BA3</Address>
+      <Value>6</Value>
+      <ValueType>decimal</ValueType>
+    </CodeLine>
+    <CodeLine>
+      <Type>writenop</Type>
+      <Address>00441C83</Address>
+      <Value>4</Value>
+      <ValueType>decimal</ValueType>
+    </CodeLine>
+    <CodeLine>
+      <Type>writenop</Type>
+      <Address>00441C69</Address>
+      <Value>4</Value>
+      <ValueType>decimal</ValueType>
+    </CodeLine>
+  </Code>
+  <Code name="Accelerators Don't Take Away Rings" patch="true">
         <CodeLine>
             <Type>writenop</Type>
             <Address>00428719</Address>
@@ -560,6 +580,26 @@
             <ValueType>decimal</ValueType>
         </CodeLine>
     </Code>
+  <Code name="Accelerators Are Free" patch="true">
+    <CodeLine>
+      <Type>writenop</Type>
+      <Address>004286D6</Address>
+      <Value>2</Value>
+      <ValueType>decimal</ValueType>
+    </CodeLine>
+    <CodeLine>
+      <Type>write8</Type>
+      <Address>00428714</Address>
+      <Value>EB</Value>
+      <ValueType>hex</ValueType>
+    </CodeLine>
+    <CodeLine>
+      <Type>writenop</Type>
+      <Address>00428735</Address>
+      <Value>7</Value>
+      <ValueType>decimal</ValueType>
+    </CodeLine>
+  </Code>
     <Code name="Knuckles CPU instead of Super Sonic CPU">
         <CodeLine>
             <!-- If No. of Controlled Players is 1 -->

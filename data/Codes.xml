@@ -609,7 +609,15 @@
             <ValueType>hex</ValueType>
         </CodeLine>
     </Code>
-    <Code name="Max Rings (Player 2)">
+  <Code name="Players Can Choose Same Character" patch="true">
+    <CodeLine>
+      <Type>write8</Type>
+      <Address>00430023</Address>
+      <Value>EB</Value>
+      <ValueType>hex</ValueType>
+    </CodeLine>
+  </Code>
+  <Code name="Max Rings (Player 2)">
         <CodeLine>
             <Type>write16</Type>
             <Address>007B7ABC</Address>

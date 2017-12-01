@@ -617,6 +617,22 @@
       <ValueType>hex</ValueType>
     </CodeLine>
   </Code>
+  <Code name="Always Race Against Easy Opponents" patch="true">
+    <CodeLine>
+      <Type>writenop</Type>
+      <Address>004300F6</Address>
+      <Value>2</Value>
+      <ValueType>decimal</ValueType>
+    </CodeLine>
+  </Code>
+  <Code name="Always Race Against Hard Opponents" patch="true">
+    <CodeLine>
+      <Type>write8</Type>
+      <Address>004300F6</Address>
+      <Value>EB</Value>
+      <ValueType>hex</ValueType>
+    </CodeLine>
+  </Code>
   <Code name="Max Rings (Player 2)">
         <CodeLine>
             <Type>write16</Type>

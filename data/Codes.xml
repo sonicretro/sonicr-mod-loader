@@ -673,6 +673,14 @@
       <ValueType>hex</ValueType>
     </CodeLine>
   </Code>
+  <Code name="Race Opponents Don't Need Unlock" patch="true">
+    <CodeLine>
+      <Type>writenop</Type>
+      <Address>00430147</Address>
+      <Value>2</Value>
+      <ValueType>decimal</ValueType>
+    </CodeLine>
+  </Code>
   <Code name="Disable Menu Timeouts" patch="true">
     <CodeLine>
       <Type>write8</Type>

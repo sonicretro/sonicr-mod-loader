@@ -743,6 +743,106 @@
       <ValueType>hex</ValueType>
     </CodeLine>
   </Code>
+  <Code name="Gems Collection Cursor Speeds" patch="true">
+	<CodeLine>
+		<!-- Main Menu Right -->
+		<Type>write8</Type>
+		<Address>0042E8D8</Address>
+		<Value>0C</Value>
+		<ValueType>hex</ValueType>
+	</CodeLine>
+	<CodeLine>
+		<!-- Main Menu Left -->
+		<Type>write8</Type>
+		<Address>0042E8DF</Address>
+		<Value>0C</Value>
+		<ValueType>hex</ValueType>
+	</CodeLine>
+	<CodeLine>
+		<!-- Time Attack Right -->
+		<Type>write8</Type>
+		<Address>0042F461</Address>
+		<Value>0C</Value>
+		<ValueType>hex</ValueType>
+	</CodeLine>
+	<CodeLine>
+		<!-- Time Attack Left -->
+		<Type>write8</Type>
+		<Address>0042F46A</Address>
+		<Value>0C</Value>
+		<ValueType>hex</ValueType>
+	</CodeLine>
+	<CodeLine>
+		<!-- Multiplayer Right -->
+		<Type>write8</Type>
+		<Address>0042F9AD</Address>
+		<Value>0A</Value>
+		<ValueType>hex</ValueType>
+	</CodeLine>
+	<CodeLine>
+		<!-- Multiplayer Left -->
+		<Type>write8</Type>
+		<Address>0042F9B4</Address>
+		<Value>0A</Value>
+		<ValueType>hex</ValueType>
+	</CodeLine>
+	<CodeLine>
+		<!-- Level Select Right -->
+		<Type>write8</Type>
+		<Address>00430CFB</Address>
+		<Value>0C</Value>
+		<ValueType>hex</ValueType>
+	</CodeLine>
+	<CodeLine>
+		<!-- Level Select Left -->
+		<Type>write8</Type>
+		<Address>00430D02</Address>
+		<Value>0C</Value>
+		<ValueType>hex</ValueType>
+	</CodeLine>
+	<CodeLine>
+		<!-- Character Select Right -->
+		<Type>write8</Type>
+		<Address>0043045B</Address>
+		<Value>08</Value>
+		<ValueType>hex</ValueType>
+	</CodeLine>
+	<CodeLine>
+		<!-- Character Select Left-->
+		<Type>write8</Type>
+		<Address>0043046B</Address>
+		<Value>F8</Value>
+		<ValueType>hex</ValueType>
+	</CodeLine>
+	<CodeLine>
+		<!-- Results Select Right -->
+		<Type>write8</Type>
+		<Address>004383FF</Address>
+		<Value>0C</Value>
+		<ValueType>hex</ValueType>
+	</CodeLine>
+	<CodeLine>
+		<!-- Results Select Left -->
+		<Type>write8</Type>
+		<Address>00438406</Address>
+		<Value>0C</Value>
+		<ValueType>hex</ValueType>
+	</CodeLine>
+	<CodeLine>
+		<!-- Save Right -->
+		<Type>write8</Type>
+		<Address>00431D2C</Address>
+		<Value>0C</Value>
+		<ValueType>hex</ValueType>
+	</CodeLine>
+	<CodeLine>
+		<!-- Save Left -->
+		<Type>write8</Type>
+		<Address>00431D3C</Address>
+		<Value>0C</Value>
+		<ValueType>hex</ValueType>
+	</CodeLine>
+  </Code>
   <Code name="Max Rings (Player 2)">
         <CodeLine>
             <Type>write16</Type>

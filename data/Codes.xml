@@ -761,7 +761,7 @@
 	<CodeLine>
 		<!-- Time Attack Right -->
 		<Type>write8</Type>
-		<Address>0042F461</Address>
+		<Address>0042F463</Address>
 		<Value>0C</Value>
 		<ValueType>hex</ValueType>
 	</CodeLine>

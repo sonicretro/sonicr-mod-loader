@@ -546,27 +546,27 @@
             <ValueType>decimal</ValueType>
         </CodeLine>
     </Code>
-  <Code name="Ring Gates Are Free" patch="true">
-    <CodeLine>
-      <Type>writenop</Type>
-      <Address>00441BA3</Address>
-      <Value>6</Value>
-      <ValueType>decimal</ValueType>
-    </CodeLine>
-    <CodeLine>
-      <Type>writenop</Type>
-      <Address>00441C83</Address>
-      <Value>4</Value>
-      <ValueType>decimal</ValueType>
-    </CodeLine>
-    <CodeLine>
-      <Type>writenop</Type>
-      <Address>00441C69</Address>
-      <Value>4</Value>
-      <ValueType>decimal</ValueType>
-    </CodeLine>
-  </Code>
-  <Code name="Accelerators Don't Take Away Rings" patch="true">
+    <Code name="Ring Gates Are Free" patch="true">
+        <CodeLine>
+            <Type>writenop</Type>
+            <Address>00441BA3</Address>
+            <Value>6</Value>
+            <ValueType>decimal</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <Type>writenop</Type>
+            <Address>00441C83</Address>
+            <Value>4</Value>
+            <ValueType>decimal</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <Type>writenop</Type>
+            <Address>00441C69</Address>
+            <Value>4</Value>
+            <ValueType>decimal</ValueType>
+        </CodeLine>
+    </Code>
+    <Code name="Accelerators Don't Take Away Rings" patch="true">
         <CodeLine>
             <Type>writenop</Type>
             <Address>00428719</Address>
@@ -580,26 +580,26 @@
             <ValueType>decimal</ValueType>
         </CodeLine>
     </Code>
-  <Code name="Accelerators Are Free" patch="true">
-    <CodeLine>
-      <Type>writenop</Type>
-      <Address>004286D6</Address>
-      <Value>2</Value>
-      <ValueType>decimal</ValueType>
-    </CodeLine>
-    <CodeLine>
-      <Type>write8</Type>
-      <Address>00428714</Address>
-      <Value>EB</Value>
-      <ValueType>hex</ValueType>
-    </CodeLine>
-    <CodeLine>
-      <Type>writenop</Type>
-      <Address>00428735</Address>
-      <Value>7</Value>
-      <ValueType>decimal</ValueType>
-    </CodeLine>
-  </Code>
+    <Code name="Accelerators Are Free" patch="true">
+        <CodeLine>
+            <Type>writenop</Type>
+            <Address>004286D6</Address>
+            <Value>2</Value>
+            <ValueType>decimal</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <Type>write8</Type>
+            <Address>00428714</Address>
+            <Value>EB</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <Type>writenop</Type>
+            <Address>00428735</Address>
+            <Value>7</Value>
+            <ValueType>decimal</ValueType>
+        </CodeLine>
+    </Code>
     <Code name="Knuckles CPU instead of Super Sonic CPU">
         <CodeLine>
             <!-- If No. of Controlled Players is 1 -->
@@ -649,201 +649,233 @@
             <ValueType>hex</ValueType>
         </CodeLine>
     </Code>
-  <Code name="Players Can Choose Same Character" patch="true">
-    <CodeLine>
-      <Type>write8</Type>
-      <Address>00430023</Address>
-      <Value>EB</Value>
-      <ValueType>hex</ValueType>
-    </CodeLine>
-  </Code>
-  <Code name="Always Race Against Easy Opponents" patch="true">
-    <CodeLine>
-      <Type>writenop</Type>
-      <Address>004300F6</Address>
-      <Value>2</Value>
-      <ValueType>decimal</ValueType>
-    </CodeLine>
-  </Code>
-  <Code name="Always Race Against Hard Opponents" patch="true">
-    <CodeLine>
-      <Type>write8</Type>
-      <Address>004300F6</Address>
-      <Value>EB</Value>
-      <ValueType>hex</ValueType>
-    </CodeLine>
-  </Code>
-  <Code name="Race Opponents Don't Need Unlock" patch="true">
-    <CodeLine>
-      <Type>writenop</Type>
-      <Address>00430147</Address>
-      <Value>2</Value>
-      <ValueType>decimal</ValueType>
-    </CodeLine>
-  </Code>
-  <Code name="Disable Menu Timeouts" patch="true">
-    <CodeLine>
-      <Type>write8</Type>
-      <Address>0042E7C0</Address>
-      <Value>EB</Value>
-      <ValueType>hex</ValueType>
-    </CodeLine>
-    <CodeLine>
-      <Type>write8</Type>
-      <Address>0042F37C</Address>
-      <Value>EB</Value>
-      <ValueType>hex</ValueType>
-    </CodeLine>
-    <CodeLine>
-      <Type>write8</Type>
-      <Address>0042F8FC</Address>
-      <Value>EB</Value>
-      <ValueType>hex</ValueType>
-    </CodeLine>
-    <CodeLine>
-      <Type>write8</Type>
-      <Address>00430C0B</Address>
-      <Value>EB</Value>
-      <ValueType>hex</ValueType>
-    </CodeLine>
-    <CodeLine>
-      <Type>write8</Type>
-      <Address>00431CFD</Address>
-      <Value>EB</Value>
-      <ValueType>hex</ValueType>
-    </CodeLine>
-    <CodeLine>
-      <Type>write8</Type>
-      <Address>004326AC</Address>
-      <Value>EB</Value>
-      <ValueType>hex</ValueType>
-    </CodeLine>
-    <CodeLine>
-      <Type>write8</Type>
-      <Address>004345AC</Address>
-      <Value>EB</Value>
-      <ValueType>hex</ValueType>
-    </CodeLine>
-    <CodeLine>
-      <Type>writenop</Type>
-      <Address>0043445F</Address>
-      <Value>6</Value>
-      <ValueType>decimal</ValueType>
-    </CodeLine>
-    <CodeLine>
-      <Type>write8</Type>
-      <Address>00434689</Address>
-      <Value>EB</Value>
-      <ValueType>hex</ValueType>
-    </CodeLine>
-    <CodeLine>
-      <Type>write8</Type>
-      <Address>00438343</Address>
-      <Value>EB</Value>
-      <ValueType>hex</ValueType>
-    </CodeLine>
-  </Code>
-  <Code name="Gems Collection Cursor Speeds" patch="true">
-	<CodeLine>
-		<!-- Main Menu Right -->
-		<Type>write8</Type>
-		<Address>0042E8D8</Address>
-		<Value>0C</Value>
-		<ValueType>hex</ValueType>
-	</CodeLine>
-	<CodeLine>
-		<!-- Main Menu Left -->
-		<Type>write8</Type>
-		<Address>0042E8DF</Address>
-		<Value>0C</Value>
-		<ValueType>hex</ValueType>
-	</CodeLine>
-	<CodeLine>
-		<!-- Time Attack Right -->
-		<Type>write8</Type>
-		<Address>0042F463</Address>
-		<Value>0C</Value>
-		<ValueType>hex</ValueType>
-	</CodeLine>
-	<CodeLine>
-		<!-- Time Attack Left -->
-		<Type>write8</Type>
-		<Address>0042F46A</Address>
-		<Value>0C</Value>
-		<ValueType>hex</ValueType>
-	</CodeLine>
-	<CodeLine>
-		<!-- Multiplayer Right -->
-		<Type>write8</Type>
-		<Address>0042F9AD</Address>
-		<Value>0A</Value>
-		<ValueType>hex</ValueType>
-	</CodeLine>
-	<CodeLine>
-		<!-- Multiplayer Left -->
-		<Type>write8</Type>
-		<Address>0042F9B4</Address>
-		<Value>0A</Value>
-		<ValueType>hex</ValueType>
-	</CodeLine>
-	<CodeLine>
-		<!-- Level Select Right -->
-		<Type>write8</Type>
-		<Address>00430CFB</Address>
-		<Value>0C</Value>
-		<ValueType>hex</ValueType>
-	</CodeLine>
-	<CodeLine>
-		<!-- Level Select Left -->
-		<Type>write8</Type>
-		<Address>00430D02</Address>
-		<Value>0C</Value>
-		<ValueType>hex</ValueType>
-	</CodeLine>
-	<CodeLine>
-		<!-- Character Select Right -->
-		<Type>write8</Type>
-		<Address>0043045B</Address>
-		<Value>08</Value>
-		<ValueType>hex</ValueType>
-	</CodeLine>
-	<CodeLine>
-		<!-- Character Select Left-->
-		<Type>write8</Type>
-		<Address>0043046B</Address>
-		<Value>F8</Value>
-		<ValueType>hex</ValueType>
-	</CodeLine>
-	<CodeLine>
-		<!-- Results Select Right -->
-		<Type>write8</Type>
-		<Address>004383FF</Address>
-		<Value>0C</Value>
-		<ValueType>hex</ValueType>
-	</CodeLine>
-	<CodeLine>
-		<!-- Results Select Left -->
-		<Type>write8</Type>
-		<Address>00438406</Address>
-		<Value>0C</Value>
-		<ValueType>hex</ValueType>
-	</CodeLine>
-	<CodeLine>
-		<!-- Save Right -->
-		<Type>write8</Type>
-		<Address>00431D2C</Address>
-		<Value>0C</Value>
-		<ValueType>hex</ValueType>
-	</CodeLine>
-	<CodeLine>
-		<!-- Save Left -->
-		<Type>write8</Type>
-		<Address>00431D3C</Address>
-		<Value>0C</Value>
-		<ValueType>hex</ValueType>
-	</CodeLine>
-  </Code>
-  <Code name="Max Rings (Player 2)">
+    <Code name="Players Can Choose Same Character" patch="true">
+        <CodeLine>
+            <Type>write8</Type>
+            <Address>00430023</Address>
+            <Value>EB</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+    </Code>
+    <Code name="Always Race Against Easy Opponents" patch="true">
+        <CodeLine>
+            <Type>writenop</Type>
+            <Address>004300F6</Address>
+            <Value>2</Value>
+            <ValueType>decimal</ValueType>
+        </CodeLine>
+    </Code>
+    <Code name="Always Race Against Hard Opponents" patch="true">
+        <CodeLine>
+            <Type>write8</Type>
+            <Address>004300F6</Address>
+            <Value>EB</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+    </Code>
+    <Code name="Race Opponents Don't Need Unlock" patch="true">
+        <CodeLine>
+            <Type>writenop</Type>
+            <Address>00430147</Address>
+            <Value>2</Value>
+            <ValueType>decimal</ValueType>
+        </CodeLine>
+    </Code>
+    <Code name="Disable Menu Timeouts" patch="true">
+        <CodeLine>
+            <Type>write8</Type>
+            <Address>0042E7C0</Address>
+            <Value>EB</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <Type>write8</Type>
+            <Address>0042F37C</Address>
+            <Value>EB</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <Type>write8</Type>
+            <Address>0042F8FC</Address>
+            <Value>EB</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <Type>write8</Type>
+            <Address>00430C0B</Address>
+            <Value>EB</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <Type>write8</Type>
+            <Address>00431CFD</Address>
+            <Value>EB</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <Type>write8</Type>
+            <Address>004326AC</Address>
+            <Value>EB</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <Type>write8</Type>
+            <Address>004345AC</Address>
+            <Value>EB</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <Type>writenop</Type>
+            <Address>0043445F</Address>
+            <Value>6</Value>
+            <ValueType>decimal</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <Type>write8</Type>
+            <Address>00434689</Address>
+            <Value>EB</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <Type>write8</Type>
+            <Address>00438343</Address>
+            <Value>EB</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+    </Code>
+    <Code name="Gems Collection Cursor Speeds" patch="true">
+        <CodeLine>
+            <!-- Main Menu Right -->
+            <Type>write8</Type>
+            <Address>0042E8D8</Address>
+            <Value>0C</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <!-- Main Menu Left -->
+            <Type>write8</Type>
+            <Address>0042E8DF</Address>
+            <Value>0C</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <!-- Time Attack Right -->
+            <Type>write8</Type>
+            <Address>0042F463</Address>
+            <Value>0C</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <!-- Time Attack Left -->
+            <Type>write8</Type>
+            <Address>0042F46A</Address>
+            <Value>0C</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <!-- Multiplayer Right -->
+            <Type>write8</Type>
+            <Address>0042F9AD</Address>
+            <Value>0A</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <!-- Multiplayer Left -->
+            <Type>write8</Type>
+            <Address>0042F9B4</Address>
+            <Value>0A</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <!-- Level Select Right -->
+            <Type>write8</Type>
+            <Address>00430CFB</Address>
+            <Value>0C</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <!-- Level Select Left -->
+            <Type>write8</Type>
+            <Address>00430D02</Address>
+            <Value>0C</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <!-- Character Select Right -->
+            <Type>write8</Type>
+            <Address>0043045B</Address>
+            <Value>08</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <!-- Character Select Left-->
+            <Type>write8</Type>
+            <Address>0043046B</Address>
+            <Value>F8</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <!-- Results Select Right -->
+            <Type>write8</Type>
+            <Address>004383FF</Address>
+            <Value>0C</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <!-- Results Select Left -->
+            <Type>write8</Type>
+            <Address>00438406</Address>
+            <Value>0C</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <!-- Save Right -->
+            <Type>write8</Type>
+            <Address>00431D2C</Address>
+            <Value>0C</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+        <CodeLine>
+            <!-- Save Left -->
+            <Type>write8</Type>
+            <Address>00431D3C</Address>
+            <Value>0C</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+    </Code>
+    <Code name="Disable HUD" patch="true">
+        <CodeLine>
+            <Type>write8</Type>
+            <Address>0043A2D2</Address>
+            <Value>EB</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+    </Code>
+    <Code name="Disable Flashing Press Start Graphic" patch="true">
+        <CodeLine>
+            <Type>write8</Type>
+            <Address>0043D327</Address>
+            <Value>EB</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+    </Code>
+    <Code name="Cinematic Camera Always Disabled" patch="true">
+        <CodeLine>
+            <Type>writenop</Type>
+            <Address>0043B8D9</Address>
+            <Value>2</Value>
+            <ValueType>decimal</ValueType>
+        </CodeLine>
+    </Code>
+    <Code name="Cinematic Camera Always Enabled" patch="true">
+        <CodeLine>
+            <Type>write8</Type>
+            <Address>0043B8D9</Address>
+            <Value>EB</Value>
+            <ValueType>hex</ValueType>
+        </CodeLine>
+    </Code>
+    <Code name="Max Rings (Player 2)">
         <CodeLine>
             <Type>write16</Type>
             <Address>007B7ABC</Address>
@@ -1443,7 +1475,7 @@
             </TrueLines>
         </CodeLine>
     </Code>
-    <Code name="&amp; Knuckles">
+    <Code name="Sonic R &amp; Knuckles">
         <CodeLine>
             <Type>write8</Type>
             <Address>007B747A</Address>

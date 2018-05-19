@@ -187,6 +187,34 @@ writenop 0043445F 6
 write8 00434689 0xEB
 write8 00438343 0xEB
 
+Patch "Gems Collection Cursor Speeds"
+write8 0042E8D8 0x0C
+write8 0042E8DF 0x0C
+write8 0042F463 0x0C
+write8 0042F46A 0x0C
+write8 0042F9AD 0x0A
+write8 0042F9B4 0x0A
+write8 00430CFB 0x0C
+write8 00430D02 0x0C
+write8 0043045B 0x08
+write8 0043046B 0xF8
+write8 004383FF 0x0C
+write8 00438406 0x0C
+write8 00431D2C 0x0C
+write8 00431D3C 0x0C
+
+Patch "Disable HUD"
+write8 0043A2D2 0xEB
+
+Patch "Disable Flashing Press Start Graphic"
+write8 0043D327 0xEB
+
+Patch "Cinematic Camera Always Disabled"
+writenop 0043B8D9 2
+
+Patch "Cinematic Camera Always Enabled"
+write8 0043B8D9 0xEB
+
 Code "Max Rings (Player 2)"
 write16 007B7ABC 999
 
@@ -355,7 +383,7 @@ ifeq8 007B90EA 8
 	write8 007B9076 0
 endif
 
-Code "& Knuckles"
+Code "Sonic R & Knuckles"
 write8 007B747A 2
 write8 007B7568 2
 write8 007B7B96 2

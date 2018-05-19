@@ -108,6 +108,10 @@ namespace SonicRModManager
 			horizontalResolution.Enabled = !loaderini.ForceAspectRatio;
 			horizontalResolution.Value = Math.Max(horizontalResolution.Minimum, Math.Min(horizontalResolution.Maximum, loaderini.HorizontalResolution));
 			verticalResolution.Value = Math.Max(verticalResolution.Minimum, Math.Min(verticalResolution.Maximum, loaderini.VerticalResolution));
+			checkUpdateStartup.Checked = loaderini.UpdateCheck;
+			checkUpdateModsStartup.Checked = loaderini.ModUpdateCheck;
+			comboUpdateFrequency.SelectedIndex = (int)loaderini.UpdateUnit;
+			numericUpdateFrequency.Value = loaderini.UpdateFrequency;
 
 			suppressEvent = true;
 			forceAspectRatioCheckBox.Checked = loaderini.ForceAspectRatio;

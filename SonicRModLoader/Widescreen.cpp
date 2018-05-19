@@ -169,7 +169,7 @@ void Render_SetViewport_FixUp() {
 	// donor address (doesn't seem to effect anything)
 	int *SpriteXOff = (int*)0x72E010;
 	float AspRatio = (float)HorizontalResolution / (float)VerticalResolution;
-	int ExpectedXScale = HorizontalResolution * 0.8;
+	int ExpectedXScale = (int)(HorizontalResolution * 0.8);
 	bool NeedsHalving = (*XStretch != ExpectedXScale);
 	//float WidthAdjRatio = (4.0f / 3.0f) / AspRatio;
 

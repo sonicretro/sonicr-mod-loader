@@ -287,7 +287,7 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 		WriteData((void**)0x404BD3, (void*)&SonicRDebugOutput);
 		// There's a couple other functions that were compiled out and got merged with the debug printing function.
 		// This code replaces those calls with nops, otherwise the game would crash on invalid pointers, or print garbage.
-		char jmpnop[5] = { 0x90u, 0x90u, 0x90u, 0x90u, 0x90u };
+		uint8_t jmpnop[5] = { 0x90u, 0x90u, 0x90u, 0x90u, 0x90u };
 		WriteData((void*)0x43AB3D, jmpnop);
 		WriteData((void*)0x43A567, jmpnop);
 		WriteData((void*)0x43A843, jmpnop);

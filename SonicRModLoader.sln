@@ -10,15 +10,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SonicRModLoader", "SonicRMo
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ModLoaderCommon", "mod-loader-common\ModLoaderCommon\ModLoaderCommon.vcxproj", "{EC0293F5-4BCF-46B2-8133-18CAEA141C5B}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ModManagerCommon", "mod-loader-common\ModManagerCommon\ModManagerCommon.shproj", "{DE1F0B2D-8634-47B7-9E50-EDE78EF59200}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SonicRModManager", "SonicRModManager\SonicRModManager.csproj", "{CCB4B8EA-05C2-4293-A0CF-7B80E5D4BCE8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModManagerCommon", "mod-loader-common\ModManagerCommon\ModManagerCommon.csproj", "{4A480502-79B5-4E1E-8D67-16C514BB13CD}"
+EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		mod-loader-common\ModManagerCommon\ModManagerCommon.projitems*{ccb4b8ea-05c2-4293-a0cf-7b80e5d4bce8}*SharedItemsImports = 4
-		mod-loader-common\ModManagerCommon\ModManagerCommon.projitems*{de1f0b2d-8634-47b7-9e50-ede78ef59200}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
@@ -46,6 +42,14 @@ Global
 		{CCB4B8EA-05C2-4293-A0CF-7B80E5D4BCE8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CCB4B8EA-05C2-4293-A0CF-7B80E5D4BCE8}.Release|x86.ActiveCfg = Release|Any CPU
 		{CCB4B8EA-05C2-4293-A0CF-7B80E5D4BCE8}.Release|x86.Build.0 = Release|Any CPU
+		{4A480502-79B5-4E1E-8D67-16C514BB13CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A480502-79B5-4E1E-8D67-16C514BB13CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A480502-79B5-4E1E-8D67-16C514BB13CD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4A480502-79B5-4E1E-8D67-16C514BB13CD}.Debug|x86.Build.0 = Debug|Any CPU
+		{4A480502-79B5-4E1E-8D67-16C514BB13CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A480502-79B5-4E1E-8D67-16C514BB13CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A480502-79B5-4E1E-8D67-16C514BB13CD}.Release|x86.ActiveCfg = Release|Any CPU
+		{4A480502-79B5-4E1E-8D67-16C514BB13CD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

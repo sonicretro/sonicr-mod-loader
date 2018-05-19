@@ -1,0 +1,369 @@
+Code "Max Rings (Player 1)"
+write16 007B73A0 999
+
+Code "Low Time (Player 1)"
+write16 007B73D8 0
+write16 007B73DC 0
+write16 007B73E0 0
+
+Code "Always Have Speed Shoes (Player 1)"
+write8 007B7410 255
+
+Code "Always Have Electic Shield (Player 1)"
+write8 007B740B 4
+
+Code "Always Have Bubble Shield (Player 1)"
+write8 007B740B 255
+
+Code "Always Come in 1st Place (Player 1)"
+write8 007B73E4 1
+write8 007B7B00 1
+
+Code "Amy Boost Always Ready (Player 1)"
+ifeq8 007B747A 3
+	ifeq8 007B7407 0
+		write8 007B7406 0
+	else
+		ifltequ8 007B7406 44
+			write8 007B7407 0
+		endif
+	endif
+endif
+
+Code "Eggman/EggRobo Missile Always Ready (Player 1)"
+ifeq8 007B747A 4
+	ifltu16 007B73A0 10
+		write16 007B73A0 10
+	endif
+	write8 007B7406 0
+endif
+ifeq8 007B747A 8
+	ifltu16 007B73A0 10
+		write16 007B73A0 10
+	endif
+	write8 007B7406 0
+endif
+
+Code "Have 5/5 Sonic Tokens"
+write8 0075356C 5
+
+Code "Have 0/5 Sonic Tokens"
+write8 0075356C 0
+
+Code "Unlock All Characters, Stages, and Emeralds"
+ifeq8 00752BDC 0
+	write8 00752BDC 1
+endif
+ifeq8 00752BF0 1
+	write8 00752BF0 2
+endif
+write8 00752BF4 2
+write8 00752BF8 2
+write8 00752BFC 2
+write8 00752C00 2
+write8 00752C04 2
+write8 00752C08 2
+write8 00752C0C 2
+write8 00752C10 2
+write8 00752C14 2
+write8 00752C18 2
+write8 00752C1C 2
+write8 00752C20 2
+
+Code "Always Have Current Stage Chaos Emeralds"
+write8 00769F28 3
+
+Code "Never Have Current Stage Chaos Emeralds"
+write8 00769F28 0
+
+Patch "Practice Mode (Tokens/Emeralds Always Spawn)"
+writenop 004279BC 7
+writenop 0043E777 8
+writenop 00427A05 6
+write8 00427A3D 0xEB
+write8 00427A29 0xEB
+write8 00427A54 0xEB
+write8 00427A69 0xEB
+writenop 00427A79 6
+write8 00427A94 0xEB
+
+Patch "Easy Balloon Mode (All 17 Balloons Always Spawn)"
+writenop 00422848 6
+
+Code "Hard Balloon Mode (Need All 17 Balloons!)"
+ifeq8 007BCB80 3
+	ifeq8 007356EC 1
+		write32 0043950A 17
+		write32 00422853 13
+		write8 0043E85B 5
+	else
+		write32 0043950A 5
+		write32 00422853 1
+		write8 0043E85B 3
+	endif
+endif
+
+Code "Press P to Freeze CPUs"
+ifne8 007356E1 3
+	ifeq8 007356EC 1
+		ifeq8 007BCB80 2
+		else
+			ifkbkey 00000000 P
+				write8 007B7C64 2
+				write8 007B8380 2
+				write8 007B8A9C 2
+				write8 007B91B8 2
+			endif
+		endif
+	endif
+endif
+
+Patch "Disable Demo Recording"
+write8 00444720 0xC3
+
+Patch "Players Never Sink Into Water"
+writenop 00429C78 3
+writenop 00429B01 6
+
+Patch "Always use Saturn/DirectDraw Camera Angle"
+writenop 00405345 6
+
+Patch "Eggman/EggRobo Missiles Don't Take Away Rings"
+writenop 00428F72 5
+
+Patch "Ring Gates Don't Take Away Rings"
+writenop 00441C83 4
+writenop 00441C69 4
+
+Patch "Ring Gates Are Free"
+writenop 00441BA3 6
+writenop 00441C83 4
+writenop 00441C69 4
+
+Patch "Accelerators Don't Take Away Rings"
+writenop 00428719 7
+writenop 00428735 7
+
+Patch "Accelerators Are Free"
+writenop 004286D6 2
+write8 00428714 0xEB
+writenop 00428735 7
+
+Code "Knuckles CPU instead of Super Sonic CPU"
+ifeq8 007356EC 1
+	ifeq8 007B7B96 9
+		write8 007B7B96 2
+		write8 007B7C84 2
+	endif
+endif
+
+Patch "Sonic Can Double Jump Infinitely"
+write16 0042C6E7 0
+
+Patch "Tails Can Fly Forever"
+write16 0042C73C 0xE990
+
+Patch "Players Can Choose Same Character"
+write8 00430023 0xEB
+
+Patch "Always Race Against Easy Opponents"
+writenop 004300F6 2
+
+Patch "Always Race Against Hard Opponents"
+write8 004300F6 0xEB
+
+Patch "Race Opponents Don't Need Unlock"
+writenop 00430147 2
+
+Patch "Disable Menu Timeouts"
+write8 0042E7C0 0xEB
+write8 0042F37C 0xEB
+write8 0042F8FC 0xEB
+write8 00430C0B 0xEB
+write8 00431CFD 0xEB
+write8 004326AC 0xEB
+write8 004345AC 0xEB
+writenop 0043445F 6
+write8 00434689 0xEB
+write8 00438343 0xEB
+
+Code "Max Rings (Player 2)"
+write16 007B7ABC 999
+
+Code "Low Time (Player 2)"
+write16 007B7AF4 0
+write16 007B7AF8 0
+write16 007B7AFC 0
+
+Code "Always Have Speed Shoes (Player 2)"
+write8 007B7B2C 255
+
+Code "Always Have Electic Shield (Player 2)"
+write8 007B7B27 4
+
+Code "Always Have Bubble Shield (Player 2)"
+write8 007B7B27 255
+
+Code "Amy Boost Always Ready (Player 2)"
+ifeq8 007B7B96 3
+	ifeq8 007B7B23 0
+		write8 007B7B22 0
+	else
+		ifltequ8 007B7B22 44
+			write8 007B7B23 0
+		endif
+	endif
+endif
+
+Code "Eggman/EggRobo Missile Always Ready (Player 2)"
+ifeq8 007B7B96 4
+	ifltu16 007B7ABC 10
+		write16 007B7ABC 10
+	endif
+	write8 007B7B22 0
+endif
+ifeq8 007B7B96 8
+	ifltu16 007B7ABC 10
+		write16 007B7ABC 10
+	endif
+	write8 007B7B22 0
+endif
+
+Code "Max Rings (Player 3)"
+write16 007B81D8 999
+
+Code "Low Time (Player 3)"
+write16 007B7210 0
+write16 007B7214 0
+write16 007B7218 0
+
+Code "Always Have Speed Shoes (Player 3)"
+write8 007B8248 255
+
+Code "Always Have Electic Shield (Player 3)"
+write8 007B8243 4
+
+Code "Always Have Bubble Shield (Player 3)"
+write8 007B8243 255
+
+Code "Amy Boost Always Ready (Player 3)"
+ifeq8 007B82B2 3
+	ifeq8 007B823F 0
+		write8 007B823E 0
+	else
+		ifltequ8 007B823E 44
+			write8 007B823F 0
+		endif
+	endif
+endif
+
+Code "Eggman/EggRobo Missile Always Ready (Player 3)"
+ifeq8 007B82B2 4
+	ifltu16 007B81D8 10
+		write16 007B81D8 10
+	endif
+	write8 007B823E 0
+endif
+ifeq8 007B82B2 8
+	ifltu16 007B81D8 10
+		write16 007B81D8 10
+	endif
+	write8 007B823E 0
+endif
+
+Code "Max Rings (Player 4)"
+write16 007B88F4 999
+
+Code "Low Time (Player 4)"
+write16 007B792C 0
+write16 007B7930 0
+write16 007B7934 0
+
+Code "Always Have Speed Shoes (Player 4)"
+write8 007B8964 255
+
+Code "Always Have Electic Shield (Player 4)"
+write8 007B895F 4
+
+Code "Always Have Bubble Shield (Player 4)"
+write8 007B895F 255
+
+Code "Amy Boost Always Ready (Player 4)"
+ifeq8 007B89CE 3
+	ifeq8 007B895B 0
+		write8 007B895A 0
+	else
+		ifltequ8 007B895A 44
+			write8 007B895B 0
+		endif
+	endif
+endif
+
+Code "Eggman/EggRobo Missile Always Ready (Player 4)"
+ifeq8 007B89CE 4
+	ifltu16 007B88F4 10
+		write16 007B88F4 10
+	endif
+	write8 007B895A 0
+endif
+ifeq8 007B89CE 8
+	ifltu16 007B88F4 10
+		write16 007B88F4 10
+	endif
+	write8 007B895A 0
+endif
+
+Code "Max Rings (Player 5)"
+write16 007B9010 999
+
+Code "Low Time (Player 5)"
+write16 007B7048 0
+write16 007B704C 0
+write16 007B7050 0
+
+Code "Always Have Speed Shoes (Player 5)"
+write8 007B9080 255
+
+Code "Always Have Electic Shield (Player 5)"
+write8 007B907B 4
+
+Code "Always Have Bubble Shield (Player 5)"
+write8 007B907B 255
+
+Code "Amy Boost Always Ready (Player 5)"
+ifeq8 007B90EA 3
+	ifeq8 007B9077 0
+		write8 007B9076 0
+	else
+		ifltequ8 007B9076 44
+			write8 007B9077 0
+		endif
+	endif
+endif
+
+Code "Eggman/EggRobo Missile Always Ready (Player 5)"
+ifeq8 007B90EA 4
+	ifltu16 007B9010 10
+		write16 007B9010 10
+	endif
+	write8 007B9076 0
+endif
+ifeq8 007B90EA 8
+	ifltu16 007B9010 10
+		write16 007B9010 10
+	endif
+	write8 007B9076 0
+endif
+
+Code "& Knuckles"
+write8 007B747A 2
+write8 007B7568 2
+write8 007B7B96 2
+write8 007B7C84 2
+write8 007B82B2 2
+write8 007B83A0 2
+write8 007B89CE 2
+write8 007B8ABC 2
+write8 007B90EA 2
+write8 007B91D8 2
+

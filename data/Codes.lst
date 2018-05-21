@@ -395,3 +395,5 @@ write8 007B8ABC 2
 write8 007B90EA 2
 write8 007B91D8 2
 
+Code "060D1D Edit Test"
+write8 00060D1D "sOnIc WaS nEvEr GoOd"

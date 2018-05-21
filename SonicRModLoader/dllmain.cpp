@@ -220,6 +220,7 @@ void __cdecl SetPresentParameters(D3DPRESENT_PARAMETERS *pp, D3DFORMAT bufferFor
 	pp->hDeviceWindow = hWnd;
 }
 
+wstring borderimg = L"mods\\Border.png";
 StdcallFunctionPointer(int, _WinMain, (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd), 0x4330A0);
 FunctionPointer(int, sub_432F10, (int *a1), 0x432F10);
 FunctionPointer(int, sub_432EB0, (char a1), 0x432EB0);
@@ -729,12 +730,14 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 
 		windowMode = Windowed ? windowed : fullscreen;
 
-		if (FileExists(L"mods\\Border.png"))
+		if (!FileExists(borderimg))
+			borderimg = L"mods\\Border_Default.png";
+		if (FileExists(borderimg))
 		{
 			Gdiplus::GdiplusStartupInput gdiplusStartupInput;
 			ULONG_PTR gdiplusToken;
 			Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, nullptr);
-			backgroundImage = Gdiplus::Bitmap::FromFile(L"mods\\Border.png");
+			backgroundImage = Gdiplus::Bitmap::FromFile(borderimg.c_str());
 		}
 
 		// Register a window class for the wrapper window.

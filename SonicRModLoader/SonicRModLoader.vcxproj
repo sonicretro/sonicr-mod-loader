@@ -67,6 +67,9 @@
     <PreBuildEvent>
       <Command>"C:\Program Files\Git\bin\bash.exe" ../git_version.sh &gt;git_version.h</Command>
     </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>copy /y /b "$(TargetPath)" "C:\SonicR\d3d9.dll"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -93,6 +96,7 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="D3DStuff.h" />
     <ClInclude Include="Events.h" />
     <ClInclude Include="FileMap.hpp" />
     <ClInclude Include="FileReplacement.h" />

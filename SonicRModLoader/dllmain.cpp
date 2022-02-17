@@ -398,7 +398,18 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 	WriteCall((void *)0x43E928, D3D_Render2DObject_AlignLeft); // 5
 
 	// Textures
-	WriteCall((void*)0x407A30, D3D_ReadTPageRGB_r);
+	WriteJump(D3D_LoadTPageRGB, D3D_LoadTPageRGB_r);
+	WriteJump(D3D_ConvertTPagesToTextures, D3D_ConvertTPagesToTextures_r);
+	WriteJump((void*)0x407FE9, LoadHiResParallax);
+	WriteCall((void*)0x41F301, D3D_LoadPlayfieldTilesRGB_r);
+	WriteCall((void*)0x41F6CE, D3D_LoadPlayfieldTilesRGB_r);
+	WriteCall((void*)0x41FA6C, D3D_LoadPlayfieldTilesRGB_r);
+	WriteCall((void*)0x41FE0C, D3D_LoadPlayfieldTilesRGB_r);
+	WriteCall((void*)0x41D2C8, D3D_LoadWallpaper_r);
+	WriteCall((void*)0x443F09, D3D_LoadWallpaper_r);
+	WriteCall((void*)0x444CE6, D3D_LoadWallpaper_r);
+	WriteCall((void*)0x444EA6, D3D_LoadWallpaper_r);
+	WriteJump((void*)0x407943, LoadHiResTPageSection);
 
 	// Map of files to replace and/or swap.
 	// This is done with a second map instead of fileMap directly

@@ -60,6 +60,29 @@ enum Characters
 	Characters_SuperSonic
 };
 
+enum Courses
+{
+	Courses_ResortIsland = 1,
+	Courses_RadicalCity,
+	Courses_ReactiveFactory,
+	Courses_RegalRuin,
+	Courses_RadiantEmerald
+};
+
+enum TimesOfDay
+{
+	TOD_Dawn,
+	TOD_Day,
+	TOD_Dusk,
+	TOD_Night
+};
+
+enum WeatherConditions
+{
+	WC_Clear,
+	WC_Rain,
+	WC_Snow
+};
 
 struct PlayerData
 {
@@ -157,22 +180,33 @@ DataPointer(WNDCLASSA, WndClass, 0x4B5398);
 DataPointer(HINSTANCE, hInstance, 0x4B53C4);
 DataPointer(HWND, hWnd, 0x4B53C8);
 DataPointer(int, CurrentMusicTrack, 0x502360);
+DataArray(int, TextureSizes, 0x503258, 104);
 DataArray(char *, TPageBuffers, 0x5D359C, 51);
 DataPointer(int, Windowed, 0x5EDD24);
 DataPointer(int, FrameEndTime, 0x7349F8);
 DataPointer(int, FrameStartTime, 0x7356B0);
+DataPointer(int, WallpaperTPage, 0x736054);
+DataPointer(int, BackgroundTPage, 0x752A30);
+DataPointer(int, CurrentCourse, 0x7AF13C);
 DataPointer(int, MusicVolume, 0x7AF1B4);
 DataArray(PlayerData, Players, 0x7B7388, 5);
+DataPointer(int, PlayfieldTPage, 0x85EB58);
+DataPointer(int, TimeOfDay, 0x85EB78);
+DataPointer(int, Weather, 0x8607BC);
 
 FunctionPointer(void, FrameDelay, (int fps), 0x404A90);
 static void(__cdecl *(__cdecl *const DisplayFatalErrorWithTrace)(char *file, int line))(char *, ...) = (decltype(DisplayFatalErrorWithTrace))0x404AF0;
 static void(__cdecl *(__cdecl *const PrintDebugWithTrace)(char *file, int line))(char *, ...) = (decltype(PrintDebugWithTrace))0x404BC0;
 FunctionPointer(int, GetTime, (), 0x404D30);
 FunctionPointer(int, PrintDebug, (const char *fmt, ...), 0x404D80);
+FunctionPointer(void, D3D_LoadTPageSectionRGB, (const char* filename, char* buffer, int srcWidth, int srcHeight, int dstLeft, int dstTop), 0x4078E0);
 FunctionPointer(int, D3D_ReadTPageRGB, (const char *FilePath, char *Buffer, int BytesPerChannel), 0x407950);
-FunctionPointer(void, D3D_LoadTPageRGB, (int page, char *filename), 0x407A00);
+FunctionPointer(void, D3D_LoadTPageRGB, (int page, const char *filename), 0x407A00);
+FunctionPointer(void, D3D_LoadWallpaper, (const char* filename), 0x408500);
+FunctionPointer(void, D3D_LoadPlayfieldTilesRGB, (const char* filename), 0x408740);
 FunctionPointer(void, CreateTPageBuffer, (int page), 0x442720);
 FunctionPointer(void, D3D_ReleaseTexture, (int page), 0x4427D0);
+VoidFunc(D3D_ConvertTPagesToTextures, 0x442850);
 VoidFunc(CalculateClockSpeed, 0x4332B0);
 FunctionPointer(void, ProcessCommandLine, (const char *a1), 0x433400);
 FunctionPointer(int, MainGameLoop, (), 0x43AA60);

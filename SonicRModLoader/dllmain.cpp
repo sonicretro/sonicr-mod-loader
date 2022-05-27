@@ -347,6 +347,12 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 
 	fileMap.scanSoundFolder("music");
 
+	// Init GDI+, for textures and window background
+	Gdiplus::GdiplusStartupInput gdiplusStartupInput;
+	ULONG_PTR gdiplusToken;
+	Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, nullptr);
+
+
 	/// Widescreen
 	/// Replace first section of Render_SetViewport()
 	WriteJump((void *)0x439E46, &Render_SetViewport_FixUp);
@@ -748,12 +754,7 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 		if (!FileExists(borderimg))
 			borderimg = L"mods\\Border_Default.png";
 		if (FileExists(borderimg))
-		{
-			Gdiplus::GdiplusStartupInput gdiplusStartupInput;
-			ULONG_PTR gdiplusToken;
-			Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, nullptr);
 			backgroundImage = Gdiplus::Bitmap::FromFile(borderimg.c_str());
-		}
 
 		// Register a window class for the wrapper window.
 		WNDCLASS w;

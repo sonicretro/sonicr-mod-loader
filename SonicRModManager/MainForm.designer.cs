@@ -87,6 +87,7 @@
 			this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
 			this.developerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.generateManifestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.crashLogCheckBox = new System.Windows.Forms.CheckBox();
 			label5 = new System.Windows.Forms.Label();
 			label2 = new System.Windows.Forms.Label();
 			label1 = new System.Windows.Forms.Label();
@@ -719,6 +720,7 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.crashLogCheckBox);
 			this.groupBox1.Controls.Add(this.debugFileCheckBox);
 			this.groupBox1.Controls.Add(this.debugConsoleCheckBox);
 			this.groupBox1.Location = new System.Drawing.Point(6, 6);
@@ -768,7 +770,7 @@
 			// openFolderToolStripMenuItem
 			// 
 			this.openFolderToolStripMenuItem.Name = "openFolderToolStripMenuItem";
-			this.openFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.openFolderToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
 			this.openFolderToolStripMenuItem.Text = "Open folder";
 			this.openFolderToolStripMenuItem.Click += new System.EventHandler(this.openFolderToolStripMenuItem_Click);
 			// 
@@ -780,28 +782,28 @@
 			// checkForUpdatesToolStripMenuItem
 			// 
 			this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
-			this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
 			this.checkForUpdatesToolStripMenuItem.Text = "Check for updates";
 			this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdatesToolStripMenuItem_Click);
 			// 
 			// verifyToolStripMenuItem
 			// 
 			this.verifyToolStripMenuItem.Name = "verifyToolStripMenuItem";
-			this.verifyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.verifyToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
 			this.verifyToolStripMenuItem.Text = "Verify integrity";
 			this.verifyToolStripMenuItem.Click += new System.EventHandler(this.verifyToolStripMenuItem_Click);
 			// 
 			// forceUpdateToolStripMenuItem
 			// 
 			this.forceUpdateToolStripMenuItem.Name = "forceUpdateToolStripMenuItem";
-			this.forceUpdateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.forceUpdateToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
 			this.forceUpdateToolStripMenuItem.Text = "Force update";
 			this.forceUpdateToolStripMenuItem.Click += new System.EventHandler(this.forceUpdateToolStripMenuItem_Click);
 			// 
 			// uninstallToolStripMenuItem
 			// 
 			this.uninstallToolStripMenuItem.Name = "uninstallToolStripMenuItem";
-			this.uninstallToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.uninstallToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
 			this.uninstallToolStripMenuItem.Text = "Uninstall";
 			this.uninstallToolStripMenuItem.Click += new System.EventHandler(this.uninstallToolStripMenuItem_Click);
 			// 
@@ -815,15 +817,26 @@
 			this.developerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.generateManifestToolStripMenuItem});
 			this.developerToolStripMenuItem.Name = "developerToolStripMenuItem";
-			this.developerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.developerToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
 			this.developerToolStripMenuItem.Text = "Developer";
 			// 
 			// generateManifestToolStripMenuItem
 			// 
 			this.generateManifestToolStripMenuItem.Name = "generateManifestToolStripMenuItem";
-			this.generateManifestToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.generateManifestToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
 			this.generateManifestToolStripMenuItem.Text = "Generate manifest";
 			this.generateManifestToolStripMenuItem.Click += new System.EventHandler(this.generateManifestToolStripMenuItem_Click);
+			// 
+			// crashLogCheckBox
+			// 
+			this.crashLogCheckBox.AutoSize = true;
+			this.crashLogCheckBox.Location = new System.Drawing.Point(124, 19);
+			this.crashLogCheckBox.Name = "crashLogCheckBox";
+			this.crashLogCheckBox.Size = new System.Drawing.Size(93, 17);
+			this.crashLogCheckBox.TabIndex = 2;
+			this.crashLogCheckBox.Text = "Crash Handler";
+			this.toolTip1.SetToolTip(this.crashLogCheckBox, "Displays the crash address and generates a crash dump when the game crashes.");
+			this.crashLogCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// MainForm
 			// 
@@ -921,5 +934,6 @@
 		private System.Windows.Forms.NumericUpDown numericUpdateFrequency;
 		private System.Windows.Forms.ComboBox comboUpdateFrequency;
 		private System.Windows.Forms.CheckBox checkUpdateStartup;
+		private System.Windows.Forms.CheckBox crashLogCheckBox;
 	}
 }

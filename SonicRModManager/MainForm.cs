@@ -104,6 +104,7 @@ namespace SonicRModManager
 
 			debugConsoleCheckBox.Checked = loaderini.DebugConsole;
 			debugFileCheckBox.Checked = loaderini.DebugFile;
+			crashLogCheckBox.Checked = loaderini.DebugCrashLog;
 			windowedCheckBox.Checked = loaderini.Windowed;
 			horizontalResolution.Enabled = !loaderini.ForceAspectRatio;
 			horizontalResolution.Value = Math.Max(horizontalResolution.Minimum, Math.Min(horizontalResolution.Maximum, loaderini.HorizontalResolution));
@@ -835,6 +836,7 @@ namespace SonicRModManager
 
 			loaderini.DebugConsole = debugConsoleCheckBox.Checked;
 			loaderini.DebugFile = debugFileCheckBox.Checked;
+			loaderini.DebugCrashLog = crashLogCheckBox.Checked;
 			loaderini.Windowed = windowedCheckBox.Checked;
 			loaderini.HorizontalResolution = (int)horizontalResolution.Value;
 			loaderini.VerticalResolution = (int)verticalResolution.Value;

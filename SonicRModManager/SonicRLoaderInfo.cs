@@ -7,6 +7,8 @@ namespace SonicRModManager
 	{
 		public bool DebugConsole { get; set; }
 		public bool DebugFile { get; set; }
+		[DefaultValue(true)]
+		public bool DebugCrashLog { get; set; }
 		public bool Windowed { get; set; }
 		[DefaultValue(640)]
 		public int HorizontalResolution { get; set; } = 640;

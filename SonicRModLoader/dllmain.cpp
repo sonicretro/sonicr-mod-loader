@@ -21,6 +21,7 @@
 #include "Music.h"
 #include "Widescreen.h"
 #include "Textures.h"
+#include "CrashDump.h"
 #include "SonicRModLoader.h"
 
 using std::ifstream;
@@ -280,6 +281,9 @@ int __stdcall InitMods(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 		// dbgFile will be nullptr if the file couldn't be opened.
 		dbgFile = _wfopen(L"mods\\SonicRModLoader.log", L"a+");
 	}
+
+	if (settings->getBool("DebugCrashLog", true))
+		initCrashDump();
 
 	// Is any debug method enabled?
 	if (dbgConsole || dbgFile)

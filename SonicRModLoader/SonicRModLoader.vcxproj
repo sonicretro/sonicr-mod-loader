@@ -96,6 +96,7 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CrashDump.h" />
     <ClInclude Include="D3DStuff.h" />
     <ClInclude Include="Events.h" />
     <ClInclude Include="FileMap.hpp" />
@@ -111,6 +112,7 @@
     <ClInclude Include="Widescreen.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CrashDump.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Events.cpp" />
     <ClCompile Include="FileMap.cpp" />

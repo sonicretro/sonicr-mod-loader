@@ -57,6 +57,9 @@
     <ClInclude Include="D3DStuff.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
+    <ClInclude Include="CrashDump.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -87,6 +90,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Textures.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CrashDump.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
